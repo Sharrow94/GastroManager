@@ -1,14 +1,13 @@
 package pl.gastromanager.gastromanager.model;
 
 import javax.persistence.*;
-import java.util.List;
-
 
 @Entity
-public class Diet {
+public class Positions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
+    @ManyToOne
+    private Manuals manuals;
 }

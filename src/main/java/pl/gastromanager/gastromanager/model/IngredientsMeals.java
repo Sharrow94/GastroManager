@@ -3,12 +3,15 @@ package pl.gastromanager.gastromanager.model;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
-public class Diet {
+public class IngredientsMeals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-
+    @ManyToOne
+    private Meal meal;
+    @ManyToOne
+    private Ingredient ingredient;
+    private double ingredientQuantity;
+    private float price;
 }

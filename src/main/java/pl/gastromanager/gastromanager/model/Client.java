@@ -6,4 +6,5 @@ import javax.persistence.Id;
 @Entity
 public class Client {
     @Id
+    private long id;
 }

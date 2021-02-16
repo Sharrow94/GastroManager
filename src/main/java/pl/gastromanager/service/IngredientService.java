@@ -1,7 +1,6 @@
 package pl.gastromanager.service;
 
 import pl.gastromanager.model.Ingredient;
-
 import java.util.List;
 import java.util.Optional;
 

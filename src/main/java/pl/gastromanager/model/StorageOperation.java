@@ -1,17 +1,22 @@
-package pl.gastromanager.gastromanager.model;
+package pl.gastromanager.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
-public class CurrentStorage {
+public class StorageOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Ingredient ingredient;
     private float unitPrice;
     private float quantity;
+    private String operationType;
+    @OneToOne
+    private Ingredient ingredient;
     @OneToOne
     private Supplier supplier;
 }

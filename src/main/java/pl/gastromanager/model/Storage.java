@@ -1,8 +1,12 @@
-package pl.gastromanager.gastromanager.model;
+package pl.gastromanager.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Storage {
     @Id
@@ -10,6 +14,6 @@ public class Storage {
     private Long id;
     @OneToOne
     private Ingredient ingredient;
-    private Long totalQuantity;
+    private Long quantity;
     private String unit;
 }

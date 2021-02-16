@@ -1,8 +1,13 @@
-package pl.gastromanager.gastromanager.model;
+package pl.gastromanager.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Meal {
     @Id
@@ -14,4 +19,7 @@ public class Meal {
     @ManyToOne
     private Diet diet;
     private float price;
+    private boolean hasGluten;
+    private boolean hasMeat;
+    private boolean hasLactose;
 }

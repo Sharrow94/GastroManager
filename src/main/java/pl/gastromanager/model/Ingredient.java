@@ -1,10 +1,14 @@
-package pl.gastromanager.gastromanager.model;
+package pl.gastromanager.model;
 
 import jdk.dynalink.linker.LinkerServices;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Ingredient {
     @Id

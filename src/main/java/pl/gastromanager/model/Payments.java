@@ -1,7 +1,13 @@
-package pl.gastromanager.gastromanager.model;
+package pl.gastromanager.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Payments {
     @Id
@@ -13,4 +19,5 @@ public class Payments {
     @OneToOne
     private Orders orders;
     private boolean isPayed;
+    private LocalDateTime date;
 }

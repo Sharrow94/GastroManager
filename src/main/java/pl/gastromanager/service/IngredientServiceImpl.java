@@ -3,7 +3,6 @@ package pl.gastromanager.service;
 import org.springframework.stereotype.Service;
 import pl.gastromanager.model.Ingredient;
 import pl.gastromanager.repository.IngredientRepository;
-
 import java.util.List;
 import java.util.Optional;
 

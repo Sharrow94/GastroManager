@@ -1,11 +1,9 @@
 package pl.gastromanager.model;
 
-import jdk.dynalink.linker.LinkerServices;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +18,4 @@ public class Ingredient {
     private boolean hasGluten;
     private boolean hasMeat;
     private boolean hasLactose;
-//    @OneToMany(mappedBy = "ingredient")
-//    private List<IngredientsMeals> ingredientsMeals;
 }

@@ -14,8 +14,6 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-//    @OneToMany
-//    private List<Meal> meals;
     @ManyToOne
     private WeekDays weekDays;
     @OneToMany(mappedBy = "plan")

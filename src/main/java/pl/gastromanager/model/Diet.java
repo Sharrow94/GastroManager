@@ -16,5 +16,4 @@ public class Diet {
     private boolean hasGluten;
     private boolean hasMeat;
     private boolean hasLactose;
-
 }

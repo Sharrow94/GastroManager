@@ -28,7 +28,7 @@ public class IngredientsMealsBuilder {
 
     public IngredientsMeals build(){
         IngredientsMeals ingredientsMeals = new IngredientsMeals();
-        ingredientsMeals.setMeal(this.meal);
+//        ingredientsMeals.setMeal(this.meal);
         ingredientsMeals.setIngredient(this.ingredient);
         ingredientsMeals.setQuantity(this.quantity);
         ingredientsMeals.setPrice((float) (ingredient.getUnitPrice()*this.quantity));

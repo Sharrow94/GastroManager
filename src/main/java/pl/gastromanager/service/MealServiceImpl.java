@@ -8,9 +8,7 @@ import pl.gastromanager.model.Meal;
 import pl.gastromanager.repository.DietRepository;
 import pl.gastromanager.repository.IngredientsMealsRepository;
 import pl.gastromanager.repository.MealRepository;
-import pl.gastromanager.util.IngredientsMealsBuilder;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,8 +71,8 @@ public class MealServiceImpl implements MealService {
         boolean hasMeat = false;
         for (Ingredient ingredient : ingredients) {
             if(ingredient.isHasGluten()) meal.setHasGluten(true);
-            if(ingredient.isHasLactose()) meal.setHasGluten(true);
-            if(ingredient.isHasMeat()) meal.setHasGluten(true);
+            if(ingredient.isHasLactose()) meal.setHasLactose(true);
+            if(ingredient.isHasMeat()) meal.setHasMeat(true);
         }
 
         //Setting meal diet
@@ -96,17 +94,5 @@ public class MealServiceImpl implements MealService {
     public List<Ingredient> findAllMealIngredients(Meal meal) {
         List<IngredientsMeals> ingredientsMealsList = ingredientsMealsRepository.findAllIngredientsByMeal(meal);
         return ingredientsMealsList.stream().map(IngredientsMeals::getIngredient).collect(Collectors.toList());
-    }
-
-    @Override
-    public void addIngredient(Meal meal, Ingredient ingredient, float quantity) {
-        IngredientsMealsBuilder imBuilder = new IngredientsMealsBuilder();
-        IngredientsMeals ingredientsMeals = imBuilder.meal(meal).ingredient(ingredient).quantity(quantity).build();
-        ingredientsMealsRepository.save(ingredientsMeals);
-    }
-
-    @Override
-    public void addManyIngredients(Meal meal, HashMap<Ingredient, Float> ingredientsQuantity) {
-        ingredientsQuantity.forEach((key, value) -> addIngredient(meal, key, value));
     }
 }

@@ -1,30 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Edit Supplier</title>
+    <title>Edit ingredient in storage:</title>
 </head>
 <body>
+<form:form method="post" modelAttribute="payment" action="/storage/edit">
+    <form:hidden path="id" />
+    <table>
+        <tr>
+            <td>Quantity:</td>
+            <td><form:input path="quantity"/></td>
+        </tr>
+        <tr>
+            <td>Unit:</td>
+            <td><form:input path="unit" /><br></td>
+        </tr>
+        <tr>
+            <td>IngredientId:</td>
+            <td><form:input path="ingredient.id" /></td>
+        </tr>
 
-<div>Edit:${supplier.name}</div>
-<form:form method="post" modelAttribute="supplier" action="/supplier/edit">
-    <form:hidden path="id" items="${supplier.id}"/>
-    <p>Name:</p>
-    <form:input path="name" items="${supplier.name}"/>
-    <p>Phone number:</p>
-    <form:input path="phoneNumber" items="${supplier.phoneNumber}" />
-    <p>City:</p>
-    <form:input path="city" items="${supplier.city}" />
-    <p>Street:</p>
-    <form:input path="street" items="${supplier.street}" />
-    <p>Nr:</p>
-    <form:input path="nr" items="${supplier.nr}"/>
-    <p>Post Number:</p>
-    <form:input path="postNumber" items="${supplier.postNumber}"/>
-    <input type="submit" value="Update">
+    </table>
+    <input type="submit">
 </form:form>
 </body>
 </html>

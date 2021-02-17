@@ -8,19 +8,19 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="storage" action="/storage/edit">
-    <form:hidden path="id" items="${storage.id}"/>
+    <form:hidden path="id" />
     <table>
         <tr>
             <td>Quantity:</td>
-            <td><form:input path="quantity" items="${storage.quantity}"/></td>
+            <td><form:input path="quantity"/></td>
         </tr>
         <tr>
             <td>Unit:</td>
-            <td><form:input path="unit" items="${storage.unit}"/><br></td>
+            <td><form:input path="unit" /><br></td>
         </tr>
         <tr>
             <td>IngredientId:</td>
-            <td><form:input path="ingredient.id" items="${storage.ingredient}"/></td>
+            <td><form:input path="ingredient.id" /></td>
         </tr>
 
     </table>

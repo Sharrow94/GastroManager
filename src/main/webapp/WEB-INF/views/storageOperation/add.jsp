@@ -5,20 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Dodaj nowy posiłek</h1>
+<h1>Dodaj nową operację</h1>
 <form:form method="post" modelAttribute="storageOperation">
 <table>
-    <tr>Numer faktury:</tr>
+    <tr>Numer faktury:</tr><br>
     <tr>
-        <form:input path="invoiceNumber"/>
+        <form:input path="invoiceNumber"/><br>
     </tr>
-    <tr>Dostawca</tr>
+    <tr>Dostawca</tr><br>
     <tr>
-        <form:input path="supplier.name"/>
+        <form:select path="supplier" items="${suppliers}" itemLabel="name" itemValue="id" /><br>
     </tr>
-    <tr>Produkt</tr>
+    <tr>Produkt</tr><br>
     <tr>
-        <form:select path="ingredient" items="${ingredients}" itemLabel="name" itemValue="id" />
+        <form:select path="ingredient" items="${ingredients}" itemLabel="name" itemValue="id" /><br>
         <input type="submit">
     </tr>
 </form:form>

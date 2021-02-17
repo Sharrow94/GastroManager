@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.gastromanager.model.Diet;
+import pl.gastromanager.model.Ingredient;
 import pl.gastromanager.model.Meal;
 import pl.gastromanager.service.DietService;
 import pl.gastromanager.service.MealService;
@@ -73,6 +74,16 @@ public class MealController {
     public String listMeal(Model model){
         model.addAttribute("meals", mealService.findAll());
         return "meal/showAllMeals";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(){
+        Meal meal = mealService.findMealById(1l);
+        List<Ingredient> ingredients = mealService.findAllMealIngredients(meal);
+        StringBuilder sb = new StringBuilder();
+        ingredients.forEach(i-> sb.append(i.getName()).append(" "));
+        return sb.toString();
     }
 
 }

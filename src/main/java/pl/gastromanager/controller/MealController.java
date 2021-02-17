@@ -28,14 +28,16 @@ public class MealController {
         this.ingredientsMealsService = ingredientsMealsService;
     }
 
-//    @ModelAttribute("diets")
-//    List<Diet> diets(){
-//        return dietService.findAllDiets();
-//    }
-
     @ModelAttribute("ingredients")
     List<Ingredient> ingredientsList(){
         return ingredientService.findAll();
+    }
+
+
+    @GetMapping("/list")
+    public String listMeal(Model model){
+        model.addAttribute("meals", mealService.findAll());
+        return "meal/showAllMeals";
     }
 
     @GetMapping("/add")
@@ -51,32 +53,53 @@ public class MealController {
         return "redirect:/meal/list";
     }
 
-//    @GetMapping("/ingredient/add")
-//    public String addIngredientGet(@RequestParam String name, Model model) {
-//        Meal meal = mealService.findMealByName(name.replace("_", " "));
-//        IngredientsMeals ingredientsMeals = new IngredientsMeals();
-//        ingredientsMeals.setMeal(meal);
-//        model.addAttribute("ingredientsMeals", ingredientsMeals);
-//        return "meal/addMealIngredient";
-//    }
+    @GetMapping("/details/{id}")
+    public String showMealDetails(@PathVariable Long id, Model model){
+        Meal meal = mealService.findMealById(id);
+        model.addAttribute("meal", meal);
+        return "meal/showDetails";
+    }
 
     @GetMapping("/ingredient/add/{id}")
     public String addIngredientByIdGet(@PathVariable Long id, Model model){
         Meal meal = mealService.findMealById(id);
         IngredientsMeals ingredientsMeals = new IngredientsMeals();
-//        ingredientsMeals.setMeal(meal);
         model.addAttribute("meal", meal);
         model.addAttribute("ingredientsMeals", ingredientsMeals);
         return "meal/addMealIngredient";
     }
 
     @PostMapping("/ingredient/add")
-    @ResponseBody
     public String addIngredientPost(IngredientsMeals ingredientsMeals){
         ingredientsMeals.setPrice((float) (ingredientsMeals.getIngredient().getUnitPrice()*ingredientsMeals.getQuantity()));
         ingredientsMealsService.saveIngredientsMeals(ingredientsMeals);
         mealService.refreshMeal(ingredientsMeals.getMeal());
-        return "added";
+        return "redirect:/meal/details/"+ingredientsMeals.getMeal().getId();
+    }
+
+    @GetMapping("/ingredient/edit/{id}")
+    public String editIngredientByIdGet(@PathVariable Long id, Model model){
+        IngredientsMeals im = ingredientsMealsService.findIngredientsMealsById(id);
+        Meal meal = im.getMeal();
+        model.addAttribute("ingredientsMeals", im);
+        model.addAttribute("meal", meal);
+        return "meal/editMealIngredient";
+    }
+
+    @PostMapping("/ingredient/edit")
+    public String editIngredientPost(IngredientsMeals ingredientsMeals){
+        ingredientsMeals.setPrice((float) (ingredientsMeals.getIngredient().getUnitPrice()*ingredientsMeals.getQuantity()));
+        ingredientsMealsService.saveIngredientsMeals(ingredientsMeals);
+        mealService.refreshMeal(ingredientsMeals.getMeal());
+        return "redirect:/meal/details/"+ingredientsMeals.getMeal().getId();
+    }
+
+    @GetMapping("/ingredient/delete/{id}")
+    public String deleteIngredientGet(@PathVariable Long id){
+        IngredientsMeals im = ingredientsMealsService.findIngredientsMealsById(id);
+        Meal meal = im.getMeal();
+        ingredientsMealsService.deleteIngredientsMeals(im);
+        return "redirect:/meal/details/"+meal.getId();
     }
 
     @GetMapping("/edit/{id}")
@@ -104,11 +127,5 @@ public class MealController {
     public String confirmDelete(@PathVariable int id, Model model){
         model.addAttribute("id", id);
         return "meal/deleteConfirm";
-    }
-
-    @GetMapping("/list")
-    public String listMeal(Model model){
-        model.addAttribute("meals", mealService.findAll());
-        return "meal/showAllMeals";
     }
 }

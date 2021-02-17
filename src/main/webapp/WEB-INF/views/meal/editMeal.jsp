@@ -8,6 +8,8 @@
 <h1>Edytuj ${meal.name}</h1>
 <form:form method="post" modelAttribute="meal" action="/meal/edit">
     <form:hidden path="id"/>
+    <form:hidden path="diet"/>
+    <form:hidden path="price"/>
     <form:input path="name"/> Nazwa<br>
     <form:textarea path="description"/> Opis przyrządzenia<br>
     <input type="submit">

@@ -10,7 +10,6 @@
     <form:hidden path="id"/>
     <form:input path="name"/> Nazwa<br>
     <form:textarea path="description"/> Opis przyrządzenia<br>
-    <form:select path="diet" itemLabel="name" items="${diets}"/>
     <input type="submit">
 </form:form>
 

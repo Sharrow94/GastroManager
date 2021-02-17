@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DietService{
     List<Diet> findAllDiets();
+    Diet findDietByName(String name);
 }

@@ -66,9 +66,9 @@ public class MealServiceImpl implements MealService {
                 .collect(Collectors.toList());
 
         //Setting meal properties
-        boolean hasGluten = false;
-        boolean hasLactose = false;
-        boolean hasMeat = false;
+        meal.setHasMeat(false);
+        meal.setHasLactose(false);
+        meal.setHasGluten(false);
         for (Ingredient ingredient : ingredients) {
             if(ingredient.isHasGluten()) meal.setHasGluten(true);
             if(ingredient.isHasLactose()) meal.setHasLactose(true);

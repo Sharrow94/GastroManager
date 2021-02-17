@@ -10,18 +10,19 @@
 
 <h2>Składniki:</h2>
 <ul>
-<c:forEach items="${meal.ingredientsMeals}" var="im">
-    <li>${im.ingredient.name} | ilość ${im.quantity} |
-        <a href="<c:url value="/meal/ingredient/edit/${im.id}"/>">Edytuj</a> |
-        <a href="<c:url value="/meal/ingredient/delete/${im.id}"/>">Usuń</a>
-    </li>
-</c:forEach>
-<a href="<c:url value="/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>
+    <c:forEach items="${meal.ingredientsMeals}" var="im">
+        <li>${im.ingredient.name} | ilość ${im.quantity} |
+            <a href="<c:url value="/meal/ingredient/edit/${im.id}"/>">Edytuj</a> |
+            <a href="<c:url value="/meal/ingredient/delete/${im.id}"/>">Usuń</a>
+        </li>
+    </c:forEach>
+    <a href="<c:url value="/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>
 
-</ul>
-<h2>Sposób przygotowania</h2>
-${meal.description}<br><br>
-cena: ${meal.price}
+    </ul>
+    <h2>Sposób przygotowania</h2>
+    ${meal.description}<br><br>
+    cena: ${meal.price}<br>
+
+    <a href="<c:url value="/meal/list"/>">Powrót do listy</a>
 </body>
-
 </html>

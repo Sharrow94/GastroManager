@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    //TODO: Jak dodać kilka stron z różnymi prefiksami da różnych roli
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

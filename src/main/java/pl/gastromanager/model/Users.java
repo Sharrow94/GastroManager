@@ -31,9 +31,10 @@ public class Users {
     @Pattern(regexp = "[A-Z][a-zA-Z]*")
     private String lastName;
     private int enabled;
-    @ManyToMany
-    @JoinTable(name = "user_role")
-    private Set<Role> role;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
     private float salary;
     private String phoneNumber;
     private String city;

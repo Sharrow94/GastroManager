@@ -1,6 +1,6 @@
 package pl.gastromanager.controller;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,10 +12,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
-//    private final Validator validator;
+
 
     public UserController(UserService userService ) {
         this.userService = userService;
@@ -59,14 +60,14 @@ public class UserController {
             return "user/editUser";
         }
         userService.update(user);
-        return "redirect:/all";
+        return "redirect:/user/all";
     }
 
 
     @RequestMapping("/delete/{id}")
     public String deleteUser(@PathVariable long id){
         userService.delete(id);
-        return "redirect:/all";
+        return "redirect:/user/all";
 
     }
 

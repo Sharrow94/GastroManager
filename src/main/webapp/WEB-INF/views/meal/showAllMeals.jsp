@@ -11,8 +11,6 @@
         <tr>
             <th>id</th>
             <th>Name</th>
-            <th>Description</th>
-            <th>Diet</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -21,16 +19,15 @@
             <tr>
                 <td>${meal.id}</td>
                 <td>${meal.name}</td>
-                <td>${meal.description}</td>
-                <td>${meal.diet.name}</td>
                 <td>
                     <a href="<c:url value="/meal/edit/${meal.id}"/>">Edit</a> |
-                    <a href="<c:url value="/meal/delete/confirm/${meal.id}"/>">Delete</a>
+                    <a href="<c:url value="/meal/delete/confirm/${meal.id}"/>">Delete</a> |
+                    <a href="<c:url value="/meal/details/${meal.id}"/>">Details</a>
                 </td>
             </tr>
         </c:forEach>
         <tr>
-            <td colspan="5">
+            <td colspan="3">
                 <a href="/meal/add"><button>+</button></a><em> Dodaj nowy posiłek</em>
             </td>
         </tr>

@@ -2,14 +2,12 @@
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <html>
 <head>
     <title>Edit ingredient in storage:</title>
 </head>
 <body>
-<form:form method="post" modelAttribute="payment" action="/storage/edit">
+<form:form method="post" modelAttribute="storage" action="/storage/edit">
     <form:hidden path="id" />
     <table>
         <tr>

@@ -19,5 +19,5 @@ public class Payments {
     @OneToOne
     private Orders orders;
     private boolean isPayed;
-    private LocalDateTime date;
+    private String date;
 }

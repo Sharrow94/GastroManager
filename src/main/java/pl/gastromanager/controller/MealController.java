@@ -3,12 +3,11 @@ package pl.gastromanager.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.gastromanager.model.Diet;
 import pl.gastromanager.model.Meal;
 import pl.gastromanager.service.DietService;
+import pl.gastromanager.service.IngredientService;
+import pl.gastromanager.service.IngredientsMealsService;
 import pl.gastromanager.service.MealService;
-
-import java.util.List;
 
 @RequestMapping("/meal")
 @Controller
@@ -21,25 +20,30 @@ public class MealController {
         this.dietService = dietService;
     }
 
-    @ModelAttribute("diets")
-    List<Diet> diets(){
-        return dietService.findAllDiets();
+    @GetMapping("/list")
+    public String listMeal(Model model){
+        model.addAttribute("meals", mealService.findAll());
+        return "meal/showAllMeals";
     }
 
     @GetMapping("/add")
     public String addMealGet(Model model){
         model.addAttribute("meal", new Meal());
-        return "/meal/addMeal";
+        return "meal/addMeal";
     }
 
     @PostMapping("/add")
-    @ResponseBody
     public String addMealPost(Meal meal){
-        meal.setHasGluten(meal.getDiet().isHasGluten());
-        meal.setHasLactose(meal.getDiet().isHasLactose());
-        meal.setHasMeat(meal.getDiet().isHasMeat());
+        meal.setDiet(dietService.findDietByName("Normalna"));
         mealService.saveMeal(meal);
-        return meal.getName()+" "+meal.getDescription();
+        return "redirect:/meal/list";
+    }
+
+    @GetMapping("/details/{id}")
+    public String showMealDetails(@PathVariable Long id, Model model){
+        Meal meal = mealService.findMealById(id);
+        model.addAttribute("meal", meal);
+        return "meal/showDetails";
     }
 
     @GetMapping("/edit/{id}")
@@ -49,11 +53,10 @@ public class MealController {
     }
 
     @PostMapping("/edit")
-    @ResponseBody
     public String editMealPost(Meal meal, Model model){
         mealService.updateMeal(meal);
         model.addAttribute("meal", meal);
-        return "Meal has been edited";
+        return "redirect:/meal/list";
     }
 
     @GetMapping("/delete/{id}")
@@ -68,11 +71,4 @@ public class MealController {
         model.addAttribute("id", id);
         return "meal/deleteConfirm";
     }
-
-    @GetMapping("/list")
-    public String listMeal(Model model){
-        model.addAttribute("meals", mealService.findAll());
-        return "meal/showAllMeals";
-    }
-
 }

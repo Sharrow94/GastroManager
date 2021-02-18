@@ -14,7 +14,7 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<IngredientsMeals> ingredientsMeals;
     @ManyToOne
     private Diet diet;

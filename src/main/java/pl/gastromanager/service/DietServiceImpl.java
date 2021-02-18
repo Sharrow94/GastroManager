@@ -18,4 +18,9 @@ public class DietServiceImpl implements DietService{
     public List<Diet> findAllDiets() {
         return dietRepository.findAll();
     }
+
+    @Override
+    public Diet findDietByName(String name) {
+        return dietRepository.findDietByName(name);
+    }
 }

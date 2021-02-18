@@ -8,13 +8,6 @@
 
 </head>
 <body>
-<td> value="${supplier.id}</td>
-<td> value="${supplier.name}</td>
-<td> value="${supplier.phoneNumber}</td>
-<td> value="${supplier.city}</td>
-<td> value="${supplier.street}</td>
-<td> value="${supplier.nr}</td>
-<td> value="${supplier.postNumber}</td>
 
 </body>
 </html>

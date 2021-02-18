@@ -10,7 +10,7 @@
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
             <div class="container w-25">
-                <form:form method="post" modelAttribute="user"  action="/update">
+                <form:form method="post" modelAttribute="user"  action="user/update">
                     <div>
                             <%--                        <h2><spring:message code="app.registration"/>: </h2>--%>
                         <h2>Edit User: </h2>

@@ -17,11 +17,9 @@ import java.util.List;
 public class PlanController {
 
     private final PlanService planService;
-    private final WeekDaysService weekDaysService;
 
-    public PlanController(PlanService planService, WeekDaysService weekDaysService) {
+    public PlanController(PlanService planService) {
         this.planService = planService;
-        this.weekDaysService = weekDaysService;
     }
 
     @RequestMapping("/{id}")
@@ -45,9 +43,7 @@ public class PlanController {
     @RequestMapping("/add")
     public String addIngredient(Model model){
         Plan plan=new Plan();
-        List<WeekDays>weekDays=weekDaysService.findAll();
         model.addAttribute("plan",plan);
-        model.addAttribute("weekDays",weekDays);
         return "plan/addPlan";
     }
 
@@ -60,9 +56,7 @@ public class PlanController {
     @RequestMapping("/edit/{id}")
     public String editIngredient(@PathVariable("id") Long id, Model model){
         Plan plan=planService.findById(id).get();
-        List<WeekDays>weekDays=weekDaysService.findAll();
         model.addAttribute("plan",plan);
-        model.addAttribute("weekDays",weekDays);
         return "plan/editPlan";
     }
 

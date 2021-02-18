@@ -19,13 +19,6 @@
             <td>Cena:</td>
             <td><form:input path="price"/><br></td>
         </tr>
-        <tr>
-            <td>Dzień tygodnia:</td>
-            <td>
-                <form:select path="weekDays" items="${weekDays}" itemLabel="name" itemValue="id" />
-            </td>
-        </tr>
-
     </table>
     <input type="submit">
 </form:form>

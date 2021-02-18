@@ -2,8 +2,10 @@ package pl.gastromanager.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,5 +21,6 @@ public class Payments {
     @OneToOne
     private Orders orders;
     private boolean isPayed;
-    private String date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private String  date;
 }

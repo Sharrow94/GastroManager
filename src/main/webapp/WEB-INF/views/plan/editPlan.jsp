@@ -6,6 +6,7 @@
 <head>
     <title>Edytuj plan</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <div>Edycja planu:${plan.name}</div>
 <form:form method="post" modelAttribute="plan" action="/plan/update">
@@ -30,5 +31,6 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>
 

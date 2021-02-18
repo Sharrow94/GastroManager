@@ -7,6 +7,7 @@
 <head>
     <title>Supplier All List</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 
 <table>
@@ -38,4 +39,5 @@
     </c:forEach>
 </table>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

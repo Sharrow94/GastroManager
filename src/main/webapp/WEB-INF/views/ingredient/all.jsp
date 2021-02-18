@@ -6,6 +6,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <c:forEach items="${ingredients}" var="ingredient">
     <tr>
@@ -19,4 +20,5 @@
     </tr>
 </c:forEach>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

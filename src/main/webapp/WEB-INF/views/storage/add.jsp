@@ -7,6 +7,7 @@
 <head>
     <title>Dodaj składnik w Magazynie:</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="storage">
     <table>
@@ -27,4 +28,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

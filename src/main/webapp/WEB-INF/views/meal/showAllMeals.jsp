@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Lista Posiłków</h1>
 <table border="1px" cellpadding="15px" cellspacing="0px">
@@ -35,4 +36,5 @@
 </table>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

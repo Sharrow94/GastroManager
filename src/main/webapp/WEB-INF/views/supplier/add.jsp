@@ -7,6 +7,7 @@
 <head>
     <title>Add Supplier</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="supplier" >
 
@@ -26,4 +27,5 @@
 </form:form>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

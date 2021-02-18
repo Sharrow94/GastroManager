@@ -9,5 +9,6 @@ import java.util.Locale;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
     Users findByUserName(String userName);
+    Users findByEmail(String email);
 
 }

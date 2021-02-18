@@ -6,6 +6,7 @@
 <head>
     <title>Edit ingredient in storage:</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="storage" action="/storage/edit">
     <form:hidden path="id" />
@@ -27,4 +28,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

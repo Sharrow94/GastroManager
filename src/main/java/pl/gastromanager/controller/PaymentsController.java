@@ -42,7 +42,9 @@ public class PaymentsController {
 
     @PostMapping("/add")
     public String saveNewPayment(Payments payments) {
+        System.out.println(payments.getDate().toString());
         paymentsService.addPayments(payments);
+
         return "redirect:/payments/all";
     }
 

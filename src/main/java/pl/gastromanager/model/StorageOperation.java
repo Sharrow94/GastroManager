@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,11 +14,8 @@ public class StorageOperation {
     private Long id;
     private float unitPrice;
     private float quantity;
-    private String operationType;
-    private String invoiceNumber;
-    private LocalDateTime date;
-    @OneToOne
+    @ManyToOne
     private Ingredient ingredient;
-    @OneToOne
-    private Supplier supplier;
+    @ManyToOne
+    private StorageOperationItem storageOperationItem;
 }

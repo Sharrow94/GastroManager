@@ -3,8 +3,10 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
     ${ingredient.id}
     ${ingredient.name}
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

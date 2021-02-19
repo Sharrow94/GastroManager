@@ -1,6 +1,6 @@
 package pl.gastromanager.controller;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,16 +11,18 @@ import pl.gastromanager.service.UserService;
 import javax.validation.Valid;
 import java.util.List;
 
+
+
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
-//    private final Validator validator;
+
 
     public UserController(UserService userService ) {
         this.userService = userService;
     }
-
 
 
     @GetMapping("/all")
@@ -30,20 +32,20 @@ public class UserController {
         return "user/allUser";
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public  String addUser(Model model){
         model.addAttribute("user", new Users());
-        return "user/addUser";
+        return "user/registration";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String saveAddUser(@Valid @ModelAttribute ("user") Users user, BindingResult result) {
         if (result.hasErrors()) {
-            return "user/addUser";
+            return "user/registration";
         }
         userService.add(user);
         userService.saveUser(user);
-        return "redirect:/all";
+        return "redirect:/home";
     }
 
 
@@ -53,20 +55,20 @@ public class UserController {
         return "user/editUser";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String saveEditUser (@Valid @ModelAttribute ("user") Users user, BindingResult result){
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String saveEditUser (@Valid @ModelAttribute ("user") Users user, @PathVariable long id, BindingResult result){
         if(result.hasErrors()){
             return "user/editUser";
         }
-        userService.update(user);
-        return "redirect:/all";
+        userService.add(user);
+        return "redirect:/home";
     }
 
 
     @RequestMapping("/delete/{id}")
     public String deleteUser(@PathVariable long id){
         userService.delete(id);
-        return "redirect:/all";
+        return "redirect:/user/all";
 
     }
 

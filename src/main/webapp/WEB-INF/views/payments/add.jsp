@@ -6,6 +6,7 @@
 <head>
     <title>Add payments:</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="payment" action="/payments/add">
     <table>
@@ -36,4 +37,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

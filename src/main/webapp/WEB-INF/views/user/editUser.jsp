@@ -1,16 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<section class="dashboard-section">
-    <div class="container pt-4 pb-4">
-        <div class="border-dashed view-height">
+<%@ include file="../header.jsp" %>
             <div class="container w-25">
-                <form:form method="post" modelAttribute="user"  action="/update">
+                <form:form method="post" modelAttribute="user"  >
                     <div>
                             <%--                        <h2><spring:message code="app.registration"/>: </h2>--%>
                         <h2>Edit User: </h2>
@@ -46,8 +39,4 @@
                 </form:form>
 
             </div>
-        </div>
-    </div>
-</section>
-</body>
-</html>
+<%@ include file="../footer.jsp" %>

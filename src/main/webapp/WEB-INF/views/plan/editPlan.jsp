@@ -6,6 +6,7 @@
 <head>
     <title>Edytuj plan</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <div>Edycja planu:${plan.name}</div>
 <form:form method="post" modelAttribute="plan" action="/plan/update">
@@ -19,16 +20,10 @@
             <td>Cena:</td>
             <td><form:input path="price"/><br></td>
         </tr>
-        <tr>
-            <td>Dzień tygodnia:</td>
-            <td>
-                <form:select path="weekDays" items="${weekDays}" itemLabel="name" itemValue="id" />
-            </td>
-        </tr>
-
     </table>
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>
 

@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface UserService {
     List<Users> getUsers();
     Users findByUserName(String userName);
+    Users findByUserEmail(String email);
     void saveUser(Users users);
     void add(Users users);
     void update(Users users);

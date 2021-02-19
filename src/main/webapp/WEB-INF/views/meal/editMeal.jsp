@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Edytuj ${meal.name}</h1>
 <form:form method="post" modelAttribute="meal" action="/meal/edit">
@@ -16,4 +17,5 @@
 </form:form>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

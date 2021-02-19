@@ -6,6 +6,7 @@
 <head>
     <title>Dodaj dane o płatności za zamówienie:</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="order" action="/orders/add">
     <table>
@@ -40,4 +41,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

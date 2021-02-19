@@ -60,26 +60,69 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments"
+               aria-expanded="true" aria-controls="collapsePayments">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
+                <span>Payments</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="buttons.html">Buttons</a>
-                    <a class="collapse-item text-gray-100" href="cards.html">Cards</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/add"/>">Add</a>
                 </div>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeal"
+               aria-expanded="true" aria-controls="collapseMeal">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Meal</span>
+            </a>
+            <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/list"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/add"/>">Add</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlan"
+               aria-expanded="true" aria-controls="collapsePlan">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Plan</span>
+            </a>
+            <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/add"/>">Add</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
+               aria-expanded="true" aria-controls="collapseOrders">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Orders</span>
+            </a>
+            <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/add"/>">Add</a>
+                </div>
+            </div>
+        </li>
+
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+                <span>Utility</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +70,10 @@
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
                     <a class="collapse-item text-gray-100" href="<c:url value="/payments/all"/>">List</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/add"/>">Add</a>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <a class="collapse-item text-gray-100" href="<c:url value="/payments/add"/>">Add</a>
+                    </sec:authorize>
+
                 </div>
             </div>
         </li>
@@ -83,7 +87,11 @@
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
                     <a class="collapse-item text-gray-100" href="<c:url value="/meal/list"/>">List</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/add"/>">Add</a>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <a class="collapse-item text-gray-100" href="<c:url value="/meal/add"/>">Add</a>
+                    </sec:authorize>
+
+
                 </div>
             </div>
         </li>
@@ -97,7 +105,10 @@
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
                     <a class="collapse-item text-gray-100" href="<c:url value="/plan/all"/>">List</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/add"/>">Add</a>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <a class="collapse-item text-gray-100" href="<c:url value="/plan/add"/>">Add</a>
+                    </sec:authorize>
+
                 </div>
             </div>
         </li>
@@ -111,11 +122,29 @@
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
                     <a class="collapse-item text-gray-100" href="<c:url value="/orders/all"/>">List</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/add"/>">Add</a>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <a class="collapse-item text-gray-100" href="<c:url value="/orders/add"/>">Add</a>
+                    </sec:authorize>
+
                 </div>
             </div>
         </li>
-
+        <sec:authorize access="hasRole('ADMIN')">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStorages"
+               aria-expanded="true" aria-controls="collapseStorages">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Storages</span>
+            </a>
+            <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/sOi/list"/>">Document storages</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/ingredient/all"/>">Stock level</a>
+                </div>
+            </div>
+        </li>
+        </sec:authorize>
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
@@ -135,6 +164,7 @@
                 </div>
             </div>
         </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -369,7 +399,11 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+<%--                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>--%>
+                            <sec:authorize access="isAuthenticated()">
+                                <p>Zalogowany jako: <sec:authentication property="principal.username"/></p>
+                                <p> <sec:authentication property="authorities"/></p>
+                            </sec:authorize>
                             <img class="img-profile rounded-circle"
                                  src="<c:url value="/img/undraw_profile.svg"/>">
                         </a>

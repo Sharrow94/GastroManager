@@ -28,8 +28,8 @@
                             </label>
                             </div>
                         </div>
-
                         <div class="col-sm-12 col-md-6">
+
                             <div id="dataTable_filter" class="dataTables_filter"
                                  style="position: absolute;  right: 0;width: 250px;">
                                 <label><spring:message code="app.search"/>:<input type="search"
@@ -96,11 +96,17 @@
                                     <td><c:out value="${supplier.postNumber}"/></td>
                                     <td>
                                         <a href='<c:url value="/supplier/${supplier.id}"/>'
-                                           class="btn btn-primary"><spring:message code="app.show"/></a>
+                                           class="btn btn-primary"
+                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                code="app.show"/></a>
                                         <a href='<c:url value="/supplier/edit/${supplier.id}"/>'
-                                           class="btn btn-primary"><spring:message code="app.edit"/></a>
+                                           class="btn btn-primary"
+                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                code="app.edit"/></a>
                                         <a href='<c:url value="/supplier/delete/${supplier.id}"/>'
-                                           class="btn btn-primary"><spring:message code="app.delete"/></a>
+                                           class="btn btn-primary"
+                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                code="app.delete"/></a>
                                     </td>
 
                                 </tr>

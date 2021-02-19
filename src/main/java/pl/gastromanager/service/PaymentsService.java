@@ -1,8 +1,6 @@
 package pl.gastromanager.service;
 
-import org.springframework.stereotype.Service;
 import pl.gastromanager.model.Payments;
-import pl.gastromanager.model.Storage;
 
 import java.util.List;
 import java.util.Optional;

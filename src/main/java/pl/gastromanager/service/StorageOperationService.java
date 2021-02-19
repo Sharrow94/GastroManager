@@ -12,4 +12,6 @@ public interface StorageOperationService {
     void addStorageOperation(StorageOperation storageOperation);
     void deleteStorageOperation(Long id);
     List<StorageOperation> findAll();
+    List<StorageOperation>findAllByStorageOperationItemId(Long id);
+    void updateTotalQuantityIngredient(Long id);
 }

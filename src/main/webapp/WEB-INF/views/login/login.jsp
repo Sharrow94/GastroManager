@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -73,11 +74,11 @@
                                     </a>
                                 </form>
                                 <hr>
+<%--                                <div class="text-center">--%>
+<%--                                    <a class="small" href="forgot-password.html">Forgot Password?</a>--%>
+<%--                                </div>--%>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="register.html">Create an Account!</a>
+                                    <a class="small" href="<c:url value="/user/add"/>">Create an Account!</a>
                                 </div>
                             </div>
                         </div>

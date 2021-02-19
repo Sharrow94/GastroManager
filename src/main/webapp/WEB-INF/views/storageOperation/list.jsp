@@ -22,7 +22,7 @@
     <c:forEach items="${storageOperations}" var="storageOperation">
         <tr>
             <td>${storageOperation.supplier.name}</td>
-            <td>${storageOperation.invoiceNumber}</td>
+            <td>${storageOperation.doc}</td>
             <td>${storageOperation.ingredient.name}</td>
             <td>Tu będzie data</td>
             <td>${storageOperation.operationType}</td>

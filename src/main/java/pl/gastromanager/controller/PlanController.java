@@ -6,22 +6,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.gastromanager.model.Plan;
-import pl.gastromanager.model.WeekDays;
+import pl.gastromanager.service.DietService;
 import pl.gastromanager.service.PlanService;
-import pl.gastromanager.service.WeekDaysService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/plan")
 public class PlanController {
 
     private final PlanService planService;
-    private final WeekDaysService weekDaysService;
+    private final DietService dietService;
 
-    public PlanController(PlanService planService, WeekDaysService weekDaysService) {
+    public PlanController(PlanService planService, DietService dietService) {
         this.planService = planService;
-        this.weekDaysService = weekDaysService;
+        this.dietService = dietService;
     }
 
     @RequestMapping("/{id}")
@@ -45,14 +42,13 @@ public class PlanController {
     @RequestMapping("/add")
     public String addIngredient(Model model){
         Plan plan=new Plan();
-        List<WeekDays>weekDays=weekDaysService.findAll();
         model.addAttribute("plan",plan);
-        model.addAttribute("weekDays",weekDays);
         return "plan/addPlan";
     }
 
     @PostMapping("/add")
     public String ingredientAddForm(Plan plan){
+        plan.setDiet(dietService.findDietByName("Normalna"));
         planService.addPlan(plan);
         return "redirect:/plan/all";
     }
@@ -60,9 +56,7 @@ public class PlanController {
     @RequestMapping("/edit/{id}")
     public String editIngredient(@PathVariable("id") Long id, Model model){
         Plan plan=planService.findById(id).get();
-        List<WeekDays>weekDays=weekDaysService.findAll();
         model.addAttribute("plan",plan);
-        model.addAttribute("weekDays",weekDays);
         return "plan/editPlan";
     }
 

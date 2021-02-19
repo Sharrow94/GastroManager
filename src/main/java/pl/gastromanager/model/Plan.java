@@ -14,7 +14,13 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private float foodCostTotal;
     private float price;
     @OneToMany(mappedBy = "plan")
     private List<PlansMeals> plansMeals;
+    @ManyToOne
+    private Diet diet;
+    private boolean hasGluten;
+    private boolean hasMeat;
+    private boolean hasLactose;
 }

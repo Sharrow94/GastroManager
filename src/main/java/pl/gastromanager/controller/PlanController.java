@@ -6,20 +6,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.gastromanager.model.Plan;
-import pl.gastromanager.model.WeekDays;
+import pl.gastromanager.service.DietService;
 import pl.gastromanager.service.PlanService;
-import pl.gastromanager.service.WeekDaysService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/plan")
 public class PlanController {
 
     private final PlanService planService;
+    private final DietService dietService;
 
-    public PlanController(PlanService planService) {
+    public PlanController(PlanService planService, DietService dietService) {
         this.planService = planService;
+        this.dietService = dietService;
     }
 
     @RequestMapping("/{id}")
@@ -49,6 +48,7 @@ public class PlanController {
 
     @PostMapping("/add")
     public String ingredientAddForm(Plan plan){
+        plan.setDiet(dietService.findDietByName("Normalna"));
         planService.addPlan(plan);
         return "redirect:/plan/all";
     }

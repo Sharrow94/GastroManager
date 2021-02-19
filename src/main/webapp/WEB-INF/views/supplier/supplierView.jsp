@@ -7,7 +7,9 @@
 <head>
 
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

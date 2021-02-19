@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Edytuj składnik z ${ingredientsMeals.meal.name}</h1>
 <%--<h1>Edytuj Składnik</h1>--%>
@@ -21,4 +22,5 @@
 </form:form>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

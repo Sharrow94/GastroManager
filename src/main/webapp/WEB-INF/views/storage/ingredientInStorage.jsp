@@ -6,6 +6,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 
     ${ingredientInStorage.id}
@@ -14,4 +15,5 @@
     ${ingredientInStorage.ingredientId}
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

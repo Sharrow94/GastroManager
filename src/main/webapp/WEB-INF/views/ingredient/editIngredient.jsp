@@ -6,6 +6,7 @@
 <head>
     <title>Dodaj składnik</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <div>Edycja składnika:${ingredient.name}</div>
 <form:form method="post" modelAttribute="ingredient" action="/ingredient/update">
@@ -39,4 +40,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

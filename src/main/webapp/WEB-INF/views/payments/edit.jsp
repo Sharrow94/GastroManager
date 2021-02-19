@@ -6,6 +6,7 @@
 <head>
     <title>Edit payments:</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="payment" action="/payments/edit">
     <form:hidden path="id"/>
@@ -35,4 +36,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

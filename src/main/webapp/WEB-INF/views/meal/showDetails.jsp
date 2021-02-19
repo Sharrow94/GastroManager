@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Danie: ${meal.name}</h1>
 <h3>Dieta: ${meal.diet.name}</h3>
@@ -25,4 +26,5 @@
 
     <a href="<c:url value="/meal/list"/>">Powrót do listy</a>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

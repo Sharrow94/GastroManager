@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Dodaj nowy posiłek</h1>
 <form:form method="post" modelAttribute="meal">
@@ -13,4 +14,5 @@
 </form:form>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

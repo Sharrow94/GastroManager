@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Dodaj nową operację</h1>
 <form:form method="post" modelAttribute="storageOperation">
@@ -25,4 +26,5 @@
 </table>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

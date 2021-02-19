@@ -6,6 +6,7 @@
 <head>
     <title>Dodaj składnik</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <form:form method="post" modelAttribute="plan">
     <table>
@@ -28,4 +29,5 @@
     <input type="submit">
 </form:form>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

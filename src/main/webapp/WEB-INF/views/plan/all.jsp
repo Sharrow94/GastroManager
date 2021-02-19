@@ -20,6 +20,21 @@
     </tr>
     </thead>
     <tbody>
+    <sec:authorize access="hasRole('USER')">
+    <c:forEach items="${plans}" var="plan">
+        <tr>
+            <td>${plan.id}</td>
+            <td>${plan.name}</td>
+            <td>${plan.price}</td>
+            <td>${plan.foodCostTotal}</td>
+            <td>${plan.diet.name}</td>
+            <td>
+
+            </td>
+        </tr>
+    </c:forEach>
+    </sec:authorize>
+    <sec:authorize access="hasRole('ADMIN')">
     <c:forEach items="${plans}" var="plan">
         <tr>
             <td>${plan.id}</td>
@@ -39,6 +54,7 @@
             <a href="/plan/add"><button>+</button></a><em> Dodaj nowy plan</em>
         </td>
     </tr>
+    </sec:authorize>
     </tbody>
 </table>
 

@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Dodaj nową operację na magazynie</h1>
 <form:form method="post" modelAttribute="sOi">
@@ -17,5 +18,6 @@
 </form:form>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>
 

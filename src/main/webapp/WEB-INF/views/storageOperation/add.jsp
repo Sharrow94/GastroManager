@@ -11,6 +11,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 <h1>Dodaj pozycję do dokumentu</h1>
 <form:form modelAttribute="storageOperation" action="/storageOperation/add" method="post">
@@ -22,4 +23,5 @@
 </form:form>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

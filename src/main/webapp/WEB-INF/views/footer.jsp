@@ -40,7 +40,13 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <sec:authorize access="isAuthenticated()">
+                    <form action="<c:url value="/logout"/>" method="post">
+                        <input type="submit" class="btn btn-primary" value="Wyloguj">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </sec:authorize>
+
             </div>
         </div>
     </div>

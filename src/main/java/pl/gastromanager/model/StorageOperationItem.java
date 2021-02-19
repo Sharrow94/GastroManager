@@ -2,20 +2,19 @@ package pl.gastromanager.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class StorageOperation {
+public class StorageOperationItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private float unitPrice;
-    private float quantity;
+    private String documentNumber;
     @ManyToOne
-    private Ingredient ingredient;
-    @ManyToOne
-    private StorageOperationItem storageOperationItem;
+    Supplier supplier;
+    private float price;
+    private String date;
+    private String operationType;
 }

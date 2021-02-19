@@ -18,4 +18,6 @@ public class Ingredient {
     private boolean hasGluten;
     private boolean hasMeat;
     private boolean hasLactose;
+    private float currentQuantity;
+    private String unit;
 }

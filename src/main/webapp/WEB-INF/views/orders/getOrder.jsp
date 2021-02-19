@@ -10,7 +10,9 @@
 <head>
     <title>Title</title>
 </head>
+<%@ include file="../header.jsp" %>
 <body>
 
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

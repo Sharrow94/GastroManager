@@ -30,7 +30,7 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -60,35 +60,78 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments"
+               aria-expanded="true" aria-controls="collapsePayments">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
+                <span>Payments</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
+            <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/add"/>">Add</a>
                 </div>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeal"
+               aria-expanded="true" aria-controls="collapseMeal">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Meal</span>
+            </a>
+            <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/list"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/add"/>">Add</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlan"
+               aria-expanded="true" aria-controls="collapsePlan">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Plan</span>
+            </a>
+            <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/add"/>">Add</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
+               aria-expanded="true" aria-controls="collapseOrders">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Orders</span>
+            </a>
+            <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/add"/>">Add</a>
+                </div>
+            </div>
+        </li>
+
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+                <span>Utility</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="collapse-item text-gray-100" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item text-gray-100" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item text-gray-100" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item text-gray-100" href="utilities-other.html">Other</a>
                 </div>
             </div>
         </li>
@@ -110,14 +153,14 @@
             </a>
             <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
                  data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
+                <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <a class="collapse-item text-gray-100" href="login.html">Login</a>
+                    <a class="collapse-item text-gray-100" href="register.html">Register</a>
+                    <a class="collapse-item text-gray-100" href="forgot-password.html">Forgot Password</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item text-gray-100" href="404.html">404 Page</a>
                     <a class="collapse-item active" href="blank.html">Blank Page</a>
                 </div>
             </div>
@@ -155,7 +198,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand navbar-light bg-gray-900 topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

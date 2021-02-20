@@ -41,4 +41,6 @@ public class Users {
     private String street;
     private String nr;
     private String postNumber;
+    @Enumerated(EnumType.STRING)
+    private AuthProvider authProvider;
 }

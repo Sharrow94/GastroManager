@@ -1,16 +1,15 @@
 package pl.gastromanager.service;
 
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.gastromanager.model.AuthProvider;
 import pl.gastromanager.model.Role;
 import pl.gastromanager.model.Users;
 import pl.gastromanager.repository.RoleRepository;
 import pl.gastromanager.repository.UserRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,6 +46,7 @@ public class UserServiceImpl implements UserService {
     public void saveUser(Users users) {
         users.setPassword(passwordEncoder.encode(users.getPassword()));
         users.setEnabled(1);
+        users.setAuthProvider(AuthProvider.LOCAL);
         Role userRole = roleRepository.findByName("ROLE_USER");
         users.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(users);
@@ -73,5 +73,31 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<Users> get(Long id) {
         return userRepository.findById(id);
+    }
+
+    @Override
+    public void saveUserAfterOAuth2(String email, String name, AuthProvider provider) {
+        Users user = new Users();
+        String[] s = name.split(" ");
+        user.setEmail(email);
+        user.setFirstName(s[0]);
+        user.setLastName(s[1]);
+        user.setUserName(email);
+        user.setEnabled(1);
+        user.setAuthProvider(provider);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserAfterOAuth2(Users user, String name, AuthProvider provider) {
+        String[] s = name.split(" ");
+        user.setAuthProvider(provider);
+        user.setFirstName(s[0]);
+        user.setLastName(s[1]);
+
+        userRepository.save(user);
     }
 }

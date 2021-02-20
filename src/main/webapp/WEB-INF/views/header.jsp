@@ -401,8 +401,8 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <%--                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>--%>
                             <sec:authorize access="isAuthenticated()">
-                                <p>Zalogowany jako: <sec:authentication property="principal.username"/></p>
-                                <p> <sec:authentication property="authorities"/></p>
+                                <p>Zalogowany jako: <sec:authentication property="name"/></p>
+<%--                                <p> <sec:authentication property="authorities"/></p>--%>
                             </sec:authorize>
                             <img class="img-profile rounded-circle"
                                  src="<c:url value="/img/undraw_profile.svg"/>">

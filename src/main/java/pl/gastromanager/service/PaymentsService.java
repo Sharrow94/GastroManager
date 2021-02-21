@@ -12,4 +12,7 @@ public interface PaymentsService {
     void addPayments(Payments payments);
     void deletePayment(Long id);
     void editPayment(Payments payments);
+    Payments findPaymentsByUserId();
+    List<Payments> findPaymentsByUserId(Long id);
+    List<String>findAllRolesByUserId(Long id);
 }

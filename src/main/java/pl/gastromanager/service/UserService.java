@@ -1,5 +1,6 @@
 package pl.gastromanager.service;
 
+import pl.gastromanager.model.AuthProvider;
 import pl.gastromanager.model.Users;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface UserService {
     void update(Users users);
     void delete(Long id);
     Optional<Users> get(Long id);
+    void saveUserAfterOAuth2(String email, String name, AuthProvider provider);
+    void updateUserAfterOAuth2(Users user, String name, AuthProvider provider);
 }

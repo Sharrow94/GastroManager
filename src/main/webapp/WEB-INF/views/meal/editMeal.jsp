@@ -7,7 +7,7 @@
 <%@ include file="../header.jsp" %>
 <body>
 <h1>Edytuj ${meal.name}</h1>
-<form:form method="post" modelAttribute="meal" action="/meal/edit">
+<form:form method="post" modelAttribute="meal" action="/admin/meal/edit">
     <form:hidden path="id"/>
     <form:hidden path="diet"/>
     <form:hidden path="price"/>

@@ -99,15 +99,15 @@
                                     <td><c:out value="${payments.users.id}"/></td>
                                     <sec:authorize access="hasRole('ADMIN')">
                                         <td>
-                                            <a href='<c:url value="/payments/details/${payments.id}"/>'
+                                            <a href='<c:url value="/admin/payments/${payments.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.show"/></a>
-                                            <a href='<c:url value="/payments/edit/${payments.id}"/>'
+                                            <a href='<c:url value="/admin/payments/edit/${payments.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.edit"/></a>
-                                            <a href='<c:url value="/payments/delete/${payments.id}"/>'
+                                            <a href='<c:url value="/admin/payments/delete/${payments.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.delete"/></a>

@@ -15,4 +15,5 @@ public interface PaymentsService {
     Payments findPaymentsByUserId();
     List<Payments> findPaymentsByUserId(Long id);
     List<String>findAllRolesByUserId(Long id);
+
 }

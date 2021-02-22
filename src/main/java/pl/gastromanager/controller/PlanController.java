@@ -24,26 +24,6 @@ public class PlanController {
         this.ordersService = ordersService;
     }
 
-
-    @RequestMapping("/{id}")
-    public String getIngredient(@PathVariable("id") Long id, Model model){
-        model.addAttribute("plan",planService.findById(id));
-        return "plan/showDetails";
-    }
-
-    @RequestMapping("/all")
-    public String getAllIngredients(Model model){
-        model.addAttribute("plans",planService.findAll());
-        return "plan/all";
-    }
-
-    @RequestMapping("/delete/{id}")
-    public String deleteIngredient(@PathVariable("id")Long id){
-        planService.deletePlan(id);
-        return "redirect:/plan/all";
-    }
-
-
     @RequestMapping("/add")
     public String addPlan(Model model) {
         Plan plan = new Plan();
@@ -59,9 +39,9 @@ public class PlanController {
     }
 
     @RequestMapping("/edit/{id}")
-    public String editIngredient(@PathVariable("id") Long id, Model model){
-        Plan plan=planService.findById(id);
-        model.addAttribute("plan",plan);
+    public String editPlan(@PathVariable("id") Long id, Model model) {
+        Plan plan = planService.findById(id);
+        model.addAttribute("plan", plan);
         return "plan/editPlan";
     }
 

@@ -1,15 +1,13 @@
 package pl.gastromanager.service;
 
 import org.springframework.stereotype.Service;
-import pl.gastromanager.model.Diet;
-import pl.gastromanager.model.Ingredient;
-import pl.gastromanager.model.IngredientsMeals;
-import pl.gastromanager.model.Meal;
+import pl.gastromanager.model.*;
 import pl.gastromanager.repository.DietRepository;
 import pl.gastromanager.repository.IngredientsMealsRepository;
 import pl.gastromanager.repository.MealRepository;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -94,5 +92,10 @@ public class MealServiceImpl implements MealService {
     public List<Ingredient> findAllMealIngredients(Meal meal) {
         List<IngredientsMeals> ingredientsMealsList = ingredientsMealsRepository.findAllIngredientsByMeal(meal);
         return ingredientsMealsList.stream().map(IngredientsMeals::getIngredient).collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<Meal> findAllMealsByMealName(MealName mealName) {
+        return mealRepository.findAllMealsByMealName(mealName);
     }
 }

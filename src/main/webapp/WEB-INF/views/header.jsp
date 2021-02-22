@@ -331,9 +331,13 @@
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
+                            <i class="fas fa-shopping-cart fa-fw"></i>
                             <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
+                            <c:if test="${sessionScope.shoppingCart.getOrderMeals().size() != 0}">
+                            <span class="badge badge-danger badge-counter">
+                                    ${sessionScope.shoppingCart.getOrderMeals().size()}
+                            </span>
+                            </c:if>
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"

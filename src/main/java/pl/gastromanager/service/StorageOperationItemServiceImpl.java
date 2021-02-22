@@ -40,4 +40,6 @@ public class StorageOperationItemServiceImpl implements StorageOperationItemServ
         return storageOperationItemRepository.findAll();
     }
 
+
+
 }

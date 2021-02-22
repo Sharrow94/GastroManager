@@ -39,7 +39,6 @@ public class AppController {
         Users currentUser = userService.findByUserName(auth.getName());
         Long id = currentUser.getId();
         List<String> roles = paymentsService.findAllRolesByUserId(id);
-
         if (roles.contains("ROLE_ADMIN")) {
             List<Payments> paymentsAll = paymentsService.findAllPayments();
             model.addAttribute("payments", paymentsAll);

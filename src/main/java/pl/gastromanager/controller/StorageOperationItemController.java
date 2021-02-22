@@ -12,6 +12,8 @@ import pl.gastromanager.service.StorageOperationItemService;
 import pl.gastromanager.service.StorageOperationService;
 import pl.gastromanager.service.SupplierService;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/sOi")
 public class StorageOperationItemController {
@@ -58,6 +60,7 @@ public class StorageOperationItemController {
 
     @PostMapping("/add")
     public String sOiAddForm(StorageOperationItem sOi){
+        sOi.setDate(LocalDate.now());
         storageOperationItemService.addSOI(sOi);
         return "redirect:/sOi/list";
     }

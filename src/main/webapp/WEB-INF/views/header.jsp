@@ -46,7 +46,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<c:url value="/home"/>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -69,9 +69,9 @@
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/payments/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Add</a>
                     </sec:authorize>
 
                 </div>
@@ -86,9 +86,9 @@
             <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/list"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/meal/list"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/meal/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/meal/add"/>">Add</a>
                     </sec:authorize>
 
 
@@ -104,9 +104,9 @@
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/plan/all"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/plan/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/plan/add"/>">Add</a>
                     </sec:authorize>
 
                 </div>
@@ -121,9 +121,9 @@
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="app/orders/all"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/orders/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="admin/orders/add"/>">Add</a>
                     </sec:authorize>
 
                 </div>
@@ -139,8 +139,8 @@
             <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/sOi/list"/>">Document storages</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/ingredient/all"/>">Stock level</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Document storages</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stock level</a>
                 </div>
             </div>
         </li>

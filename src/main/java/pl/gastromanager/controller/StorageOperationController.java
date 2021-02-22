@@ -64,6 +64,7 @@ public class StorageOperationController {
         }
         storageOperationService.addStorageOperation(storageOperation);
         storageOperationService.updateTotalQuantityIngredient(storageOperation.getIngredient().getId());
+        storageOperationService.updateAvgUnitPriceOfIngredient(storageOperation.getIngredient().getId());
         return "redirect:/sOi/details/"+storageOperation.getStorageOperationItem().getId();
     }
 

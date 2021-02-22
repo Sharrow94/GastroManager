@@ -16,7 +16,9 @@ public class LoginController {
 
     @ModelAttribute("shoppingCart")
     public Orders shoppingCart() {
-        return new Orders();
+        Orders order = new Orders();
+        order.setOrderMeals(new ArrayList<>());
+        return order;
     }
 
 //    @ModelAttribute("shoppingItem")

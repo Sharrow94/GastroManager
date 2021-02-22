@@ -3,17 +3,13 @@ package pl.gastromanager.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.gastromanager.model.MealName;
-import pl.gastromanager.model.OrderMeals;
-import pl.gastromanager.model.Orders;
-import pl.gastromanager.model.PlansMeals;
+import pl.gastromanager.model.*;
 import pl.gastromanager.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//@SessionAttributes({"shoppingCart", "shoppingItem"})
 @Controller
 @RequestMapping("/orders")
 public class OrdersController {
@@ -22,14 +18,16 @@ public class OrdersController {
     private final MealService mealService;
     private final WeekDaysService weekDaysService;
     private final PlanService planService;
+    private final PlansMealsService plansMealsService;
 
 
-    public OrdersController(MealNameService mealNameService, OrdersService ordersService, MealService mealService, WeekDaysService weekDaysService, PlanService planService) {
+    public OrdersController(MealNameService mealNameService, OrdersService ordersService, MealService mealService, WeekDaysService weekDaysService, PlanService planService, PlansMealsService plansMealsService) {
         this.mealNameService = mealNameService;
         this.ordersService = ordersService;
         this.mealService = mealService;
         this.weekDaysService = weekDaysService;
         this.planService = planService;
+        this.plansMealsService = plansMealsService;
     }
 
     @RequestMapping("/all")
@@ -78,22 +76,10 @@ public class OrdersController {
     }
 
 
-    //moje=============================
-
-    //---------------MEALNAME-----------------
+    //---------------Order Meal-----------------
     @GetMapping("/add/mealName")
     public String addMealNameGet(Model model, @SessionAttribute("shoppingCart") Orders orders) {
-        if(orders.getOrderMeals()!=null) {
-            orders.getOrderMeals().forEach(
-                    el -> {
-                        el.getPlansMeals().forEach(pm -> System.out.println(pm.getMeal().getName()));
-                        System.out.println("----------------------");
-                    }
-            );
-            System.out.println(orders.getOrderMeals().size());
-//            System.out.println(orders.getOrderPrice());
-        }
-
+        printShoppingCart(orders);
         model.addAttribute("mealNames", mealNameService.findAll());
         model.addAttribute("mealName", new MealName());
         return "orders/addMealName";
@@ -104,7 +90,6 @@ public class OrdersController {
         return "redirect:/orders/add/mealName/meal/" + mealName.getId();
     }
 
-    //---------------AddMeal---------------
     @GetMapping("/add/mealName/meal/{id}")
     public String addMealGet(@PathVariable Long id, Model model) {
         MealName mealName = mealNameService.findById(id);
@@ -119,32 +104,88 @@ public class OrdersController {
                               @SessionAttribute("shoppingCart") Orders shoppingCart,
                               Model model) {
         List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
-
         List<PlansMeals> plansMealsList = List.of(plansMeals);
         OrderMeals orderMeals = new OrderMeals();
         orderMeals.setPlansMeals(plansMealsList);
+        orderMeals.setOrderType(OrderType.MEAL);
         shoppingItems.add(orderMeals);
         shoppingCart.setOrderMeals(shoppingItems);
 
         return "redirect:/home";
     }
 
-    //---------Zamów dzień z planu-------
+    //---------Order Day from Plan--------
     @GetMapping("/add/selectPlan")
-    public String addDayPlanGet(Model model){
+    public String addSelectPlanGet(Model model){
         model.addAttribute("plans", planService.findAll());
+        model.addAttribute("plan", new Plan());
         return "orders/addSelectPlan";
     }
 
+
     @PostMapping("/add/selectPlan")
-    public String addDayPlanPost(@RequestParam Long id){
-        return "redirect:/orders/add/selectPlan/selectDay/"+id;
+    public String addSelectPlanPost(Plan plan){
+        return "redirect:/orders/add/selectPlan/selectDay/"+plan.getId();
     }
 
-//    @GetMapping("/add/selectPlan/selectDay/{id}")
-//    public String selectDayGet(@PathVariable Long id){
-//
-//    }
+    @GetMapping("/add/selectPlan/selectDay/{id}")
+    public String selectDayGet(@PathVariable Long id, Model model){
+        Plan plan = planService.findById(id);
+        model.addAttribute("weekDays", weekDaysService.findAll());
+        model.addAttribute("plansMeals", new PlansMeals());
+        model.addAttribute("plan", plan);
+
+        return "/orders/orderPlanDay";
+    }
+
+    @PostMapping("/add/selectPlan/selectDay")
+    public String selectDayGet(PlansMeals plansMeals, @SessionAttribute("shoppingCart") Orders shoppingCart){
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
+        List<PlansMeals> planMealsList = plansMealsService.findAllByPlanAndWeekDays(plansMeals.getPlan(), plansMeals.getWeekDays());
+
+        OrderMeals orderMeals = new OrderMeals();
+        orderMeals.setPlansMeals(planMealsList);
+        orderMeals.setOrderType(OrderType.PLANDAY);
+        shoppingItems.add(orderMeals);
+
+        shoppingCart.setOrderMeals(shoppingItems);
+
+        return "redirect:/home";
+    }
+
+    //--------Order Plan---------------
+    @GetMapping("/add/plan")
+    public String addPlanGet(Model model){
+        model.addAttribute("plans", planService.findAll());
+        model.addAttribute("plansMeals", new PlansMeals());
+        return "orders/addPlan";
+    }
 
 
+    @PostMapping("/add/plan")
+    public String addPlanPost(PlansMeals plansMeals, @SessionAttribute("shoppingCart") Orders shoppingCart){
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals()==null? new ArrayList<>(): shoppingCart.getOrderMeals();
+        List<PlansMeals> plansMealsList = plansMealsService.findAllByPlan(plansMeals.getPlan());
+        OrderMeals orderMeals = new OrderMeals();
+        orderMeals.setPlansMeals(plansMealsList);
+        orderMeals.setOrderType(OrderType.PLAN);
+        shoppingItems.add(orderMeals);
+        shoppingCart.setOrderMeals(shoppingItems);
+        return "redirect:/home";
+    }
+
+
+    //PRINTING SHOPPING CART IN CONSOLE
+    private void printShoppingCart(Orders orders) {
+        if(orders.getOrderMeals()!=null) {
+            System.out.println(orders.getOrderMeals().size());
+            orders.getOrderMeals().forEach(
+                    el -> {
+                        System.out.println("OrderType: "+el.getOrderType()+"\n");
+                        el.getPlansMeals().forEach(pm -> System.out.println(pm.getMeal().getName()));
+                        System.out.println("----------------------");
+                    }
+            );
+        }
+    }
 }

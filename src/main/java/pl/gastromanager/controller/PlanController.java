@@ -23,7 +23,7 @@ public class PlanController {
 
     @RequestMapping("/{id}")
     public String getIngredient(@PathVariable("id") Long id, Model model){
-        model.addAttribute("plan",planService.findById(id).get());
+        model.addAttribute("plan",planService.findById(id));
         return "plan/showDetails";
     }
 
@@ -55,7 +55,7 @@ public class PlanController {
 
     @RequestMapping("/edit/{id}")
     public String editIngredient(@PathVariable("id") Long id, Model model){
-        Plan plan=planService.findById(id).get();
+        Plan plan=planService.findById(id);
         model.addAttribute("plan",plan);
         return "plan/editPlan";
     }

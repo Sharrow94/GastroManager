@@ -16,7 +16,7 @@ public class Plan {
     private String name;
     private float foodCostTotal;
     private float price;
-    @OneToMany(mappedBy = "plan")
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.REMOVE)
     private List<PlansMeals> plansMeals;
     @ManyToOne
     private Diet diet;

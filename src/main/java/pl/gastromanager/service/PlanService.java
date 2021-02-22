@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PlanService {
-    Optional<Plan> findById(Long id);
+    Plan findById(Long id);
     void savePlan(Plan plan);
     void addPlan(Plan plan);
     void deletePlan(Long id);

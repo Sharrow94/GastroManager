@@ -24,8 +24,8 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Optional<Plan> findById(Long id) {
-        return planRepository.findById(id);
+    public Plan findById(Long id) {
+        return planRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Plan does not exists"));
     }
 
     @Override

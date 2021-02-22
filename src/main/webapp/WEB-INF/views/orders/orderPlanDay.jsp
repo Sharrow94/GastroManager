@@ -8,12 +8,12 @@
 </head>
 <%@ include file="../header.jsp" %>
 <body>
-<form:form method="post" modelAttribute="plansMeals" action="/orders/add/mealName/meal">
-    <input type="hidden" name="mealName" value="${mealName.id}">
+<form:form method="post" modelAttribute="plansMeals" action="/orders/add/selectPlan/selectDay">
+    <input type="hidden" name="plan" value="${plan.id}">
     <table>
         <tr>
-            <td>Wybierz rodzaj posiłku:</td>
-            <td><form:select path="meal" items="${meals}" itemLabel="name" itemValue="id"/></td>
+            <td>Wybierz dzień tygodnia</td>
+            <td><form:select path="weekDays" items="${weekDays}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
             <td>Podaj ilość</td>

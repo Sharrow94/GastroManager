@@ -8,19 +8,17 @@
 </head>
 <%@ include file="../header.jsp" %>
 <body>
-<form method="post">
+<form:form method="post" modelAttribute="plan">
     <table>
         <tr>
             <td>Wybierz plan:</td>
-            <td><select name="id">
-                <c:forEach items="${plans}" var="plan">
-                    <option id="${plan.id}">${plan.name}</option>
-                </c:forEach>
-            </select></td>
+            <td>
+                <form:select path="id" items="${plans}" itemValue="id" itemLabel="name"/>
+            </td>
         </tr>
     </table>
     <input type="submit">
-</form>
+</form:form>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

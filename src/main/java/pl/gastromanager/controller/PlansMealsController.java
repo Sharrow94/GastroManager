@@ -32,7 +32,7 @@ public class PlansMealsController {
 
     @GetMapping("/add/{id}")
     public String addMealGet(@PathVariable Long id , Model model){
-        model.addAttribute("plan", planService.findById(id).get());
+        model.addAttribute("plan", planService.findById(id));
         model.addAttribute("plansMeals", new PlansMeals());
         model.addAttribute("meals", mealService.findAll());
         model.addAttribute("weekDays", weekDaysService.findAll());

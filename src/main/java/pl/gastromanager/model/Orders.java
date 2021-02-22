@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +21,8 @@ public class Orders {
     private String fromDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String toDate;
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderMeals> orderMeals;
     private int quantity;
     private float orderPrice;
 }

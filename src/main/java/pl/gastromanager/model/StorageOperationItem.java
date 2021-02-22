@@ -3,6 +3,7 @@ package pl.gastromanager.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +16,6 @@ public class StorageOperationItem {
     @ManyToOne
     Supplier supplier;
     private float price;
-    private String date;
+    private LocalDate date;
     private String operationType;
 }

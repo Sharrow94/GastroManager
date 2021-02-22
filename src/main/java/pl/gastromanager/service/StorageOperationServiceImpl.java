@@ -55,4 +55,12 @@ public class StorageOperationServiceImpl implements StorageOperationService {
         ingredient.setCurrentQuantity(quantity);
         ingredientService.saveIngredient(ingredient);
     }
+
+    @Override
+    public void updateAvgUnitPriceOfIngredient(Long id) {
+        float currentPrice=storageOperationRepository.updateIngredientPriceFromLastMonth(id);
+        Ingredient ingredient=ingredientService.findById(id).get();
+        ingredient.setUnitPrice(currentPrice);
+        ingredientService.saveIngredient(ingredient);
+    }
 }

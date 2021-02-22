@@ -19,4 +19,6 @@ public class OrderMeals {
     @JoinTable(name = "plan_order")
     private List<PlansMeals> plansMeals;
     private Long quantity;
+    private float price;
+    private String orderType;
 }

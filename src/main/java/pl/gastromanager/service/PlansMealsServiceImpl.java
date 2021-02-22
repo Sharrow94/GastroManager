@@ -1,8 +1,11 @@
 package pl.gastromanager.service;
 
 import org.springframework.stereotype.Service;
-import pl.gastromanager.model.PlansMeals;
+import pl.gastromanager.model.*;
 import pl.gastromanager.repository.PlansMealsRepository;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class PlansMealsServiceImpl implements PlansMealsService {
@@ -30,5 +33,20 @@ public class PlansMealsServiceImpl implements PlansMealsService {
     @Override
     public void editPlansMeals(PlansMeals plansMeals) {
         plansMealsRepository.save(plansMeals);
+    }
+
+    @Override
+    public List<PlansMeals> findAllByPlan(Plan plan) {
+        return plansMealsRepository.findAllByPlan(plan);
+    }
+
+    @Override
+    public PlansMeals findFirstByMeal(Meal meal) {
+        return plansMealsRepository.findFirstByMeal(meal);
+    }
+
+    @Override
+    public List<PlansMeals> findAllByPlanAndWeekDays(Plan plan, WeekDays weekDays) {
+        return plansMealsRepository.findAllByPlanAndWeekDays(plan, weekDays);
     }
 }

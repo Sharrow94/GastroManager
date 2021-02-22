@@ -21,7 +21,7 @@ public class Orders {
     private String fromDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String toDate;
-//    @ManyToOne
+    //    @ManyToOne
 //    private Plan plan;
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderMeals> orderMeals;

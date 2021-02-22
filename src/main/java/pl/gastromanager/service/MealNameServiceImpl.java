@@ -19,4 +19,9 @@ public class MealNameServiceImpl implements MealNameService{
     public List<MealName> findAll() {
         return mealNameRepository.findAll();
     }
+
+    @Override
+    public MealName findById(Long id) {
+        return mealNameRepository.findById(id).orElseThrow(()->new IllegalArgumentException("MealName does not exists"));
+    }
 }

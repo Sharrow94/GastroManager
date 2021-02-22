@@ -9,7 +9,7 @@
 <%@ include file="../header.jsp" %>
 <body>
 <div>Edycja planu:${plan.name}</div>
-<form:form method="post" modelAttribute="plan" action="/plan/update">
+<form:form method="post" modelAttribute="plan" action="/admin/plan/update">
     <table>
         <form:hidden path="id"/>
         <tr>

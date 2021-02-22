@@ -8,10 +8,12 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"><spring:message code="add.mealMenu"/></h6>
-            <a href='<c:url value="/meal/add"/>'
-               class="btn btn-primary"
-               style="background-color:#f6c23e; color:#3a3b45;position: absolute;  right: 8%;width: 170px;margin:-25px; border: 10px #f6c23e;">
-                <spring:message code="add.addMeal"/></a>
+            <sec:authorize access="hasRole('ADMIN')">
+                <a href='<c:url value="/admin/meal/add"/>'
+                   class="btn btn-primary"
+                   style="background-color:#f6c23e; color:#3a3b45;position: absolute;  right: 8%;width: 170px;margin:-25px; border: 10px #f6c23e;">
+                    <spring:message code="add.addMeal"/></a>
+            </sec:authorize>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -74,18 +76,20 @@
                                     <td><c:out value="${meal.id}"/></td>
                                     <td><c:out value="${meal.name}"/></td>
                                     <td>
-                                        <a href='<c:url value="/meal/details/${meal.id}"/>'
+                                        <a href='<c:url value="/app/meal/details/${meal.id}"/>'
                                            class="btn btn-primary"
-                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto"><spring:message
                                                 code="app.show"/></a>
-                                        <a href='<c:url value="/meal/edit/${meal.id}"/>'
-                                           class="btn btn-primary"
-                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                                code="app.edit"/></a>
-                                        <a href='<c:url value="/meal/delete/confirm/${meal.id}"/>'
-                                           class="btn btn-primary"
-                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                                code="app.delete"/></a>
+                                        <sec:authorize access="hasRole('ADMIN')">
+                                            <a href='<c:url value="/admin/meal/edit/${meal.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.edit"/></a>
+                                            <a href='<c:url value="/admin/meal/delete/confirm/${meal.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.delete"/></a>
+                                        </sec:authorize>
                                     </td>
 
                                 </tr>

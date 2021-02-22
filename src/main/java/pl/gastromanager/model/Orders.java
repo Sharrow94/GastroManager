@@ -20,8 +20,6 @@ public class Orders {
     private String fromDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String toDate;
-    @ManyToOne
-    private Plan plan;
     private int quantity;
     private float orderPrice;
 }

@@ -7,6 +7,7 @@
 </head>
 <%@ include file="../header.jsp" %>
 <body>
+
 <div class="container">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
@@ -56,6 +57,7 @@
 <%--    <form:textarea path="description"/> Opis przyrządzenia<br>--%>
 <%--    <input type="submit">--%>
 <%--</form:form>--%>
+
 
 </body>
 <%@ include file="../footer.jsp" %>

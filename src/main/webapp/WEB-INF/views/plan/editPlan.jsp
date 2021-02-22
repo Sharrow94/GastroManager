@@ -9,6 +9,7 @@
 </head>
 <%@ include file="../header.jsp" %>
 <body>
+
 <div class="container">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
@@ -63,6 +64,7 @@
 <%--    </table>--%>
 <%--    <input type="submit">--%>
 <%--</form:form>--%>
+
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

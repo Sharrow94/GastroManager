@@ -76,5 +76,8 @@ public class AppController {
         model.addAttribute("plan", planService.findById(id));
         return "plan/showDetails";
     }
+    //Method from OrdersController
+
+
 
 }

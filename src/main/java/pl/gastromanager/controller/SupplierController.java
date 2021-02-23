@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/supplier")
+@RequestMapping("/admin/supplier")
 public class SupplierController {
     private final SupplierService supplierService;
 
@@ -45,7 +45,7 @@ public class SupplierController {
     @PostMapping("/add")
     public String saveNewSupplier(Supplier supplier) {
         supplierService.add(supplier);
-        return "redirect:/supplier/all";
+        return "redirect:/admin/supplier/all";
     }
 
 
@@ -60,13 +60,13 @@ public class SupplierController {
     @PostMapping("/edit")
     public String editSupplier(Supplier supplier) {
         supplierService.editSupplier(supplier);
-        return "redirect:/supplier/all";
+        return "redirect:/admin/supplier/all";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteSupplier(@PathVariable("id") long id) {
         supplierService.delete(id);
-        return "redirect:/supplier/all";
+        return "redirect:/admin/supplier/all";
     }
 }
 

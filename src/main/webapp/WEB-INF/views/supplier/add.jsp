@@ -20,7 +20,7 @@
                     <div class="p-5">
                         <form:form method="post" modelAttribute="supplier" >
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4"> <spring:message code="add.addPayments"/></h1>
+                                <h1 class="h4 text-gray-900 mb-4"> <spring:message code="app.supplireAdd"/></h1>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -68,7 +68,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                <spring:message code="add.supplireAdd"/></button>
+                                <spring:message code="app.supplireAdd"/></button>
                         </form:form>
                     </div>
                 </div>

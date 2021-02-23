@@ -6,19 +6,46 @@
 </head>
             </nav>
             <!-- End of Topbar -->
+<div class="row-for-orders align-items-center">
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <h2><a href="/orders/add/mealName">Zamów posiłek</a></h2>
-                <h2><a href="/orders/add/selectPlan">Zamów dzień z planu</a></h2>
-                <h2><a href="/orders/add/plan">Zamów plan</a></h2>
-
+    <!-- Zamów plan -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 align-items-center">
+            <div class="card-body">
+                <div class="row no-gutters">
+                    <div class="col mr-2">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a class=" d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="/orders/add/plan">Zamów plan</a></div>
+                    </div>
+                </div>
             </div>
-            <!-- /.container-fluid -->
-
         </div>
-        <!-- End of Main Content -->
+    </div>
+
+    <!-- Zamów dzień z planu -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 align-items-center">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="/app/plan/all">Zamów dzień z planu</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zamów posiłek -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 align-items-center">
+            <div class="card-body">
+                <div class="row no-gutters">
+                    <div class="col mr-2">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="/orders/add/mealName">Zamów posiłek</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%@ include file="footer.jsp" %>

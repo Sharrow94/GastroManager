@@ -20,7 +20,7 @@
     </thead>
     <tbody>
     <c:forEach items="${storageOperations}" var="storageOperation">
-        <tr>
+        <tr>git
             <td>${storageOperation.supplier.name}</td>
             <td>${storageOperation.doc}</td>
             <td>${storageOperation.ingredient.name}</td>
@@ -43,3 +43,4 @@
 </body>
 <%@ include file="../footer.jsp" %>
 </html>
+

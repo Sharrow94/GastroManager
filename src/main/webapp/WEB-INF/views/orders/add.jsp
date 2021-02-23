@@ -22,44 +22,38 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4"><spring:message code="add.addOrder"/>:</h1>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.costOrder"/>:</td>
-                                    <form:input path="quantity" placeholder="cena zamówienia"
-                                                class="form-control form-control-user"/>
+<%--                            <div class="form-group row">--%>
+<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
+<%--                                    <td><spring:message code="add.costOrder"/>:</td>--%>
+<%--                                    <form:input path="quantity" --%>
+<%--                                                class="form-control form-control-user"/>--%>
 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.costOrder"/>:</td>
-                                    <form:input path="orderPrice" placeholder="Ilość kalorii"
-                                                class="form-control form-control-user"/>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="form-group row">--%>
+<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
+<%--                                    <td><spring:message code="add.costOrder"/>:</td>--%>
+<%--                                    <form:input path="orderPrice" --%>
+<%--                                                class="form-control form-control-user"/>--%>
 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.dateOperation"/>:</td>
-                                    <form:input path="operationDate" type="datetime-local"
-                                                class="form-control form-control-user"/>
-
-                                </div>
-                            </div>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="form-group row">--%>
+<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
+<%--                                    <td><spring:message code="add.dateOperation"/>:</td>--%>
+<%--                                    <form:input path="operationDate" type="datetime-local"--%>
+<%--                                                class="form-control form-control-user"/>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.fromDate"/>:</td>
-                                    <form:input path="fromDate" type="date"/>
+                                    <form:input path="fromDate" type="date"
+                                                class="form-control form-control-user"/>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.toDate"/>:</td>
-                                    <form:input path="toDate" type="date"/>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.planId"/>:</td>
-                                    <form:input path="plan.id" placeholder="numer planu"
+                                    <form:input path="toDate" type="date"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>

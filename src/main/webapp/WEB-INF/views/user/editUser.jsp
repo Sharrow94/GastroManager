@@ -54,14 +54,14 @@
 
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="app.password"/></td>
-                                    <form:input path="password" class="form-control form-control-user"/>
-                                    <form:errors path="password"/>
+<%--                            <div class="form-group row">--%>
+<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
+<%--                                    <td><spring:message code="app.password"/></td>--%>
+<%--                                    <form:input path="password" class="form-control form-control-user"/>--%>
+<%--                                    <form:errors path="password"/>--%>
 
-                                </div>
-                            </div>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 <spring:message code="app.edit"/></button>

@@ -23,14 +23,14 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.names"/>:</td>
-                                    <form:input path="name"  placeholder="Write name meal"
+                                    <form:input path="name"  placeholder="Nazwa posiłku"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.description"/>:</td>
-                                    <form:textarea path="description" placeholder="Description of the meal"
+                                    <form:textarea path="description" placeholder="Opis posiłku"
                                                    class="form-control form-control-user"/>
                                 </div>
                             </div>

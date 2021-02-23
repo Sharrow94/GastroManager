@@ -103,7 +103,7 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlan"
                aria-expanded="true" aria-controls="collapsePlan">
                 <i class="fas fa-fw fa-calendar"></i>
-                <span>Plan żywieniowy</span>
+                <span>Plan </span>
             </a>
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">

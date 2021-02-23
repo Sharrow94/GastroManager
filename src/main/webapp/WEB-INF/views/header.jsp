@@ -48,7 +48,7 @@
         <li class="nav-item">
             <a class="nav-link" href="<c:url value="/home"/>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>Strona główna</span></a>
         </li>
 
         <!-- Divider -->
@@ -64,14 +64,14 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments"
                aria-expanded="true" aria-controls="collapsePayments">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Payments</span>
+                <span>Płatności</span>
             </a>
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">List</a>
+                    <h6 class="collapse-header">Operacje:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Dodaj</a>
                     </sec:authorize>
 
 
@@ -82,14 +82,14 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeal"
                aria-expanded="true" aria-controls="collapseMeal">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Meal</span>
+                <span>Posiłek</span>
             </a>
             <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/app/meal/list"/>">List</a>
+                    <h6 class="collapse-header">Operacje:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/meal/list"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/meal/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/meal/add"/>">Dodaj</a>
                     </sec:authorize>
 
 
@@ -104,10 +104,10 @@
             </a>
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/app/plan/all"/>">List</a>
+                    <h6 class="collapse-header">Operacje:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/plan/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/plan/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/plan/add"/>">Dodaj</a>
                     </sec:authorize>
 
                 </div>
@@ -117,14 +117,14 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
                aria-expanded="true" aria-controls="collapseOrders">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Orders</span>
+                <span>Zamówienia</span>
             </a>
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="app/orders/all"/>">List</a>
+                    <h6 class="collapse-header">Operacje:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="app/orders/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="admin/orders/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="admin/orders/add"/>">Dodaj</a>
                     </sec:authorize>
 
                 </div>
@@ -135,37 +135,35 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStorages"
                aria-expanded="true" aria-controls="collapseStorages">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Storages</span>
+                <span>Magazyn</span>
             </a>
             <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Document storages</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stock level</a>
+                    <h6 class="collapse-header">Operacje:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Dokumenty magazynowe</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stan Magazynowy</a>
                 </div>
             </div>
         </li>
         </sec:authorize>
 
         <!-- Nav Item - Utilities Collapse Menu -->
+        <sec:authorize access="hasRole('ADMIN')">
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Utility</span>
+                <span>Użytkownicy</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item text-gray-100" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item text-gray-100" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item text-gray-100" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item text-gray-100" href="utilities-other.html">Other</a>
+                    <h6 class="collapse-header">Operacje:</h6>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/user/all"/>">Lista</a>
                 </div>
             </div>
         </li>
-
+        </sec:authorize>
 
         <!-- Divider -->
         <hr class="sidebar-divider">

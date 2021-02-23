@@ -9,7 +9,7 @@ import pl.gastromanager.model.Ingredient;
 import pl.gastromanager.service.IngredientService;
 
 @Controller
-@RequestMapping("/ingredient")
+@RequestMapping("/admin/ingredient")
 public class IngredientController {
     private final IngredientService ingredientService;
 
@@ -33,7 +33,7 @@ public class IngredientController {
     @RequestMapping("/delete/{id}")
     public String deleteIngredient(@PathVariable("id")Long id){
         ingredientService.deleteIngredient(id);
-        return "redirect:/ingredient/all";
+        return "redirect:/admin/ingredient/all";
     }
 
     @RequestMapping("/add")
@@ -46,7 +46,7 @@ public class IngredientController {
     @PostMapping("/add")
     public String ingredientAddForm(Ingredient ingredient){
         ingredientService.addIngredient(ingredient);
-        return "redirect:/ingredient/all";
+        return "redirect:/admin/ingredient/all";
     }
 
     @RequestMapping("/edit/{id}")
@@ -59,6 +59,6 @@ public class IngredientController {
     @PostMapping("/update")
     public String ingredientEditForm(Ingredient ingredient){
         ingredientService.saveIngredient(ingredient);
-        return "redirect:/ingredient/all";
+        return "redirect:/admin/ingredient/all";
     }
 }

@@ -13,6 +13,7 @@ public class OrderMeals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     @ManyToOne
     private Orders order;
     @ManyToMany

@@ -16,7 +16,7 @@
             <td><form:select path="weekDays" items="${weekDays}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
-            <td>Podaj ilość</td>
+            <td>Podaj ilość: </td>
             <td><input type="number" name="quantity"></td>
         </tr>
     </table>

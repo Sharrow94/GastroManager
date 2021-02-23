@@ -20,62 +20,83 @@
                 <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                 <div class="col-lg-7">
                     <div class="p-5">
-                        <form:form method="post" modelAttribute="payment" action="/admin/storage/edit">
+                        <form:form method="post" modelAttribute="supplier" action="/admin/supplier/edit">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4"> <spring:message code="app.supplireEdit"/></h1>
                             </div>
+                            <form:hidden path="id"/>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.enterQuantity"/></td>
-                                    <form:input path="quantity" placeholder="Podaj ilość" class="form-control form-control-user"/>
+                                    <td><spring:message code="app.name"/></td>
+                                    <form:input path="name" placeholder="Podaj nazwe"
+                                                class="form-control form-control-user"/>
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="app.unit"/></td>
-                                    <form:input path="unit"  placeholder="Podaj jednostke"
+                                    <td><spring:message code="app.phoneNumber"/></td>
+                                    <form:input path="phoneNumber" placeholer="Podaj numer"
                                                 class="form-control form-control-user"/>
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <td><spring:message code="app.ingredientId"/></td>
-                                    <form:input path="ingredient.id" placeholder="Podaj składnik"
+                                    <td><spring:message code="app.city"/></td>
+                                    <form:input path="city" placeholer="Podaj miasto"
+                                                class="form-control form-control-user"/>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <td><spring:message code="app.street"/></td>
+                                    <form:input path="street" placeholder="Podaj ulice"
                                                 class="form-control form-control-user"/>
                                 </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <td><spring:message code="app.nr"/></td>
+                                    <form:input path="nr" placeholder="Podaj numer"
+                                                class="form-control form-control-user"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <td><spring:message code="app.postNumber"/></td>
+                                    <form:input path="postNumber" placeholder="Podaj kod pocztowy"
+                                                class="form-control form-control-user"/>
 
+                                </div>
+                            </div>
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                <spring:message code="add.addPayments"/></button>
+                                <spring:message code="app.supplireEdit"/></button>
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<%--<form:form method="post" modelAttribute="supplier" >--%>
 
-<%--<form:form method="post" modelAttribute="payment" action="/storage/edit">--%>
-<%--    <form:hidden path="id" />--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <td>Quantity:</td>--%>
-<%--            <td><form:input path="quantity"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Unit:</td>--%>
-<%--            <td><form:input path="unit" /><br></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>IngredientId:</td>--%>
-<%--            <td><form:input path="ingredient.id" /></td>--%>
-<%--        </tr>--%>
-
-<%--    </table>--%>
-<%--    <input type="submit">--%>
+<%--    <p>Name:</p>--%>
+<%--    <form:input path="name"/>--%>
+<%--    <p>Phone number:</p>--%>
+<%--    <form:input path="phoneNumber"  />--%>
+<%--    <p>City:</p>--%>
+<%--    <form:input path="city"  />--%>
+<%--    <p>Street:</p>--%>
+<%--    <form:input path="street" />--%>
+<%--    <p>Nr:</p>--%>
+<%--    <form:input path="nr"/>--%>
+<%--    <p>Post Number:</p>--%>
+<%--    <form:input path="postNumber"/>--%>
+<%--    <input type="submit" value="Update">--%>
 <%--</form:form>--%>
+
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

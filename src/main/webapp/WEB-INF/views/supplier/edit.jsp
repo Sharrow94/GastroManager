@@ -2,12 +2,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
 <html>
 <head>
     <title>Edit supplier:</title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
+
 <form:form method="post" modelAttribute="supplier" action="/admin/supplier/edit">
     <form:hidden path="id"/>
     <table>
@@ -38,6 +43,7 @@
     </table>
     <input type="submit">
 </form:form>
+
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

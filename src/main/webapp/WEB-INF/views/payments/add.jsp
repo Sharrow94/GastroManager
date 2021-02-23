@@ -45,14 +45,14 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                 <td><spring:message code="add.orderId"/></td>
-                                <form:input path="orders.id" placeholder="Podaj nume"
+                                <form:input path="orders.id" placeholder="Podaj numer"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                 <td><spring:message code="add.orderId"/></td>
-                                <form:input path="users.id" placeholder="write number"
+                                <form:input path="users.id" placeholder="Podaj numer"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>

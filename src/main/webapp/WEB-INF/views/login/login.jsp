@@ -46,7 +46,6 @@
                                 <form class="user" method="post">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user"
-
                                                placeholder="Enter User Name" name="username">
                                     </div>
                                     <div class="form-group">

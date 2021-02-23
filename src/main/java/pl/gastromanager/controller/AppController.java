@@ -7,11 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.gastromanager.model.Meal;
-import pl.gastromanager.model.Payments;
-import pl.gastromanager.model.Users;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import pl.gastromanager.model.*;
 import pl.gastromanager.service.*;
+import pl.gastromanager.util.OrderUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -22,14 +23,20 @@ public class AppController {
     private final MealService mealService;
     private final DietService dietService;
     private final PlanService planService;
+    private final WeekDaysService weekDaysService;
+    private final MealNameService mealNameService;
+    private final OrderUtils orderUtils;
 
 
-    public AppController(PaymentsService paymentsService, UserService userService, MealService mealService, DietService dietService, PlanService planService) {
+    public AppController(PaymentsService paymentsService, UserService userService, MealService mealService, DietService dietService, PlanService planService, WeekDaysService weekDaysService, MealNameService mealNameService, OrderUtils orderUtils) {
         this.paymentsService = paymentsService;
         this.userService = userService;
         this.mealService = mealService;
         this.dietService = dietService;
         this.planService = planService;
+        this.weekDaysService = weekDaysService;
+        this.mealNameService = mealNameService;
+        this.orderUtils = orderUtils;
     }
 
     //Method from PaymentsController
@@ -74,8 +81,31 @@ public class AppController {
     @RequestMapping("/plan/{id}")
     public String getPlan(@PathVariable("id") Long id, Model model) {
         model.addAttribute("plan", planService.findById(id));
+        model.addAttribute("weekDays", weekDaysService.findAll());
+        model.addAttribute("mealNames", mealNameService.findAll());
+        model.addAttribute("plansMeals", new PlansMeals());
+
         return "plan/showDetails";
     }
+
+    //Method to do ShoppingCart Operations
+    @GetMapping("/shoppingCartDropItem/{index}")
+    public String showShoppingItems(
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            @PathVariable int index,
+            HttpServletRequest request
+    ){
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals();
+        shoppingItems.remove(index);
+        shoppingCart.setOrderMeals(shoppingItems);
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
+
+        String referer = request.getHeader("Referer");
+
+        return "redirect:"+referer;
+    }
+
+
     //Method from OrdersController
 
 

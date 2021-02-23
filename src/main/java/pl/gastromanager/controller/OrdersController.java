@@ -5,7 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.gastromanager.model.*;
 import pl.gastromanager.service.*;
+import pl.gastromanager.util.OrderMealsUtils;
+import pl.gastromanager.util.OrderUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,15 +22,19 @@ public class OrdersController {
     private final WeekDaysService weekDaysService;
     private final PlanService planService;
     private final PlansMealsService plansMealsService;
+    private final OrderMealsUtils orderMealsUtils;
+    private final OrderUtils orderUtils;
 
 
-    public OrdersController(MealNameService mealNameService, OrdersService ordersService, MealService mealService, WeekDaysService weekDaysService, PlanService planService, PlansMealsService plansMealsService) {
+    public OrdersController(MealNameService mealNameService, OrdersService ordersService, MealService mealService, WeekDaysService weekDaysService, PlanService planService, PlansMealsService plansMealsService, OrderMealsUtils orderMealsUtils, OrderUtils orderUtils) {
         this.mealNameService = mealNameService;
         this.ordersService = ordersService;
         this.mealService = mealService;
         this.weekDaysService = weekDaysService;
         this.planService = planService;
         this.plansMealsService = plansMealsService;
+        this.orderMealsUtils = orderMealsUtils;
+        this.orderUtils = orderUtils;
     }
 
     @RequestMapping("/all")
@@ -100,23 +107,33 @@ public class OrdersController {
     }
 
     @PostMapping("/add/mealName/meal")
-    public String addMealPost(PlansMeals plansMeals, @RequestParam("quantity") Long quantity,
-                              @SessionAttribute("shoppingCart") Orders shoppingCart,
-                              Model model) {
+    public String addMealPost(
+            PlansMeals plansMeals,
+            @RequestParam("quantity") Long quantity,
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            Model model,
+            HttpServletRequest request
+    ) {
         List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
         List<PlansMeals> plansMealsList = List.of(plansMeals);
+
         OrderMeals orderMeals = new OrderMeals();
         orderMeals.setPlansMeals(plansMealsList);
+        orderMeals.setQuantity(quantity);
+        orderMeals.setName(plansMeals.getMeal().getName());
+        orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
         orderMeals.setOrderType(OrderType.MEAL);
         shoppingItems.add(orderMeals);
         shoppingCart.setOrderMeals(shoppingItems);
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
 
-        return "redirect:/home";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+referer;
     }
 
     //---------Order Day from Plan--------
     @GetMapping("/add/selectPlan")
-    public String addSelectPlanGet(Model model){
+    public String addSelectPlanGet(Model model) {
         model.addAttribute("plans", planService.findAll());
         model.addAttribute("plan", new Plan());
         return "orders/addSelectPlan";
@@ -124,12 +141,12 @@ public class OrdersController {
 
 
     @PostMapping("/add/selectPlan")
-    public String addSelectPlanPost(Plan plan){
-        return "redirect:/orders/add/selectPlan/selectDay/"+plan.getId();
+    public String addSelectPlanPost(Plan plan) {
+        return "redirect:/orders/add/selectPlan/selectDay/" + plan.getId();
     }
 
     @GetMapping("/add/selectPlan/selectDay/{id}")
-    public String selectDayGet(@PathVariable Long id, Model model){
+    public String selectDayGet(@PathVariable Long id, Model model) {
         Plan plan = planService.findById(id);
         model.addAttribute("weekDays", weekDaysService.findAll());
         model.addAttribute("plansMeals", new PlansMeals());
@@ -139,23 +156,35 @@ public class OrdersController {
     }
 
     @PostMapping("/add/selectPlan/selectDay")
-    public String selectDayGet(PlansMeals plansMeals, @SessionAttribute("shoppingCart") Orders shoppingCart){
+    public String selectDayGet(
+            PlansMeals plansMeals,
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            @RequestParam("quantity") Long quantity,
+            HttpServletRequest request
+    ) {
         List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
         List<PlansMeals> planMealsList = plansMealsService.findAllByPlanAndWeekDays(plansMeals.getPlan(), plansMeals.getWeekDays());
 
+        String name = plansMeals.getWeekDays().getName() + " z " +
+                plansMeals.getPlan().getName();
+
         OrderMeals orderMeals = new OrderMeals();
         orderMeals.setPlansMeals(planMealsList);
+        orderMeals.setName(name);
+        orderMeals.setQuantity(quantity);
         orderMeals.setOrderType(OrderType.PLANDAY);
+        orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
         shoppingItems.add(orderMeals);
-
         shoppingCart.setOrderMeals(shoppingItems);
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
 
-        return "redirect:/home";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+referer;
     }
 
     //--------Order Plan---------------
     @GetMapping("/add/plan")
-    public String addPlanGet(Model model){
+    public String addPlanGet(Model model) {
         model.addAttribute("plans", planService.findAll());
         model.addAttribute("plansMeals", new PlansMeals());
         return "orders/addPlan";
@@ -163,25 +192,34 @@ public class OrdersController {
 
 
     @PostMapping("/add/plan")
-    public String addPlanPost(PlansMeals plansMeals, @SessionAttribute("shoppingCart") Orders shoppingCart){
-        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals()==null? new ArrayList<>(): shoppingCart.getOrderMeals();
+    public String addPlanPost(
+            PlansMeals plansMeals,
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            @RequestParam("quantity") Long quantity
+    ) {
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
         List<PlansMeals> plansMealsList = plansMealsService.findAllByPlan(plansMeals.getPlan());
         OrderMeals orderMeals = new OrderMeals();
         orderMeals.setPlansMeals(plansMealsList);
         orderMeals.setOrderType(OrderType.PLAN);
+        orderMeals.setQuantity(quantity);
+        orderMeals.setName(plansMeals.getPlan().getName());
+        orderMeals.setPrice(orderMealsUtils.getPriceByPlan(orderMeals));
         shoppingItems.add(orderMeals);
         shoppingCart.setOrderMeals(shoppingItems);
-        return "redirect:/home";
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
+
+        return "redirect:/app/plan/all";
     }
 
 
     //PRINTING SHOPPING CART IN CONSOLE
     private void printShoppingCart(Orders orders) {
-        if(orders.getOrderMeals()!=null) {
+        if (orders.getOrderMeals() != null) {
             System.out.println(orders.getOrderMeals().size());
             orders.getOrderMeals().forEach(
                     el -> {
-                        System.out.println("OrderType: "+el.getOrderType()+"\n");
+                        System.out.println("OrderType: " + el.getOrderType() + "\n");
                         el.getPlansMeals().forEach(pm -> System.out.println(pm.getMeal().getName()));
                         System.out.println("----------------------");
                     }

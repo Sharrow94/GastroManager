@@ -385,6 +385,7 @@ h4, .h4 {
 
 h5, .h5 {
   font-size: 1.25rem;
+  flex-wrap: nowrap;
 }
 
 h6, .h6 {
@@ -588,6 +589,12 @@ pre code {
   flex-wrap: wrap;
   margin-right: -0.75rem;
   margin-left: -0.75rem;
+}
+.row-for-orders{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: 5rem;
 }
 
 .no-gutters {
@@ -10657,7 +10664,9 @@ a:focus {
 }
 
 .sidebar-dark .nav-item .nav-link i {
-  color: black;
+
+  color: #3333;
+
 }
 
 .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {

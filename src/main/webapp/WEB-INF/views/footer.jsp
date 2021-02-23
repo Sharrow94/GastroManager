@@ -6,6 +6,11 @@
 <body>
 
 <!-- Footer -->
+
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
 <footer class="sticky-footer bg-gray-900">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
@@ -13,11 +18,6 @@
         </div>
     </div>
 </footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
 

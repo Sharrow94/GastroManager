@@ -6,7 +6,7 @@
 
 
         <sec:authorize access="isAuthenticated()">
-            <p>Zalogowany jako: <sec:authentication property="principal.username"/></p>
+            <p>Zalogowany jako: <sec:authentication property="name"/></p>
             <p>Posiada role: <sec:authentication property="authorities"/></p>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">

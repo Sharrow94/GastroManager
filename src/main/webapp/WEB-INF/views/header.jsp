@@ -46,7 +46,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<c:url value="/home"/>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -69,10 +69,11 @@
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/payments/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/payments/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Add</a>
                     </sec:authorize>
+
 
                 </div>
             </div>
@@ -86,9 +87,9 @@
             <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/meal/list"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/meal/list"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/meal/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/meal/add"/>">Add</a>
                     </sec:authorize>
 
 
@@ -104,9 +105,9 @@
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/plan/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/plan/all"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/plan/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/plan/add"/>">Add</a>
                     </sec:authorize>
 
                 </div>
@@ -121,9 +122,9 @@
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/orders/all"/>">List</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="app/orders/all"/>">List</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/orders/add"/>">Add</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="admin/orders/add"/>">Add</a>
                     </sec:authorize>
 
                 </div>
@@ -139,8 +140,8 @@
             <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/sOi/list"/>">Document storages</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/ingredient/all"/>">Stock level</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Document storages</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stock level</a>
                 </div>
             </div>
         </li>
@@ -175,25 +176,30 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+        <li class="nav-item">
+            <a class="nav-link" href="#"
+               data-toggle="collapse"
+               data-target="#collapsePages"
+               aria-expanded="false"
                aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-folder">
+
+                </i>
                 <span>Pages</span>
             </a>
-            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                 data-parent="#accordionSidebar">
-                <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item text-gray-100" href="login.html">Login</a>
-                    <a class="collapse-item text-gray-100" href="register.html">Register</a>
-                    <a class="collapse-item text-gray-100" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item text-gray-100" href="404.html">404 Page</a>
-                    <a class="collapse-item active" href="blank.html">Blank Page</a>
-                </div>
-            </div>
+<%--            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"--%>
+<%--                 data-parent="#accordionSidebar" style>--%>
+<%--                <div class="bg-gray-900 py-2 collapse-inner rounded">--%>
+<%--                    <h6 class="collapse-header">Login Screens:</h6>--%>
+<%--                    <a class="collapse-item text-gray-100" href="login.html">Login</a>--%>
+<%--                    <a class="collapse-item text-gray-100" href="register.html">Register</a>--%>
+<%--                    <a class="collapse-item text-gray-100" href="forgot-password.html">Forgot Password</a>--%>
+<%--                    <div class="collapse-divider"></div>--%>
+<%--                    <h6 class="collapse-header">Other Pages:</h6>--%>
+<%--                    <a class="collapse-item text-gray-100" href="404.html">404 Page</a>--%>
+<%--                    <a class="collapse-item active" href="blank.html">Blank Page</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </li>
 
         <!-- Nav Item - Charts -->
@@ -331,9 +337,13 @@
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
+                            <i class="fas fa-shopping-cart fa-fw"></i>
                             <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
+                            <c:if test="${sessionScope.shoppingCart.getOrderMeals().size() != 0}">
+                            <span class="badge badge-danger badge-counter">
+                                    ${sessionScope.shoppingCart.getOrderMeals().size()}
+                            </span>
+                            </c:if>
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"

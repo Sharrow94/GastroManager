@@ -2,9 +2,11 @@ package pl.gastromanager.service;
 
 import pl.gastromanager.model.Ingredient;
 import pl.gastromanager.model.Meal;
+import pl.gastromanager.model.MealName;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public interface MealService {
     void saveMeal(Meal meal);
@@ -15,4 +17,5 @@ public interface MealService {
     List<Meal> findAll();
     List<Ingredient> findAllMealIngredients(Meal meal);
     void refreshMeal(Meal meal);
+    Set<Meal> findAllMealsByMealName(MealName mealName);
 }

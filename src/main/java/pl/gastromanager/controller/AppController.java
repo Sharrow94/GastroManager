@@ -73,8 +73,11 @@ public class AppController {
 
     @RequestMapping("/plan/{id}")
     public String getPlan(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("plan", planService.findById(id).get());
+        model.addAttribute("plan", planService.findById(id));
         return "plan/showDetails";
     }
+    //Method from OrdersController
+
+
 
 }

@@ -24,7 +24,6 @@ public class PlanController {
         this.ordersService = ordersService;
     }
 
-
     @RequestMapping("/add")
     public String addPlan(Model model) {
         Plan plan = new Plan();
@@ -41,7 +40,7 @@ public class PlanController {
 
     @RequestMapping("/edit/{id}")
     public String editPlan(@PathVariable("id") Long id, Model model) {
-        Plan plan = planService.findById(id).get();
+        Plan plan = planService.findById(id);
         model.addAttribute("plan", plan);
         return "plan/editPlan";
     }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MealNameService {
     List<MealName> findAll();
+    MealName findById(Long id);
 }

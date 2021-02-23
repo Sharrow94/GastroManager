@@ -63,7 +63,9 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments"
                aria-expanded="true" aria-controls="collapsePayments">
-                <i class="fas fa-fw fa-cog"></i>
+
+                <i class="fas fa-dollar-sign fa-2x"></i>
+
                 <span>Płatności</span>
             </a>
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -81,8 +83,9 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeal"
                aria-expanded="true" aria-controls="collapseMeal">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Posiłek</span>
+
+                <i class="fas fa-fw fa-utensil-spoon"></i>
+                <span>Posiłki</span>
             </a>
             <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
@@ -99,8 +102,8 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlan"
                aria-expanded="true" aria-controls="collapsePlan">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Plan</span>
+                <i class="fas fa-fw fa-calendar"></i>
+                <span>Plan żywieniowy</span>
             </a>
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
@@ -116,7 +119,9 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
                aria-expanded="true" aria-controls="collapseOrders">
-                <i class="fas fa-fw fa-cog"></i>
+
+                <i class="fas fa-fw fa-plus"></i>
+
                 <span>Zamówienia</span>
             </a>
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -134,7 +139,9 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStorages"
                aria-expanded="true" aria-controls="collapseStorages">
-                <i class="fas fa-fw fa-cog"></i>
+
+                <i class="fas fa-fw fa-cubes"></i>
+
                 <span>Magazyn</span>
             </a>
             <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

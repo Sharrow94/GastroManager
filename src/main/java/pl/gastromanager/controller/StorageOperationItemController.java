@@ -15,7 +15,7 @@ import pl.gastromanager.service.SupplierService;
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/sOi")
+@RequestMapping("/admin/sOi")
 public class StorageOperationItemController {
 
     private final StorageOperationItemService storageOperationItemService;
@@ -46,7 +46,7 @@ public class StorageOperationItemController {
     @RequestMapping("/delete/{id}")
     public String deleteSoI(@PathVariable("id")Long id){
         storageOperationItemService.deleteSOI(id);
-        return "redirect:/sOi/list";
+        return "redirect:/admin/sOi/list";
     }
 
     @RequestMapping("/add")
@@ -62,7 +62,7 @@ public class StorageOperationItemController {
     public String sOiAddForm(StorageOperationItem sOi){
         sOi.setDate(LocalDate.now());
         storageOperationItemService.addSOI(sOi);
-        return "redirect:/sOi/list";
+        return "redirect:/admin/sOi/list";
     }
 
     @RequestMapping("/edit/{id}")
@@ -75,6 +75,6 @@ public class StorageOperationItemController {
     @PostMapping("/update")
     public String sOiEditForm(StorageOperationItem sOi){
         storageOperationItemService.saveSOI(sOi);
-        return "redirect:/sOi/list";
+        return "redirect:/admin/sOi/list";
     }
 }

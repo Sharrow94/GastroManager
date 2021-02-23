@@ -12,7 +12,7 @@ import pl.gastromanager.service.StorageOperationService;
 import pl.gastromanager.service.SupplierService;
 
 @Controller
-@RequestMapping("/storageOperation")
+@RequestMapping("/admin/storageOperation")
 public class StorageOperationController {
 
     private final StorageOperationService storageOperationService;
@@ -42,30 +42,30 @@ public class StorageOperationController {
 
     @RequestMapping("/delete/{id}")
     public String deleteIngredient(@PathVariable("id") Long id) {
-        Long sOiId=storageOperationService.findById(id).get().getStorageOperationItem().getId();
-        Long ingredientId=storageOperationService.findById(id).get().getIngredient().getId();
+        Long sOiId = storageOperationService.findById(id).get().getStorageOperationItem().getId();
+        Long ingredientId = storageOperationService.findById(id).get().getIngredient().getId();
         storageOperationService.deleteStorageOperation(id);
         storageOperationService.updateTotalQuantityIngredient(ingredientId);
-        return "redirect:/sOi/details/"+sOiId;
+        return "redirect:/admin/sOi/details/" + sOiId;
     }
 
     @RequestMapping("/add/{id}")
-    public String addIngredientToSoI(@PathVariable("id")Long id, Model model){
-        model.addAttribute("sOi",storageOperationItemService.findById(id).get());
-        model.addAttribute("storageOperation",new StorageOperation());
-        model.addAttribute("ingredients",ingredientService.findAll());
+    public String addIngredientToSoI(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("sOi", storageOperationItemService.findById(id).get());
+        model.addAttribute("storageOperation", new StorageOperation());
+        model.addAttribute("ingredients", ingredientService.findAll());
         return "/storageOperation/add";
     }
 
     @PostMapping("/add")
-    public String addIngredientPost(StorageOperation storageOperation){
-        if (!storageOperation.getStorageOperationItem().getOperationType().equals("WZ")){
-            storageOperation.setQuantity(storageOperation.getQuantity()*(-1));
+    public String addIngredientPost(StorageOperation storageOperation) {
+        if (!storageOperation.getStorageOperationItem().getOperationType().equals("WZ")) {
+            storageOperation.setQuantity(storageOperation.getQuantity() * (-1));
         }
         storageOperationService.addStorageOperation(storageOperation);
         storageOperationService.updateTotalQuantityIngredient(storageOperation.getIngredient().getId());
         storageOperationService.updateAvgUnitPriceOfIngredient(storageOperation.getIngredient().getId());
-        return "redirect:/sOi/details/"+storageOperation.getStorageOperationItem().getId();
+        return "redirect:/admin/sOi/details/" + storageOperation.getStorageOperationItem().getId();
     }
 
     @RequestMapping("/edit/{id}")
@@ -75,7 +75,7 @@ public class StorageOperationController {
             storageOperation.setQuantity(storageOperation.getQuantity() * (-1));
         }
         model.addAttribute("storageOperation", storageOperation);
-        model.addAttribute("ingredients",ingredientService.findAll());
+        model.addAttribute("ingredients", ingredientService.findAll());
         return "storageOperation/edit";
     }
 
@@ -88,6 +88,6 @@ public class StorageOperationController {
         System.out.println(storageOperation.getStorageOperationItem().getDocumentNumber());
         storageOperationService.updateTotalQuantityIngredient(storageOperation.getIngredient().getId());
         storageOperationService.updateAvgUnitPriceOfIngredient(storageOperation.getIngredient().getId());
-        return "redirect:/sOi/details/"+storageOperation.getStorageOperationItem().getId();
+        return "redirect:/admin/sOi/details/" + storageOperation.getStorageOperationItem().getId();
     }
 }

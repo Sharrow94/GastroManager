@@ -3,11 +3,12 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ include file="../header.jsp" %>
+<sec:authorize access="hasRole('ADMIN')">
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"><spring:message code="app.supplireMenu"/></h6>
-            <a href='<c:url value="/meal/add"/>'
+            <a href='<c:url value="/admin/supplier/add"/>'
                class="btn btn-primary"
                style="background-color:#f6c23e; color:#3a3b45;position: absolute;  right: 8%;width: 170px;margin:-25px; border: 10px #f6c23e;">
                 <spring:message code="add.supplireAdd"/></a>
@@ -99,15 +100,15 @@
                                     <td><c:out value="${supplier.nr}"/></td>
                                     <td><c:out value="${supplier.postNumber}"/></td>
                                     <td>
-                                        <a href='<c:url value="/supplier/${supplier.id}"/>'
+                                        <a href='<c:url value="/admin/supplier/${supplier.id}"/>'
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                 code="app.show"/></a>
-                                        <a href='<c:url value="/supplier/edit/${supplier.id}"/>'
+                                        <a href='<c:url value="/admin/supplier/edit/${supplier.id}"/>'
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                 code="app.edit"/></a>
-                                        <a href='<c:url value="/supplier/delete/${supplier.id}"/>'
+                                        <a href='<c:url value="/admin/supplier/delete/${supplier.id}"/>'
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                 code="app.delete"/></a>
@@ -119,5 +120,5 @@
                             </tbody>
                         </table>
                     </div>
-
+</sec:authorize>
 <%@ include file="../footer.jsp" %>

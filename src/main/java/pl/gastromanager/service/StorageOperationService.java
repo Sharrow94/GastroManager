@@ -15,4 +15,5 @@ public interface StorageOperationService {
     List<StorageOperation>findAllByStorageOperationItemId(Long id);
     void updateTotalQuantityIngredient(Long id);
     void updateAvgUnitPriceOfIngredient(Long id);
+    void deleteAllBySoIID(Long id);
 }

@@ -13,7 +13,7 @@ public interface StorageOperationRepository extends JpaRepository<StorageOperati
     List<StorageOperation>findAllByStorageOperationItemId(Long id);
     List<StorageOperation>findAllByIngredientId(Long id);
     @Query( value="select sum(quantity) from storage_operation where ingredient_id=?1", nativeQuery = true)
-            float getTotalQuantityIngredient(Long id);
+            Float getTotalQuantityIngredient(Long id);
     @Query(value = "select AVG(unit_price) from storage_operation_item join storage_operation so on storage_operation_item.id = so.storage_operation_item_id where operation_type='WZ' and timestampdiff(day,date,now())<30 and ingredient_id=?1",nativeQuery = true)
-    float updateIngredientPriceFromLastMonth(Long id);
+    Float updateIngredientPriceFromLastMonth(Long id);
 }

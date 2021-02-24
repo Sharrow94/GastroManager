@@ -34,7 +34,7 @@
                                     <td><spring:message code="add.selectIngrediends"/></td>
                                     <form:select path="ingredient" items="${ingredients}"
                                                  itemLabel="name" itemValue="id"
-                                                 class="form-control form-control-user"/>/>
+                                                 class="form-control form-control-user"/>
 
                                 </div>
                             </div>

@@ -50,9 +50,13 @@ public class StorageOperationServiceImpl implements StorageOperationService {
 
     @Override
     public void updateTotalQuantityIngredient(Long id) {
-        float quantity=storageOperationRepository.getTotalQuantityIngredient(id);
         Ingredient ingredient=ingredientService.findById(id).get();
-        ingredient.setCurrentQuantity(quantity);
+        Float quantity=storageOperationRepository.getTotalQuantityIngredient(id);
+        if (quantity!=null){
+            ingredient.setCurrentQuantity(quantity);
+        }else {
+        ingredient.setCurrentQuantity(0);
+        }
         ingredientService.saveIngredient(ingredient);
     }
 

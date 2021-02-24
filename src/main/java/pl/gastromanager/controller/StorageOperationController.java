@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.gastromanager.model.StorageOperation;
+import pl.gastromanager.model.StorageOperationItem;
 import pl.gastromanager.service.IngredientService;
 import pl.gastromanager.service.StorageOperationItemService;
 import pl.gastromanager.service.StorageOperationService;
@@ -51,11 +53,12 @@ public class StorageOperationController {
 
     @RequestMapping("/add/{id}")
     public String addIngredientToSoI(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("sOi", storageOperationItemService.findById(id).get());
-        model.addAttribute("storageOperation", new StorageOperation());
+        model.addAttribute("storageOperation",new StorageOperation());
         model.addAttribute("ingredients", ingredientService.findAll());
+        model.addAttribute("sOi",storageOperationItemService.findById(id).get());
         return "/storageOperation/add";
     }
+
 
     @PostMapping("/add")
     public String addIngredientPost(StorageOperation storageOperation) {

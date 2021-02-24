@@ -154,26 +154,26 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <c:forEach items="${plans}" var="plans">
+                            <c:forEach items="${plans}" var="plan">
                                 <tr role="row" class="odd">
-                                    <td><c:out value="${plans.id}"/></td>
-                                    <td><c:out value="${plans.name}"/></td>
-                                    <td><c:out value="${plans.diet.name}"/></td>
-                                    <td><c:out value="${plans.price}"/></td>
+                                    <td><c:out value="${plan.id}"/></td>
+                                    <td><c:out value="${plan.name}"/></td>
+                                    <td><c:out value="${plan.diet.name}"/></td>
+                                    <td><c:out value="${plan.price}"/></td>
                                     <sec:authorize access="hasRole('ADMIN')">
                                         <td><c:out value="${plans.foodCostTotal}"/></td>
                                     </sec:authorize>
                                     <td>
-                                        <a href='<c:url value="/app/plan/${plans.id}"/>'
+                                        <a href='<c:url value="/app/plan/${plan.id}"/>'
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto"><spring:message
                                                 code="app.show"/></a>
                                         <sec:authorize access="hasRole('ADMIN')">
-                                            <a href='<c:url value="/admin/plan/edit/${plans.id}"/>'
+                                            <a href='<c:url value="/admin/plan/edit/${plan.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.edit"/></a>
-                                            <a href='<c:url value="/admin/plan/delete/${plans.id}"/>'
+                                            <a href='<c:url value="/admin/plan/delete/${plan.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.delete"/></a>

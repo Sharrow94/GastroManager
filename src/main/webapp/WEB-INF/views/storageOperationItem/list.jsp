@@ -8,11 +8,13 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><spring:message code="add.mealMenu"/></h6>
+            <h6 class="m-0 font-weight-bold text-primary"><spring:message code="app.sOiMenu"/></h6>
+        <sec:authorize access="hasRole('ADMIN')">
             <a href='<c:url value="/admin/sOi/add"/>'
                class="btn btn-primary"
                style="background-color:#f6c23e; color:#3a3b45;position: absolute;  right: 8%;width: 170px;margin:-25px; border: 10px #f6c23e;">
                 <spring:message code="app.newStorageItem"/></a>
+        </sec:authorize>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -85,8 +87,8 @@
                                     <td><c:out value="${sOi.documentNumber}"/></td>
                                     <td><c:out value="${sOi.operationType}"/></td>
                                     <td><c:out value="${sOi.supplier.name}"/></td>
-
                                     <td>
+                                        <sec:authorize access="hasRole('ADMIN')">
                                         <a href='<c:url value="/admin/sOi/details/${sOi.id}"/>'
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto"><spring:message
@@ -99,6 +101,7 @@
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                 code="app.delete"/></a>
+                                        </sec:authorize>
                                     </td>
 
                                 </tr>

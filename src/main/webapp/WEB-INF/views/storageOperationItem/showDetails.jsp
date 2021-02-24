@@ -1,51 +1,126 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ include file="../header.jsp" %>
-<body>
-<h1>${soi.operationType}|${soi.documentNumber}</h1>
-<table border="1px" cellpadding="15px" cellspacing="0px">
-    <thead>
-    <tr>
-        <th colspan="2">Numer dokumentu</th>
-        <th>Typ dokumentu</th>
-        <th colspan="3">Dostawca</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td colspan="2">${soi.documentNumber}</td>
-            <th>${soi.operationType}</th>
-            <td colspan="3">${soi.supplier.name}</td>
-        </tr>
-    <tr>
-        <td colspan="6">
-            <a href="/admin/storageOperation/add/${soi.id}"><button>+</button></a><em> Dodaj nową pozycję do dokumentu</em>
-        </td>
-    </tr>
-    <tr>
-        <td>ID</td>
-        <td>Produkt</td>
-        <td>Ilość (KG / L / SZT)</td>
-        <td>Cena jednostkowa</td>
-        <td colspan="2">Akcja</td>
-    </tr>
-    <c:forEach items="${operations}" var="operation">
-        <tr>
-            <td>${operation.id}</td>
-            <td>${operation.ingredient.name}</td>
-            <td>${operation.quantity}</td>
-            <td>${operation.unitPrice}</td>
-            <td><a href="/admin/storageOperation/delete/${operation.id}">Usuń</a></td>
-            <td><a href="/admin/storageOperation/edit/${operation.id}">Edytuj</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">${soi.operationType} ${soi.documentNumber}</h6>
+            <sec:authorize access="hasRole('ADMIN')">
+                <a href='<c:url value="/admin/sOi/list"/>'
+                   class="btn btn-primary"
+                   style="background-color:#f6c23e; color:#3a3b45;position: absolute;  right: 5%;width: 240px;margin:-25px; border: 10px #f6c23e;">
+                    <spring:message code="app.backToSoIList"/></a>
+            </sec:authorize>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-</body>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="dataTable_length"><label><spring:message
+                                    code="app.show"/>
+                                <select
+                                        name="dataTable_length" aria-controls="dataTable"
+                                        class="custom-select custom-select-sm form-control form-control-sm">
+                                    <option value="10">10 <spring:message code="app.pages"/></option>
+                                    <option value="25">25 <spring:message code="app.pages"/></option>
+                                    <option value="50">50 <spring:message code="app.pages"/></option>
+                                    <option value="100">100 <spring:message code="app.pages"/></option>
+
+                                </select>
+                            </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="dataTable_filter" class="dataTables_filter"
+                                 style="position: absolute;  right: 0;width: 250px;">
+                                <label><spring:message code="app.search"/>:<input type="search"
+                                                                                  class="form-control form-control-sm"
+                                                                                  placeholder=""
+                                                                                  aria-controls="dataTable"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <div style="margin-bottom: 10px; margin-left: 35%">
+                                <a href='<c:url value="/admin/storageOperation/add/${soi.id}"/>'
+                                   class="btn btn-primary"
+                                   style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45;position: center;"><spring:message
+                                        code="app.addStorageOperation"/></a>
+                            </div>
+                        </sec:authorize>
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                               role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
+
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                    colspan="1" aria-sort="ascending"
+                                    aria-label="Name: activate to sort column descending" style="width: auto;">
+                                    <spring:message code="app.id"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Position: activate to sort column ascending" style="width: auto;">
+                                    <spring:message code="app.product"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Office: activate to sort column ascending" style="width: auto;">
+                                    <spring:message code="app.quantity"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Age: activate to sort column ascending" style="width: auto;">
+                                    <spring:message code="app.unitPrice"/></th>
+                                <sec:authorize access="hasAnyRole('ADMIN')">
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-label="Salary: activate to sort column ascending" style="width: auto; ">
+                                        <spring:message code="app.action"/></th>
+                                </sec:authorize>
+
+                            </
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th rowspan="1" colspan="1"><spring:message code="app.id"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.product"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.quantity"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.unitPrice"/></th>
+                                <sec:authorize access="hasRole('ADMIN')">
+                                    <th rowspan="1" colspan="1"><spring:message code="app.action"/></th>
+                                </sec:authorize>
+                            </tr>
+                            </tfoot>
+
+                            <tbody>
+                            <c:forEach items="${operations}" var="operation">
+                                <tr role="row" class="odd">
+                                    <td><c:out value="${operation.id}"/></td>
+                                    <td><c:out value="${operation.ingredient.name}"/></td>
+                                    <td><c:out value="${operation.quantity}"/></td>
+                                    <td><c:out value="${operation.unitPrice}"/></td>
+                                    <sec:authorize access="hasRole('ADMIN')">
+                                        <td>
+                                            <a href='<c:url value="/admin/storageOperation/edit/${operation.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.edit"/></a>
+                                            <a href='<c:url value="/admin/storageOperation/delete/${operation.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.delete"/></a>
+                                        </td>
+                                    </sec:authorize>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%@ include file="../footer.jsp" %>
-</html>

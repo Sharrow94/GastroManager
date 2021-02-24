@@ -1,5 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<spring:message code="app.login.loginButton" var="loginButton"/>
+<spring:message code="app.login.username" var="username"/>
+<spring:message code="app.login.password" var="password"/>
+<spring:message code="app.login.loginGoogle" var="loginGoogle"/>
+<spring:message code="app.login.loginFacebook" var="loginFacebook"/>
+<spring:message code="app.login.rememberMe" var="rememberMe"/>
+<spring:message code="app.login.createAccount" var="createAccount"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,34 +51,33 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4"><spring:message code="app.login.welcomeBack"/></h1>
                                 </div>
                                 <form class="user" method="post">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user"
-                                               placeholder="Enter User Name" name="username">
+                                               placeholder="${username}" name="username">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
                                                id="exampleInputPassword"
-                                                placeholder="Password" name="password"/>
+                                                placeholder="${password}" name="password"/>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember
-                                                Me</label>
+                                            <label class="custom-control-label" for="customCheck">${rememberMe}</label>
                                         </div>
                                     </div>
-                                    <div><input type="submit" value="Login" class="btn btn-primary btn-user btn-block"/></div>
+                                    <div><input type="submit" value="${loginButton}" class="btn btn-primary btn-user btn-block"/></div>
 
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <hr>
                                     <a href="/oauth2/authorization/google" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
+                                        <i class="fab fa-google fa-fw"></i> ${loginGoogle}
                                     </a>
                                     <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        <i class="fab fa-facebook-f fa-fw"></i> ${loginFacebook}
                                     </a>
                                 </form>
                                 <hr>
@@ -76,7 +85,7 @@
 <%--                                    <a class="small" href="forgot-password.html">Forgot Password?</a>--%>
 <%--                                </div>--%>
                                 <div class="text-center">
-                                    <a class="small" href="<c:url value="/user/add"/>">Create an Account!</a>
+                                    <a class="small" href="<c:url value="/user/add"/>">${createAccount}</a>
                                 </div>
                             </div>
                         </div>

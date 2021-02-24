@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Title</title>
@@ -13,8 +14,8 @@
 <ul>
     <c:forEach items="${meal.ingredientsMeals}" var="im">
         <li>${im.ingredient.name} | ilość ${im.quantity} |
-            <a href="<c:url value="/meal/ingredient/edit/${im.id}"/>">Edytuj</a> |
-            <a href="<c:url value="/meal/ingredient/delete/${im.id}"/>">Usuń</a>
+            <a href="<c:url value="/meal/ingredient/edit/${im.id}"/>"><spring:message code="app.edit"/> </a> |
+            <a href="<c:url value="/meal/ingredient/delete/${im.id}"/>"><spring:message code="app.delete"/> </a>
         </li>
     </c:forEach>
     <a href="<c:url value="/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>

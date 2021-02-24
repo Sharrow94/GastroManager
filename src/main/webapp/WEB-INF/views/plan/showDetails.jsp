@@ -1,15 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<div>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.add" var="add"/>
+<spring:message code="app.toCart" var="toCart"/>
+<spring:message code="app.addToCart" var="addToCart"/>
+<spring:message code="app.quantity" var="quantity"/>
+
 <head>
     <title>Title</title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
-<a class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm text-gray-900" style="margin-left: 30px; margin-bottom: 20px;" href="/home">Strona główna</a>
+<a class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm text-gray-900" style="margin-left: 30px; margin-bottom: 20px;" href="/home"><spring:message code="app.dashboard"/> </a>
 <h1 class="text-gray-900" style="margin-left: 30px;">${plan.name}</h1>
-<h3 style="margin-left: 30px">Dieta: ${plan.diet.name}</h3>
+<h3 style="margin-left: 30px"><spring:message code="app.diet"/>: ${plan.diet.name}</h3>
 
 <c:forEach items="${weekDays}" var="weekDay">
     <form:form name="form${plan.id}-${weekDay.id}" modelAttribute="plansMeals" action="/orders/add/selectPlan/selectDay">
@@ -52,8 +58,8 @@
     </div>
         <div style="margin-left: 100px;">
             <input type="submit" class="btn btn-primary"
-                   style="width: 250px;background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto; z-index:99; border-radius: 0px 0px 13px 13px; margin-left: 30px;" value="Dodaj ${weekDay.name} do koszyka">
-            <input type="number" name="quantity" style="max-width: 80px;float: left;" class="form-control form-control-user" placeholder="Ilość" min="0">
+                   style="width: 250px;background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto; z-index:99; border-radius: 0px 0px 13px 13px; margin-left: 30px;" value="${add} ${weekDay.name} ${toCart}">
+            <input type="number" name="quantity" style="max-width: 80px;float: left;" class="form-control form-control-user" placeholder="${quantity}" min="0">
         </div>
     </form:form>
 </c:forEach>
@@ -66,13 +72,13 @@
 <form:form action="/orders/add/plan" method="post" modelAttribute="plansMeals" name="formOrderThisPlan">
     <input type="hidden" name="plan" value="${plan.id}">
     <div style="max-width: 90px;">
-        Podaj Ilość: <input class="form-control form-control-user" type="number" name="quantity" min="0"><br>
+        <spring:message code="add.enterQuantity"/>: <input class="form-control form-control-user" type="number" name="quantity" min="0"><br>
     </div>
     <input type="submit" class="btn btn-primary"
-           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto" value="Dodaj do koszyka">
+           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto" value="${addToCart}">
 </form:form>
 
-<h3>Ustalona cena:</h3>
+<h3><spring:message code="app.plan.settedPrice"/>: </h3>
 <b>${plan.price}zł</b>
 </div>
 </body>

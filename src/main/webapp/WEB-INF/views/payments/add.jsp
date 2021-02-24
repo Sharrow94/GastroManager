@@ -3,9 +3,12 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.payments.giveNumber" var="giveNumber"/>
+
 <html>
 <head>
-    <title>Add payments:</title>
+    <title><spring:message code="app.addPayments"/>: </title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -45,14 +48,14 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                 <td><spring:message code="add.orderId"/></td>
-                                <form:input path="orders.id" placeholder="Podaj numer"
+                                <form:input path="orders.id" placeholder="${giveNumber}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                 <td><spring:message code="add.orderId"/></td>
-                                <form:input path="users.id" placeholder="Podaj numer"
+                                <form:input path="users.id" placeholder="${giveNumber}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>

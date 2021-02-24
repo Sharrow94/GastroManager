@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.payments.giveNumber" var="giveNumber"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -22,7 +25,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <td><spring:message code="app.documentNumber"/></td>
-                                <form:input path="documentNumber" placeholder="Podaj numer"
+                                <form:input path="documentNumber" placeholder="${giveNumber}"
                                             class="form-control form-control-user"/>
 
                             </div>
@@ -54,19 +57,6 @@
         </div>
     </div>
 </div>
-
-
-<%--<h1>Dodaj nową operację na magazynie</h1>--%>
-<%--<form:form method="post" modelAttribute="sOi">--%>
-<%--    <form:input path="documentNumber"/>Numer dokumentu<br>--%>
-<%--    <select name="operationType">--%>
-<%--        <option value="WZ">WZ</option>--%>
-<%--        <option value="PZ">PZ</option>--%>
-<%--    </select>--%>
-<%--    <form:select path="supplier" items="${suppliers}" itemLabel="name" itemValue="id" />--%>
-<%--    <input type="submit">--%>
-<%--</form:form>--%>
-
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

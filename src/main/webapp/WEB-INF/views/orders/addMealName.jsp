@@ -2,6 +2,9 @@
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.input.nextStep" var="nextStep"/>
 
 <%@ include file="../header.jsp" %>
 <body>
@@ -9,7 +12,7 @@
 <div style="max-width: 600px; margin-left: 100px; margin-bottom: 200px;">
     <div class="card">
         <div class="card-header">
-            <h1>Wybierz rodzaj posiłku: </h1>
+            <h1><spring:message code="app.meal.selectType"/>: </h1>
         </div>
         <div class="card-body">
             <c:forEach items="${mealNames}" var="tmp">
@@ -20,7 +23,7 @@
             </c:forEach>
             <input type="submit" class="btn btn-primary"
                    style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto"
-                   value="Dalej">
+                   value="${nextStep}">
         </div>
     </div>
 </div>

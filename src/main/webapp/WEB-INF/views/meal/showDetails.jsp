@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Title</title>
@@ -7,7 +8,9 @@
 <%@ include file="../header.jsp" %>
 <body>
 
+
 <div class="container">
+
 
     <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
@@ -27,11 +30,12 @@
                                         <a href="<c:url value="/meal/ingredient/delete/${im.id}"/>">Usuń</a>
                                     </li>
                                 </c:forEach>
-                                <a href="<c:url value="/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>
+                                <a href="<c:url value="admin/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>
                             </ul>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="col-lg-7 d-none d-lg-block">
                     <div class="p-5">
@@ -42,6 +46,7 @@
                             <h2>Sposób przygotowania</h2>
                             ${meal.description}<br><br>
                             cena: ${meal.price}<br>
+                            <a href="<c:url value="/app/meal/list"/>">Powrót do listy</a>
                         </div>
                     </div>
                 </div>
@@ -67,6 +72,9 @@
     <%--    cena: ${meal.price}<br>--%>
 
     <%--    <a href="<c:url value="/meal/list"/>">Powrót do listy</a>--%>
+
+    
+
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

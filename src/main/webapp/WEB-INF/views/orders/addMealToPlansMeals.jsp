@@ -3,6 +3,9 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.addToCart" var="addToCart"/>
+
 <html>
 <head>
     <title>Dodaj dane o płatności za zamówienie:</title>
@@ -37,8 +40,8 @@
             <tfoot>
             <tr>
                 <th rowspan="1" colspan="1"><spring:message code="app.name"/></th>
-                <th rowspan="1" colspan="1">Dieta</th>
-                <th rowspan="1" colspan="1">Ilość</th>
+                <th rowspan="1" colspan="1"><spring:message code="app.diet"/></th>
+                <th rowspan="1" colspan="1"><spring:message code="app.quantity"/></th>
                 <th rowspan="1" colspan="1"><spring:message code="app.action"/></th>
             </tr>
             </tfoot>
@@ -47,7 +50,7 @@
                 <tr role="row" class="odd">
                     <td><c:out value="${meal.name}"/></td>
                     <td><c:out value="${meal.diet.name}"/></td>
-                    <form:form name="form${meal.id}" modelAttribute="plansMeals" action="/orders/add/mealName/meal"
+                    <form:form name="form${meal.id}" modelAttribute="plansMeals" action="/app/orders/addCart/mealName/meal"
                                method="post">
                         <input type="hidden" name="mealName" value="${mealName.id}">
                         <input type="hidden" name="meal" value="${meal.id}">
@@ -59,7 +62,7 @@
                         <td>
                             <input type="submit" class="btn btn-primary"
                                    style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto"
-                                   value="Dodaj do koszyka">
+                                   value="${addToCart}">
                         </td>
                     </form:form>
                 </tr>
@@ -68,7 +71,7 @@
         </table>
         <a href='<c:url value="/home"/>'
            class="btn btn-primary"
-           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto">Strona główna</a>
+           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto"><spring:message code="app.dashboard"/> </a>
     </div>
 </div>
 </body>

@@ -4,9 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<spring:message code="app.input.givePrice" var="givePrice"/>
+<spring:message code="app.input.giveIngredientName" var="giveIngredientName"/>
+<spring:message code="app.input.giveCalories" var="giveCalories"/>
+
 <html>
 <head>
-    <title>Dodaj składnik</title>
+    <title><spring:message code="add.addIngredient"/></title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -26,21 +30,21 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.names"/>:</td>
-                                    <form:input path="name"  placeholder="Napisz nazwe Składniku"
+                                    <form:input path="name"  placeholder="${giveIngredientName}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.calories"/>:</td>
-                                    <form:input path="calories" placeholder="Ilość kalorii"
+                                    <form:input path="calories" placeholder="${giveCalories}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.unitPrice"/>:</td>
-                                    <form:input path="unitPrice" placeholder="Podaj cene"
+                                    <form:input path="unitPrice" placeholder="${givePrice}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
@@ -67,37 +71,6 @@
             </div>
         </div>
     </div>
-
-
-<%--<form:form method="post" modelAttribute="ingredient">--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <td>Name:</td>--%>
-<%--            <td><form:input path="name"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Calories:</td>--%>
-<%--            <td><form:input path="calories"/><br></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Koszt jednostkowy:</td>--%>
-<%--            <td><form:input path="unitPrice"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Zawiera gluten:</td>--%>
-<%--            <td><form:checkbox path="hasGluten" value="true"/>Zawiera</td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Zawiera laktozę:</td>--%>
-<%--            <td><form:checkbox path="hasLactose" value="true"/>Zawiera</td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Zawiera mięso:</td>--%>
-<%--            <td><form:checkbox path="hasMeat" value="true"/>Zawiera</td>--%>
-<%--        </tr>--%>
-<%--    </table>--%>
-<%--    <input type="submit">--%>
-<%--</form:form>--%>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

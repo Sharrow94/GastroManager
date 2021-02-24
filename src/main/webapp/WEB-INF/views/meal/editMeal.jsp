@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.input.mealName" var="mealName"/>
+<spring:message code="app.input.mealDesc" var="mealDesc"/>
 <html>
 <head>
     <title>Title</title>
@@ -27,14 +30,14 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.names"/>:</td>
-                                    <form:input path="name"  placeholder="Write name meal"
+                                    <form:input path="name"  placeholder="${mealName}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.description"/>:</td>
-                                    <form:textarea path="description" placeholder="Description of the meal"
+                                    <form:textarea path="description" placeholder="${mealDesc}"
                                                    class="form-control form-control-user"/>
                                 </div>
                             </div>
@@ -47,18 +50,6 @@
             </div>
         </div>
     </div>
-
-<%--<h1>Edytuj ${meal.name}</h1>--%>
-<%--<form:form method="post" modelAttribute="meal" action="/meal/edit">--%>
-<%--    <form:hidden path="id"/>--%>
-<%--    <form:hidden path="diet"/>--%>
-<%--    <form:hidden path="price"/>--%>
-<%--    <form:input path="name"/> Nazwa<br>--%>
-<%--    <form:textarea path="description"/> Opis przyrządzenia<br>--%>
-<%--    <input type="submit">--%>
-<%--</form:form>--%>
-
-
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

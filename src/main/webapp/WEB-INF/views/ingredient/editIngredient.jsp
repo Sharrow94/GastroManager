@@ -3,9 +3,14 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.input.givePrice" var="givePrice"/>
+<spring:message code="app.input.giveIngredientName" var="giveIngredientName"/>
+<spring:message code="app.input.giveCalories" var="giveCalories"/>
+
 <html>
 <head>
-    <title>Dodaj składnik</title>
+    <title><spring:message code="add.editIngredient"/></title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -28,21 +33,21 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.names"/>:</td>
-                                    <form:input path="name" placeholder="Napisz nazwe Składniku"
+                                    <form:input path="name" placeholder="${giveIngredientName}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.calories"/>:</td>
-                                    <form:input path="calories" placeholder="Ilość kalorii"
+                                    <form:input path="calories" placeholder="${giveCalories}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.unitPrice"/>:</td>
-                                    <form:input path="unitPrice" placeholder="Podaj cene"
+                                    <form:input path="unitPrice" placeholder="${givePrice}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>

@@ -3,9 +3,12 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.payments.giveNumber" var="giveNumber"/>
+
 <html>
 <head>
-    <title>Edit payments:</title>
+    <title><spring:message code="app.editPayments"/>: </title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -46,14 +49,14 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.orderId"/></td>
-                                    <form:input path="orders.id" placeholder="write number"
+                                    <form:input path="orders.id" placeholder="${giveNumber}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.orderId"/></td>
-                                    <form:input path="users.id" placeholder="write number"
+                                    <form:input path="users.id" placeholder="${giveNumber}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
@@ -65,34 +68,6 @@
             </div>
         </div>
     </div>
-
-<%--<form:form method="post" modelAttribute="payment" action="/payments/edit">--%>
-<%--    <form:hidden path="id"/>--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <td>Coct:</td>--%>
-<%--            <td><form:input path="cost"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Data:</td>--%>
-<%--            <td><form:input path="date" type="datetime-local"/><br></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Payments status:</td>--%>
-<%--            <td><form:checkbox path="payed" value=""/>Payed</td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Orders id:</td>--%>
-<%--            <td><form:input path="orders.id"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>User id:</td>--%>
-<%--            <td><form:input path="users.id"/></td>--%>
-<%--        </tr>--%>
-
-<%--    </table>--%>
-<%--    <input type="submit">--%>
-<%--</form:form>--%>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

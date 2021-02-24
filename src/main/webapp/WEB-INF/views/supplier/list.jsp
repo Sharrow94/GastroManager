@@ -99,19 +99,20 @@
                                     <td><c:out value="${supplier.street}"/></td>
                                     <td><c:out value="${supplier.nr}"/></td>
                                     <td><c:out value="${supplier.postNumber}"/></td>
-                                    <td>
-                                        <a href='<c:url value="/admin/supplier/${supplier.id}"/>'
-                                           class="btn btn-primary"
-                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                                code="app.show"/></a>
-                                        <a href='<c:url value="/admin/supplier/edit/${supplier.id}"/>'
-                                           class="btn btn-primary"
-                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                                code="app.edit"/></a>
-                                        <a href='<c:url value="/admin/supplier/delete/${supplier.id}"/>'
-                                           class="btn btn-primary"
-                                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                                code="app.delete"/></a>
+                                    <td nowrap="nowrap">
+
+                                            <a href='<c:url value="/admin/supplier/${supplier.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.show"/></a>
+                                            <a href='<c:url value="/admin/supplier/edit/${supplier.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.edit"/></a>
+                                            <a href='<c:url value="/admin/supplier/delete/${supplier.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.delete"/></a>
                                     </td>
 
                                 </tr>
@@ -120,5 +121,10 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </sec:authorize>
 <%@ include file="../footer.jsp" %>

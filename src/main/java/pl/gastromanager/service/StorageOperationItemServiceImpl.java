@@ -6,10 +6,12 @@ import pl.gastromanager.repository.StorageOperationItemRepository;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class StorageOperationItemServiceImpl implements StorageOperationItemService {
 
     private final StorageOperationItemRepository storageOperationItemRepository;
+
 
     public StorageOperationItemServiceImpl(StorageOperationItemRepository storageOperationItemRepository) {
         this.storageOperationItemRepository = storageOperationItemRepository;
@@ -40,6 +42,10 @@ public class StorageOperationItemServiceImpl implements StorageOperationItemServ
         return storageOperationItemRepository.findAll();
     }
 
+    @Override
+    public List<Long> ingredientsToUpdateAfterRemoveSoI(Long id) {
+        return storageOperationItemRepository.ingredientsToUpdateAfterRemoveSoI(id);
+    }
 
 
 }

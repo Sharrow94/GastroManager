@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.gastromanager.model.StorageOperationItem;
-import pl.gastromanager.service.IngredientService;
 import pl.gastromanager.service.StorageOperationItemService;
 import pl.gastromanager.service.StorageOperationService;
 import pl.gastromanager.service.SupplierService;
-
+import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 
+@Transactional
 @Controller
 @RequestMapping("/admin/sOi")
 public class StorageOperationItemController {
@@ -20,13 +21,11 @@ public class StorageOperationItemController {
     private final StorageOperationItemService storageOperationItemService;
     private final SupplierService supplierService;
     private final StorageOperationService storageOperationService;
-    private final IngredientService ingredientService;
 
-    public StorageOperationItemController(StorageOperationItemService storageOperationItemService, SupplierService supplierService, StorageOperationService storageOperationService, IngredientService ingredientService) {
+    public StorageOperationItemController(StorageOperationItemService storageOperationItemService, SupplierService supplierService, StorageOperationService storageOperationService) {
         this.storageOperationItemService = storageOperationItemService;
         this.supplierService = supplierService;
         this.storageOperationService = storageOperationService;
-        this.ingredientService = ingredientService;
     }
 
     @RequestMapping("/details/{id}")
@@ -44,6 +43,10 @@ public class StorageOperationItemController {
 
     @RequestMapping("/delete/{id}")
     public String deleteSoI(@PathVariable("id")Long id){
+        List<Long>ingredientsIDS=storageOperationItemService.ingredientsToUpdateAfterRemoveSoI(id);
+        storageOperationService.deleteAllBySoIID(id);
+        ingredientsIDS.forEach(storageOperationService::updateTotalQuantityIngredient);
+        ingredientsIDS.forEach(storageOperationService::updateAvgUnitPriceOfIngredient);
         storageOperationItemService.deleteSOI(id);
         return "redirect:/admin/sOi/list";
     }

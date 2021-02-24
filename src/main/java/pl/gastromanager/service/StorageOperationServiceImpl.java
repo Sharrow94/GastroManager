@@ -62,9 +62,18 @@ public class StorageOperationServiceImpl implements StorageOperationService {
 
     @Override
     public void updateAvgUnitPriceOfIngredient(Long id) {
-        float currentPrice=storageOperationRepository.updateIngredientPriceFromLastMonth(id);
+        Float currentPrice=storageOperationRepository.updateIngredientPriceFromLastMonth(id);
         Ingredient ingredient=ingredientService.findById(id).get();
-        ingredient.setUnitPrice(currentPrice);
+        if (currentPrice!=null){
+            ingredient.setUnitPrice(currentPrice);
+        }else {
+            ingredient.setUnitPrice(0);
+        }
         ingredientService.saveIngredient(ingredient);
+    }
+
+    @Override
+    public void deleteAllBySoIID(Long id) {
+        storageOperationRepository.removeAllBySoIId(id);
     }
 }

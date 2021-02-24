@@ -10,4 +10,5 @@ public interface StorageOperationItemService {
     void addSOI(StorageOperationItem storageOperationItem);
     void deleteSOI(Long id);
     List<StorageOperationItem> findAll();
+    List<Long> ingredientsToUpdateAfterRemoveSoI(Long id);
 }

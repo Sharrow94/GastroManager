@@ -3,9 +3,14 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="add.costOrder" var="costOrder"/>
+<spring:message code="app.input.giveCalories" var="giveCalories"/>
+<spring:message code="app.plan.number" var="number"/>
+
 <html>
 <head>
-    <title>Edytuj dane o płatności za zamówienie:</title>
+    <title><spring:message code="app.order.editTitle"/></title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -26,7 +31,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.costOrder"/>:</td>
-                                    <form:input path="quantity" placeholder="cena zamówienia"
+                                    <form:input path="quantity" placeholder="${costOrder}"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -34,7 +39,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.costOrder"/>:</td>
-                                    <form:input path="orderPrice" placeholder="Ilość kalorii"
+                                    <form:input path="orderPrice" placeholder="${giveCalories}"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -60,7 +65,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.planId"/>:</td>
-                                    <form:input path="plan.id" placeholder="numer planu"
+                                    <form:input path="plan.id" placeholder="${number}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@
     <title>Title</title>
 </head>
 <%@ include file="../header.jsp" %>
+<spring:message code="add.enterQuantity" var="enterQuantity"/>
 <body>
 <div class="container">
 
@@ -32,7 +33,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.enterQuantity"/>:</td>
-                                    <form:input path="quantity" placeholder="podaj ilość"
+                                    <form:input path="quantity" placeholder="${enterQuantity}"
                                     class="form-control form-control-user"/>
 
                                 </div>
@@ -46,16 +47,6 @@
             </div>
         </div>
     </div>
-
-<%--&lt;%&ndash;<h1>Dodaj Składniki do ${ingredientsMeals.meal.name}</h1>&ndash;%&gt;--%>
-<%--<h1>Dodaj Składniki</h1>--%>
-<%--<form:form modelAttribute="ingredientsMeals" action="/meal/ingredient/add" method="post">--%>
-<%--    <input type="hidden" value="${meal.id}" name="meal"/>--%>
-<%--    Wybierz składnik:<form:select path="ingredient" items="${ingredients}"  itemLabel="name" itemValue="id"/><br>--%>
-<%--    Podaj Ilość<form:input path="quantity"/><br>--%>
-<%--    <input type="submit" value="dodaj">--%>
-<%--</form:form>--%>
-
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

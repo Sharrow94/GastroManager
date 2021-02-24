@@ -4,6 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<spring:message code="app.plan.giveName" var="giveName"/>
+<spring:message code="app.payments.giveNumber" var="giveNumber"/>
+<spring:message code="app.storage.giveCity" var="giveCity"/>
+<spring:message code="app.storage.givePostCode" var="givePostCode"/>
+<spring:message code="app.storage.giveStreet" var="giveStreet"/>
 
 <html>
 <head>
@@ -28,7 +33,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="app.name"/></td>
-                                    <form:input path="name" placeholder="Podaj nazwe"
+                                    <form:input path="name" placeholder="${giveName}"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -36,7 +41,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="app.phoneNumber"/></td>
-                                    <form:input path="phoneNumber" placeholer="Podaj numer"
+                                    <form:input path="phoneNumber" placeholer="${giveNumber}"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -44,7 +49,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6">
                                     <td><spring:message code="app.city"/></td>
-                                    <form:input path="city" placeholer="Podaj miasto"
+                                    <form:input path="city" placeholer="${giveCity}"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -52,19 +57,19 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="app.street"/></td>
-                                    <form:input path="street" placeholder="Podaj ulice"
+                                    <form:input path="street" placeholder="${giveStreet}"
                                                 class="form-control form-control-user"/>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="app.nr"/></td>
-                                    <form:input path="nr" placeholder="Podaj numer"
+                                    <form:input path="nr" placeholder="${giveNumber}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="app.postNumber"/></td>
-                                    <form:input path="postNumber" placeholder="Podaj kod pocztowy"
+                                    <form:input path="postNumber" placeholder="${givePostCode}"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -79,24 +84,6 @@
         </div>
     </div>
 </div>
-
-<%--<form:form method="post" modelAttribute="supplier" >--%>
-
-<%--    <p>Name:</p>--%>
-<%--    <form:input path="name"/>--%>
-<%--    <p>Phone number:</p>--%>
-<%--    <form:input path="phoneNumber"  />--%>
-<%--    <p>City:</p>--%>
-<%--    <form:input path="city"  />--%>
-<%--    <p>Street:</p>--%>
-<%--    <form:input path="street" />--%>
-<%--    <p>Nr:</p>--%>
-<%--    <form:input path="nr"/>--%>
-<%--    <p>Post Number:</p>--%>
-<%--    <form:input path="postNumber"/>--%>
-<%--    <input type="submit" value="Update">--%>
-<%--</form:form>--%>
-
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

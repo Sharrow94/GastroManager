@@ -3,9 +3,13 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message code="app.plan.giveName" var="giveName"/>
+<spring:message code="app.plan.settedPrice" var="settedPrice"/>
+
 <html>
 <head>
-    <title>Dodaj składnik</title>
+    <title><spring:message code="app.addPlan"/></title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -25,7 +29,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.names"/>:</td>
-                                    <form:input path="name" placeholder="Podaj nazwe"
+                                    <form:input path="name" placeholder="giveName"
                                                 class="form-control form-control-user"/>
 
                                 </div>
@@ -33,7 +37,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.price"/>:</td>
-                                    <form:input path="price" placeholder="Ustalona dcena"
+                                    <form:input path="price" placeholder="${settedPrice}"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
@@ -46,21 +50,6 @@
             </div>
         </div>
     </div>
-
-
-<%--<form:form method="post" modelAttribute="plan">--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <td>Name:</td>--%>
-<%--            <td><form:input path="name"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Ustalona cena:</td>--%>
-<%--            <td><form:input path="price"/><br></td>--%>
-<%--        </tr>--%>
-<%--    </table>--%>
-<%--    <input type="submit">--%>
-<%--</form:form>--%>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

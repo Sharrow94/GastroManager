@@ -51,9 +51,6 @@
                                     aria-label="Name: activate to sort column descending" style="width: auto;">
                                     <spring:message code="app.id"/></th>
                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                    aria-label="Position: activate to sort column ascending" style="width: auto;">
-                                    <spring:message code="add.ordersQuantity"/></th>
-                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                     aria-label="Office: activate to sort column ascending" style="width: auto;">
                                     <spring:message code="add.costOrder"/></th>
                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
@@ -75,7 +72,6 @@
 
                             <tr>
                                 <th rowspan="1" colspan="1"><spring:message code="app.id"/></th>
-                                <th rowspan="1" colspan="1"><spring:message code="add.ordersQuantity"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="add.costOrder"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="add.dateOperation"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="add.fromDate"/></th>
@@ -89,7 +85,6 @@
                             <c:forEach items="${orders}" var="orders">
                                 <tr role="row" class="odd">
                                     <td><c:out value="${orders.id}"/></td>
-                                    <td><c:out value="${orders.quantity}"/></td>
                                     <td><c:out value="${orders.orderPrice}"/></td>
                                     <td><c:out value="${orders.operationDate}"/></td>
                                     <td><c:out value="${orders.fromDate}"/></td>

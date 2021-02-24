@@ -28,14 +28,14 @@
                                 <h1 class="h4 text-gray-900 mb-4"><spring:message code="add.editOrder"/>:</h1>
                             </div>
                             <form:hidden path="id"/>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.costOrder"/>:</td>
-                                    <form:input path="quantity" placeholder="${costOrder}"
-                                                class="form-control form-control-user"/>
+<%--                            <div class="form-group row">--%>
+<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
+<%--                                    <td><spring:message code="add.costOrder"/>:</td>--%>
+<%--                                    <form:input path="quantity" placeholder="${costOrder}"--%>
+<%--                                                class="form-control form-control-user"/>--%>
 
-                                </div>
-                            </div>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.costOrder"/>:</td>

@@ -23,6 +23,5 @@ public class Orders {
     private String toDate;
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<OrderMeals> orderMeals;
-    private int quantity;
     private float orderPrice;
 }

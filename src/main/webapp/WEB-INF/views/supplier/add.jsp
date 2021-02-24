@@ -63,7 +63,6 @@
                                     <td><spring:message code="app.postNumber"/></td>
                                     <form:input path="postNumber" placeholder="Podaj kod pocztowy"
                                                 class="form-control form-control-user"/>
-
                                 </div>
                             </div>
 

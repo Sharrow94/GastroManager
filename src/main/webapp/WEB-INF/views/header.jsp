@@ -153,16 +153,33 @@
             </div>
         </li>
         </sec:authorize>
+        <sec:authorize access="hasRole('ADMIN')">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                   aria-expanded="true" aria-controls="collapseSupplier">
+                    <i class="fas fa-fw fa-truck"></i>
+                    <span>Dostawcy</span>
+                </a>
+                <div id="collapseSupplier" class="collapse" aria-labelledby="headingUtilities"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-gray-900 py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Operacje:</h6>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/supplier/all"/>">Lista</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/supplier/add"/>">Dodaj</a>
+                    </div>
+                </div>
+            </li>
+        </sec:authorize>
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <sec:authorize access="hasRole('ADMIN')">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+               aria-expanded="true" aria-controls="collapseUsers">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Użytkownicy</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            <div id="collapseUsers" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Operacje:</h6>

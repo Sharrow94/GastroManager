@@ -23,7 +23,7 @@
         </tr>
     <tr>
         <td colspan="6">
-            <a href="/storageOperation/add/${soi.id}"><button>+</button></a><em> Dodaj nową pozycję do dokumentu</em>
+            <a href="/admin/storageOperation/add/${soi.id}"><button>+</button></a><em> Dodaj nową pozycję do dokumentu</em>
         </td>
     </tr>
     <tr>
@@ -39,8 +39,8 @@
             <td>${operation.ingredient.name}</td>
             <td>${operation.quantity}</td>
             <td>${operation.unitPrice}</td>
-            <td><a href="/storageOperation/delete/${operation.id}">Usuń</a></td>
-            <td><a href="/storageOperation/edit/${operation.id}">Edytuj</a></td>
+            <td><a href="/admin/storageOperation/delete/${operation.id}">Usuń</a></td>
+            <td><a href="/admin/storageOperation/edit/${operation.id}">Edytuj</a></td>
         </tr>
     </c:forEach>
     </tbody>

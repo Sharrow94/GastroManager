@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
     private final UserService userService;
@@ -61,14 +61,14 @@ public class UserController {
             return "user/editUser";
         }
         userService.add(user);
-        return "redirect:/home";
+        return "redirect:/admin/user/all";
     }
 
 
     @RequestMapping("/delete/{id}")
     public String deleteUser(@PathVariable long id){
         userService.delete(id);
-        return "redirect:/user/all";
+        return "redirect:/admin/user/all";
 
     }
 

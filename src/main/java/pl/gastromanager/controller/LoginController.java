@@ -4,15 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.gastromanager.model.OrderMeals;
 import pl.gastromanager.model.Orders;
-import pl.gastromanager.model.PlansMeals;
 import pl.gastromanager.model.Users;
 import pl.gastromanager.service.UserService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.List;
 
 @SessionAttributes({"shoppingCart", "shoppingItem"})
 @Controller

@@ -127,9 +127,10 @@
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Operacje:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="app/orders/all"/>">Lista</a>
+                    <a class="collapse-item text-gray-100" href="<c:url value="/app/orders/user"/>">Twoje zamówienia</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="admin/orders/add"/>">Dodaj</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/all"/>">Wszystkie Zamówienia</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/add"/>">Dodaj</a>
                     </sec:authorize>
 
                 </div>

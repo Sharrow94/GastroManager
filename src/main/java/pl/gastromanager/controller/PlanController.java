@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.gastromanager.model.Plan;
 import pl.gastromanager.service.DietService;
-import pl.gastromanager.service.OrdersService;
 import pl.gastromanager.service.PlanService;
 
 @Controller
@@ -16,12 +15,10 @@ public class PlanController {
 
     private final PlanService planService;
     private final DietService dietService;
-    private final OrdersService ordersService;
 
-    public PlanController(PlanService planService, DietService dietService, OrdersService ordersService) {
+    public PlanController(PlanService planService, DietService dietService) {
         this.planService = planService;
         this.dietService = dietService;
-        this.ordersService = ordersService;
     }
 
     @RequestMapping("/add")

@@ -65,9 +65,6 @@
                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                     aria-label="Start date: activate to sort column ascending"
                                     style="width: auto;"><spring:message code="add.toDate"/></th>
-                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                    aria-label="Start date: activate to sort column ascending"
-                                    style="width: auto;"><spring:message code="add.planId"/></th>
 
                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                         aria-label="Salary: activate to sort column ascending" style="width: auto; ">
@@ -83,8 +80,6 @@
                                 <th rowspan="1" colspan="1"><spring:message code="add.dateOperation"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="add.fromDate"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="add.toDate"/></th>
-                                <th rowspan="1" colspan="1"><spring:message code="add.planId"/></th>
-
                                 <th rowspan="1" colspan="1"><spring:message code="app.action"/></th>
 
                             </tr>
@@ -99,18 +94,17 @@
                                     <td><c:out value="${orders.operationDate}"/></td>
                                     <td><c:out value="${orders.fromDate}"/></td>
                                     <td><c:out value="${orders.toDate}"/></td>
-                                    <td><c:out value="${orders.plan.id}"/></td>
                                     <sec:authorize access="hasRole('ADMIN')">
                                     <td>
-                                    <a href='<c:url value="/orders/${orders.id}"/>'
+                                    <a href='<c:url value="/admin/orders/${orders.id}"/>'
                                        class="btn btn-primary"
                                        style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                             code="app.show"/></a>
-                                    <a href='<c:url value="/orders/edit/${orders.id}"/>'
+                                    <a href='<c:url value="/admin/orders/edit/${orders.id}"/>'
                                        class="btn btn-primary"
                                        style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                             code="app.edit"/></a>
-                                    <a href='<c:url value="/orders/delete/${orders.id}"/>'
+                                    <a href='<c:url value="/admin/orders/delete/${orders.id}"/>'
                                        class="btn btn-primary"
                                        style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                             code="app.delete"/></a>

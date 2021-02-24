@@ -18,7 +18,7 @@
 <h3 style="margin-left: 30px"><spring:message code="app.diet"/>: ${plan.diet.name}</h3>
 
 <c:forEach items="${weekDays}" var="weekDay">
-    <form:form name="form${plan.id}-${weekDay.id}" modelAttribute="plansMeals" action="/orders/add/selectPlan/selectDay">
+    <form:form name="form${plan.id}-${weekDay.id}" modelAttribute="plansMeals" action="/app/orders/addCart/selectPlan/selectDay">
     <div class="card card-collapsable border-bottom-warning">
         <a class="card-header collapsed" href="#collapseCard${weekDay.id}" data-toggle="collapse" role="button"
            aria-expanded="false" aria-controls="collapseCard${weekDay.id}">
@@ -69,7 +69,7 @@
 
 <div style="margin-left: 30px;  margin-bottom: 20px;">
 <h2 class="text-gray-900">Zamów cały plan</h2>
-<form:form action="/orders/add/plan" method="post" modelAttribute="plansMeals" name="formOrderThisPlan">
+<form:form action="/app/orders/addCart/plan" method="post" modelAttribute="plansMeals" name="formOrderThisPlan">
     <input type="hidden" name="plan" value="${plan.id}">
     <div style="max-width: 90px;">
         <spring:message code="add.enterQuantity"/>: <input class="form-control form-control-user" type="number" name="quantity" min="0"><br>

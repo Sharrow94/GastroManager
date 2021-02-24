@@ -85,7 +85,7 @@
 <%--                                    <a class="small" href="forgot-password.html">Forgot Password?</a>--%>
 <%--                                </div>--%>
                                 <div class="text-center">
-                                    <a class="small" href="<c:url value="/user/add"/>">${createAccount}</a>
+                                    <a class="small" href="<c:url value="/register"/>">${createAccount}</a>
                                 </div>
                             </div>
                         </div>

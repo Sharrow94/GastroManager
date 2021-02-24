@@ -161,7 +161,7 @@
                                     <td><c:out value="${plan.diet.name}"/></td>
                                     <td><c:out value="${plan.price}"/></td>
                                     <sec:authorize access="hasRole('ADMIN')">
-                                        <td><c:out value="${plans.foodCostTotal}"/></td>
+                                        <td><c:out value="${plan.foodCostTotal}"/></td>
                                     </sec:authorize>
                                     <td>
                                         <a href='<c:url value="/app/plan/${plan.id}"/>'

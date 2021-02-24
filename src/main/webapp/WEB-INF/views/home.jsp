@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="row no-gutters">
                     <div class="col mr-2">
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="/orders/add/mealName">Zamów posiłek</a></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="/app/orders/addCart/mealName ">Zamów posiłek</a></div>
                     </div>
                 </div>
             </div>

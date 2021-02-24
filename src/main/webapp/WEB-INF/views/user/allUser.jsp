@@ -35,12 +35,12 @@
                     <td><c:out value="${user.firstName}"/></td>
                     <td><c:out value="${user.lastName}"/></td>
                     <td>
-                        <a href="<c:out value="/user/edit/${user.id}"/> ">Edit</a>
-                        <a href="<c:out value="/user/delete/${user.id}"/> ">Delete</a>
+                        <a href="<c:out value="/admin/user/edit/${user.id}"/> ">Edit</a>
+                        <a href="<c:out value="/admin/user/delete/${user.id}"/> ">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
-            <a href="<c:url value="/user/add?id=${user.id}"/>">Add new book</a>
+            <a href="<c:url value="/admin/user/add?id=${user.id}"/>">Add new book</a>
             </tbody>
         </table>
 <%@ include file="../footer.jsp" %>

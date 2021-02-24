@@ -29,7 +29,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.names"/>:</td>
-                                    <form:input path="name" placeholder="giveName"
+                                    <form:input path="name" placeholder="${giveName}"
                                                 class="form-control form-control-user"/>
 
                                 </div>

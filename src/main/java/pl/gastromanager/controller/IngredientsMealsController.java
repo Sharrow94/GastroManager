@@ -14,7 +14,7 @@ import pl.gastromanager.service.MealService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/meal/ingredient")
+@RequestMapping("/admin/meal/ingredient")
 public class IngredientsMealsController {
     private final MealService mealService;
     private final DietService dietService;
@@ -48,7 +48,7 @@ public class IngredientsMealsController {
         ingredientsMeals.setPrice((float) (ingredientsMeals.getIngredient().getUnitPrice()*ingredientsMeals.getQuantity()));
         ingredientsMealsService.saveIngredientsMeals(ingredientsMeals);
         mealService.refreshMeal(ingredientsMeals.getMeal());
-        return "redirect:/meal/details/"+ingredientsMeals.getMeal().getId();
+        return "redirect:/app/meal/details/"+ingredientsMeals.getMeal().getId();
     }
 
     @GetMapping("/edit/{id}")
@@ -65,7 +65,7 @@ public class IngredientsMealsController {
         ingredientsMeals.setPrice((float) (ingredientsMeals.getIngredient().getUnitPrice()*ingredientsMeals.getQuantity()));
         ingredientsMealsService.saveIngredientsMeals(ingredientsMeals);
         mealService.refreshMeal(ingredientsMeals.getMeal());
-        return "redirect:/meal/details/"+ingredientsMeals.getMeal().getId();
+        return "redirect:/app/meal/details/"+ingredientsMeals.getMeal().getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -73,6 +73,6 @@ public class IngredientsMealsController {
         IngredientsMeals im = ingredientsMealsService.findIngredientsMealsById(id);
         Meal meal = im.getMeal();
         ingredientsMealsService.deleteIngredientsMeals(im);
-        return "redirect:/meal/details/"+meal.getId();
+        return "redirect:/app/meal/details/"+meal.getId();
     }
 }

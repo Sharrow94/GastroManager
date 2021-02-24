@@ -18,14 +18,14 @@
             <a href="<c:url value="/meal/ingredient/delete/${im.id}"/>"><spring:message code="app.delete"/> </a>
         </li>
     </c:forEach>
-    <a href="<c:url value="/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>
+    <a href="<c:url value="/admin/meal/ingredient/add/${meal.id}"/>">Dodaj nowy składnik</a>
 
     </ul>
     <h2>Sposób przygotowania</h2>
     ${meal.description}<br><br>
     cena: ${meal.price}<br>
 
-    <a href="<c:url value="/meal/list"/>">Powrót do listy</a>
+    <a href="<c:url value="/app/meal/list"/>">Powrót do listy</a>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

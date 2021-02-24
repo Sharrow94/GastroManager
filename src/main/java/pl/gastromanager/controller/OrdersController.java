@@ -14,27 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/orders")
+@RequestMapping("/admin/orders")
 public class OrdersController {
-    private final MealNameService mealNameService;
     private final OrdersService ordersService;
-    private final MealService mealService;
-    private final WeekDaysService weekDaysService;
-    private final PlanService planService;
-    private final PlansMealsService plansMealsService;
-    private final OrderMealsUtils orderMealsUtils;
-    private final OrderUtils orderUtils;
 
-
-    public OrdersController(MealNameService mealNameService, OrdersService ordersService, MealService mealService, WeekDaysService weekDaysService, PlanService planService, PlansMealsService plansMealsService, OrderMealsUtils orderMealsUtils, OrderUtils orderUtils) {
-        this.mealNameService = mealNameService;
+    public OrdersController(OrdersService ordersService) {
         this.ordersService = ordersService;
-        this.mealService = mealService;
-        this.weekDaysService = weekDaysService;
-        this.planService = planService;
-        this.plansMealsService = plansMealsService;
-        this.orderMealsUtils = orderMealsUtils;
-        this.orderUtils = orderUtils;
     }
 
     @RequestMapping("/all")
@@ -60,7 +45,7 @@ public class OrdersController {
     @PostMapping("/add")
     public String saveNewOrders(Orders orders) {
         ordersService.addOrders(orders);
-        return "redirect:/orders/all";
+        return "redirect:/admin/orders/all";
     }
 
     @RequestMapping("/edit/{id}")
@@ -73,144 +58,15 @@ public class OrdersController {
     @PostMapping("/edit")
     public String editOrder(Orders orders) {
         ordersService.editOrders(orders);
-        return "redirect:/orders/all";
+        return "redirect:/admin/orders/all";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteOrder(@PathVariable("id") long id) {
         ordersService.deleteOrders(id);
-        return "redirect:/orders/all";
+        return "redirect:/admin/orders/all";
     }
 
-
-    //---------------Order Meal-----------------
-    @GetMapping("/add/mealName")
-    public String addMealNameGet(Model model, @SessionAttribute("shoppingCart") Orders orders) {
-        printShoppingCart(orders);
-        model.addAttribute("mealNames", mealNameService.findAll());
-        model.addAttribute("mealName", new MealName());
-        return "orders/addMealName";
-    }
-
-    @PostMapping("/add/mealName")
-    public String addMealNamePost(MealName mealName) {
-        return "redirect:/orders/add/mealName/meal/" + mealName.getId();
-    }
-
-    @GetMapping("/add/mealName/meal/{id}")
-    public String addMealGet(@PathVariable Long id, Model model) {
-        MealName mealName = mealNameService.findById(id);
-        model.addAttribute("mealName", mealName);
-        model.addAttribute("meals", mealService.findAllMealsByMealName(mealName));
-        model.addAttribute("plansMeals", new PlansMeals());
-        return "orders/addMealToPlansMeals";
-    }
-
-    @PostMapping("/add/mealName/meal")
-    public String addMealPost(
-            PlansMeals plansMeals,
-            @RequestParam("quantity") Long quantity,
-            @SessionAttribute("shoppingCart") Orders shoppingCart,
-            Model model,
-            HttpServletRequest request
-    ) {
-        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
-        List<PlansMeals> plansMealsList = List.of(plansMeals);
-
-        OrderMeals orderMeals = new OrderMeals();
-        orderMeals.setPlansMeals(plansMealsList);
-        orderMeals.setQuantity(quantity);
-        orderMeals.setName(plansMeals.getMeal().getName());
-        orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
-        orderMeals.setOrderType(OrderType.MEAL);
-        shoppingItems.add(orderMeals);
-        shoppingCart.setOrderMeals(shoppingItems);
-        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
-
-        String referer = request.getHeader("Referer");
-        return "redirect:"+referer;
-    }
-
-    //---------Order Day from Plan--------
-    @GetMapping("/add/selectPlan")
-    public String addSelectPlanGet(Model model) {
-        model.addAttribute("plans", planService.findAll());
-        model.addAttribute("plan", new Plan());
-        return "orders/addSelectPlan";
-    }
-
-
-    @PostMapping("/add/selectPlan")
-    public String addSelectPlanPost(Plan plan) {
-        return "redirect:/orders/add/selectPlan/selectDay/" + plan.getId();
-    }
-
-    @GetMapping("/add/selectPlan/selectDay/{id}")
-    public String selectDayGet(@PathVariable Long id, Model model) {
-        Plan plan = planService.findById(id);
-        model.addAttribute("weekDays", weekDaysService.findAll());
-        model.addAttribute("plansMeals", new PlansMeals());
-        model.addAttribute("plan", plan);
-
-        return "/orders/orderPlanDay";
-    }
-
-    @PostMapping("/add/selectPlan/selectDay")
-    public String selectDayGet(
-            PlansMeals plansMeals,
-            @SessionAttribute("shoppingCart") Orders shoppingCart,
-            @RequestParam("quantity") Long quantity,
-            HttpServletRequest request
-    ) {
-        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
-        List<PlansMeals> planMealsList = plansMealsService.findAllByPlanAndWeekDays(plansMeals.getPlan(), plansMeals.getWeekDays());
-
-        String name = plansMeals.getWeekDays().getName() + " z " +
-                plansMeals.getPlan().getName();
-
-        OrderMeals orderMeals = new OrderMeals();
-        orderMeals.setPlansMeals(planMealsList);
-        orderMeals.setName(name);
-        orderMeals.setQuantity(quantity);
-        orderMeals.setOrderType(OrderType.PLANDAY);
-        orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
-        shoppingItems.add(orderMeals);
-        shoppingCart.setOrderMeals(shoppingItems);
-        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
-
-        String referer = request.getHeader("Referer");
-        return "redirect:"+referer;
-    }
-
-    //--------Order Plan---------------
-    @GetMapping("/add/plan")
-    public String addPlanGet(Model model) {
-        model.addAttribute("plans", planService.findAll());
-        model.addAttribute("plansMeals", new PlansMeals());
-        return "orders/addPlan";
-    }
-
-
-    @PostMapping("/add/plan")
-    public String addPlanPost(
-            PlansMeals plansMeals,
-            @SessionAttribute("shoppingCart") Orders shoppingCart,
-            @RequestParam("quantity") Long quantity
-    ) {
-        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
-        List<PlansMeals> plansMealsList = plansMealsService.findAllByPlan(plansMeals.getPlan());
-        OrderMeals orderMeals = new OrderMeals();
-        orderMeals.setPlansMeals(plansMealsList);
-        orderMeals.setOrderType(OrderType.PLAN);
-        orderMeals.setQuantity(quantity);
-        orderMeals.setName(plansMeals.getPlan().getName());
-        orderMeals.setPrice(orderMealsUtils.getPriceByPlan(orderMeals));
-        shoppingItems.add(orderMeals);
-        shoppingCart.setOrderMeals(shoppingItems);
-        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
-
-        return "redirect:/app/plan/all";
-    }
 
 
     //PRINTING SHOPPING CART IN CONSOLE

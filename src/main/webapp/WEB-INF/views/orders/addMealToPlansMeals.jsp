@@ -50,7 +50,7 @@
                 <tr role="row" class="odd">
                     <td><c:out value="${meal.name}"/></td>
                     <td><c:out value="${meal.diet.name}"/></td>
-                    <form:form name="form${meal.id}" modelAttribute="plansMeals" action="/orders/add/mealName/meal"
+                    <form:form name="form${meal.id}" modelAttribute="plansMeals" action="/app/orders/addCart/mealName/meal"
                                method="post">
                         <input type="hidden" name="mealName" value="${mealName.id}">
                         <input type="hidden" name="meal" value="${meal.id}">

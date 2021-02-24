@@ -4,15 +4,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import pl.gastromanager.model.*;
 import pl.gastromanager.service.*;
+import pl.gastromanager.util.OrderMealsUtils;
 import pl.gastromanager.util.OrderUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,9 +25,11 @@ public class AppController {
     private final WeekDaysService weekDaysService;
     private final MealNameService mealNameService;
     private final OrderUtils orderUtils;
+    private final OrderMealsUtils orderMealsUtils;
+    private final PlansMealsService plansMealsService;
 
 
-    public AppController(PaymentsService paymentsService, UserService userService, MealService mealService, DietService dietService, PlanService planService, WeekDaysService weekDaysService, MealNameService mealNameService, OrderUtils orderUtils) {
+    public AppController(PaymentsService paymentsService, UserService userService, MealService mealService, DietService dietService, PlanService planService, WeekDaysService weekDaysService, MealNameService mealNameService, OrderUtils orderUtils, OrderMealsUtils orderMealsUtils, PlansMealsService plansMealsService) {
         this.paymentsService = paymentsService;
         this.userService = userService;
         this.mealService = mealService;
@@ -37,6 +38,8 @@ public class AppController {
         this.weekDaysService = weekDaysService;
         this.mealNameService = mealNameService;
         this.orderUtils = orderUtils;
+        this.orderMealsUtils = orderMealsUtils;
+        this.plansMealsService = plansMealsService;
     }
 
     //Method from PaymentsController
@@ -105,8 +108,106 @@ public class AppController {
         return "redirect:"+referer;
     }
 
+    //---------------Order Meal-----------------
+    @GetMapping("/orders/addCart/mealName")
+    public String addMealNameGet(Model model, @SessionAttribute("shoppingCart") Orders orders) {
+        model.addAttribute("mealNames", mealNameService.findAll());
+        model.addAttribute("mealName", new MealName());
+        return "orders/addMealName";
+    }
+
+    @PostMapping("/orders/addCart/mealName")
+    public String addMealNamePost(MealName mealName) {
+        return "redirect:/app/orders/addCart/mealName/meal/" + mealName.getId();
+    }
+
+    @GetMapping("/orders/addCart/mealName/meal/{id}")
+    public String addMealGet(@PathVariable Long id, Model model) {
+        MealName mealName = mealNameService.findById(id);
+        model.addAttribute("mealName", mealName);
+        model.addAttribute("meals", mealService.findAllMealsByMealName(mealName));
+        model.addAttribute("plansMeals", new PlansMeals());
+        return "orders/addMealToPlansMeals";
+    }
+
+    @PostMapping("/orders/addCart/mealName/meal")
+    public String addMealPost(
+            PlansMeals plansMeals,
+            @RequestParam("quantity") Long quantity,
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            HttpServletRequest request
+    ) {
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
+        List<PlansMeals> plansMealsList = List.of(plansMeals);
+
+        OrderMeals orderMeals = new OrderMeals();
+        orderMeals.setPlansMeals(plansMealsList);
+        orderMeals.setQuantity(quantity);
+        orderMeals.setName(plansMeals.getMeal().getName());
+        orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
+        orderMeals.setOrderType(OrderType.MEAL);
+        shoppingItems.add(orderMeals);
+        shoppingCart.setOrderMeals(shoppingItems);
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
+
+        String referer = request.getHeader("Referer");
+        return "redirect:"+referer;
+    }
+
+    //---------Order Day from Plan--------
+    @PostMapping("/orders/addCart/selectPlan/selectDay")
+    public String selectDayGet(
+            PlansMeals plansMeals,
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            @RequestParam("quantity") Long quantity,
+            HttpServletRequest request
+    ) {
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
+        List<PlansMeals> planMealsList = plansMealsService.findAllByPlanAndWeekDays(plansMeals.getPlan(), plansMeals.getWeekDays());
+
+        String name = plansMeals.getWeekDays().getName() + " z " +
+                plansMeals.getPlan().getName();
+
+        OrderMeals orderMeals = new OrderMeals();
+        orderMeals.setPlansMeals(planMealsList);
+        orderMeals.setName(name);
+        orderMeals.setQuantity(quantity);
+        orderMeals.setOrderType(OrderType.PLANDAY);
+        orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
+        shoppingItems.add(orderMeals);
+        shoppingCart.setOrderMeals(shoppingItems);
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
+
+        String referer = request.getHeader("Referer");
+        return "redirect:"+referer;
+    }
+
+    //--------Order Plan---------------
+    @PostMapping("/orders/addCart/plan")
+    public String addPlanPost(
+            PlansMeals plansMeals,
+            @SessionAttribute("shoppingCart") Orders shoppingCart,
+            @RequestParam("quantity") Long quantity
+    ) {
+        List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
+        List<PlansMeals> plansMealsList = plansMealsService.findAllByPlan(plansMeals.getPlan());
+        OrderMeals orderMeals = new OrderMeals();
+        orderMeals.setPlansMeals(plansMealsList);
+        orderMeals.setOrderType(OrderType.PLAN);
+        orderMeals.setQuantity(quantity);
+        orderMeals.setName(plansMeals.getPlan().getName());
+        orderMeals.setPrice(orderMealsUtils.getPriceByPlan(orderMeals));
+        shoppingItems.add(orderMeals);
+        shoppingCart.setOrderMeals(shoppingItems);
+        shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
+
+        return "redirect:/app/plan/all";
+    }
+
+
 
     //Method from OrdersController
+
 
 
 

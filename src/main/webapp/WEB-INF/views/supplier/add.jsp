@@ -70,7 +70,6 @@
                                     <td><spring:message code="app.postNumber"/></td>
                                     <form:input path="postNumber" placeholder="${givePostCode}"
                                                 class="form-control form-control-user"/>
-
                                 </div>
                             </div>
 

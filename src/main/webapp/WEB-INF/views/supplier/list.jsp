@@ -11,7 +11,7 @@
             <a href='<c:url value="/admin/supplier/add"/>'
                class="btn btn-primary"
                style="background-color:#f6c23e; color:#3a3b45;position: absolute;  right: 8%;width: 170px;margin:-25px; border: 10px #f6c23e;">
-                <spring:message code="add.supplireAdd"/></a>
+                <spring:message code="app.supplireAdd"/></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

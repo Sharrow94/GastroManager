@@ -4,7 +4,7 @@
 <head>
     <title>Home</title>
 </head>
-            </nav>
+
             <!-- End of Topbar -->
 <div class="row-for-orders align-items-center">
 

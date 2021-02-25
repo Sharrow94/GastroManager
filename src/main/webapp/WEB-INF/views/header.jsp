@@ -71,9 +71,8 @@
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
 <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Dodaj</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/all"/>">Wszystkie płatności</a>
                     </sec:authorize>
 
 

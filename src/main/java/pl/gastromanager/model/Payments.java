@@ -15,12 +15,12 @@ public class Payments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private float cost;
+    private float summaryPrice;
     @ManyToOne
     private Users users;
     @OneToOne
     private Orders orders;
     private boolean isPayed;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private String date;
+    private String finalPayDate;
 }

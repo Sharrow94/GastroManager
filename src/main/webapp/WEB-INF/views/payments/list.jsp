@@ -92,9 +92,14 @@
                             <c:forEach items="${payments}" var="payments">
                                 <tr role="row" class="odd">
                                     <td><c:out value="${payments.id}"/></td>
-                                    <td><c:out value="${payments.cost}"/></td>
-                                    <td><c:out value="${payments.date}"/></td>
-                                    <td><c:out value="${payments.payed}"/></td>
+                                    <td><c:out value="${payments.summaryPrice}"/></td>
+                                    <td><c:out value="${payments.finalPayDate}"/></td>
+                                    <c:if test="${payments.payed}">
+                                        <td><spring:message code="app.payed"/></td>
+                                    </c:if>
+                                    <c:if test="${!payments.payed}">
+                                        <td><spring:message code="app.unPayed"/></td>
+                                    </c:if>
                                     <td><c:out value="${payments.orders.id}"/></td>
                                     <td><c:out value="${payments.users.id}"/></td>
                                     <sec:authorize access="hasRole('ADMIN')">

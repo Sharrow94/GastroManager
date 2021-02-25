@@ -54,22 +54,6 @@ public class AppController {
         this.ordersService = ordersService;
     }
 
-    //Method from PaymentsController
-    @RequestMapping("/payments/all")
-    public String showAllPayments(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Users currentUser = userService.findByUserEmail(auth.getName());
-        Long id = currentUser.getId();
-        List<String> roles = paymentsService.findAllRolesByUserId(id);
-        if (roles.contains("ROLE_ADMIN")) {
-            List<Payments> paymentsAll = paymentsService.findAllPayments();
-            model.addAttribute("payments", paymentsAll);
-        } else {
-            List<Payments> payments = paymentsService.findPaymentsByUserId(id);
-            model.addAttribute("payments", payments);
-        }
-        return "payments/list";
-    }
 
     //Method from MealController
     @GetMapping("/meal/list")
@@ -250,14 +234,13 @@ public class AppController {
         LocalDateTime expiredTime = now.plusDays(days + 14);
         String expiredTimeS = dtf.format(expiredTime);
 
-        payments.setDate(expiredTimeS);
-        payments.setCost((float) Math.round(shoppingCart.getOrderPrice() * days * 100) / 100);
+        payments.setFinalPayDate(expiredTimeS);
+        payments.setSummaryPrice((float) Math.round(shoppingCart.getOrderPrice() * days * 100) / 100);
         payments.setUsers(user);
         payments.setPayed(false);
 
         Orders newOrder = new Orders();
         newOrder.setOrderMeals(shoppingCart.getOrderMeals());
-        newOrder.setQuantity(shoppingCart.getQuantity());
         newOrder.setOrderPrice(shoppingCart.getOrderPrice());
         newOrder.setFromDate(shoppingCart.getFromDate());
         newOrder.setToDate(shoppingCart.getToDate());

@@ -23,8 +23,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
-        String email = oAuth2User.getEmail();
-        String name = oAuth2User.getName();
+        String email = oAuth2User.getName();
+        String name = oAuth2User.getUserName();
 //        System.out.println(email);
         Users user = userService.findByUserEmail(email);
 

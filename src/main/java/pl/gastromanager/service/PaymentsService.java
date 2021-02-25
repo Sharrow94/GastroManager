@@ -1,6 +1,8 @@
 package pl.gastromanager.service;
 
+import pl.gastromanager.model.Orders;
 import pl.gastromanager.model.Payments;
+import pl.gastromanager.model.Users;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,5 +17,4 @@ public interface PaymentsService {
     Payments findPaymentsByUserId();
     List<Payments> findPaymentsByUserId(Long id);
     List<String>findAllRolesByUserId(Long id);
-
 }

@@ -21,7 +21,7 @@ public class Orders {
     private String fromDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String toDate;
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrderMeals> orderMeals;
     private int quantity;
     private float orderPrice;

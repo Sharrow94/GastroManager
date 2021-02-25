@@ -130,7 +130,6 @@
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/orders/user"/>">Twoje zamówienia</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/all"/>">Wszystkie Zamówienia</a>
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/add"/>">Dodaj</a>
                     </sec:authorize>
 
                 </div>
@@ -392,7 +391,7 @@
                                 </div>
                             </div>
                             </c:forEach>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Zobacz swój Koszyk (${sessionScope.shoppingCart.getOrderPrice()} zł)</a>
+                            <a class="dropdown-item text-center small text-gray-500" href="<c:url value="/app/shoppingCart/details"/> ">Zobacz swój Koszyk (${sessionScope.shoppingCart.getOrderPrice()} zł)</a>
                         </div>
                         </c:if>
                     </li>
@@ -405,7 +404,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <%--                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>--%>
                             <sec:authorize access="isAuthenticated()">
-                                <p>Zalogowany jako: <sec:authentication property="name"/></p>
+                                <p><sec:authentication property="name"/></p>
 <%--                                <p> <sec:authentication property="authorities"/></p>--%>
                             </sec:authorize>
                             <img class="img-profile rounded-circle"

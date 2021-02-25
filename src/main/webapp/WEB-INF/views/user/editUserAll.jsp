@@ -17,7 +17,7 @@
                 <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                 <div class="col-lg-7">
                     <div class="p-5">
-                        <form:form method="post" modelAttribute="user"  action="/admin/user/update">
+                        <form:form method="post" modelAttribute="user" >
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4"> <spring:message code="app.editUser"/></h1>
                             </div>

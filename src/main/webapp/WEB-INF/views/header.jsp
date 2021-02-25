@@ -55,9 +55,9 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
+<%--        <div class="sidebar-heading">--%>
+<%--            Interface--%>
+<%--        </div>--%>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
@@ -70,7 +70,7 @@
             </a>
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+<%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Dodaj</a>
@@ -89,7 +89,7 @@
             </a>
             <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+<%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/meal/list"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/meal/add"/>">Dodaj</a>
@@ -107,7 +107,7 @@
             </a>
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+<%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/plan/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/plan/add"/>">Dodaj</a>
@@ -126,7 +126,7 @@
             </a>
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+<%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/orders/user"/>">Twoje zamówienia</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/all"/>">Wszystkie Zamówienia</a>
@@ -147,7 +147,7 @@
             </a>
             <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+<%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Dokumenty magazynowe</a>
                     <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stan Magazynowy</a>
                 </div>
@@ -164,7 +164,7 @@
                 <div id="collapseSupplier" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-gray-900 py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Operacje:</h6>
+<%--                        <h6 class="collapse-header">Operacje:</h6>--%>
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/supplier/all"/>">Lista</a>
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/supplier/add"/>">Dodaj</a>
                     </div>
@@ -183,7 +183,7 @@
             <div id="collapseUsers" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+<%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/admin/user/all"/>">Lista</a>
                 </div>
             </div>

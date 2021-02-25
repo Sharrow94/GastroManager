@@ -109,10 +109,13 @@
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.edit"/></a>
+                                        <c:if test="${supplier.ableToRemove}">
                                             <a href='<c:url value="/admin/supplier/delete/${supplier.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.delete"/></a>
+                                        </c:if>
+
                                     </td>
 
                                 </tr>

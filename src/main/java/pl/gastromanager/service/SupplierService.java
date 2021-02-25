@@ -11,4 +11,5 @@ public interface SupplierService  {
     void add(Supplier supplier);
     void delete(Long id);
     void editSupplier(Supplier supplier);
+    void updateAbleToDelete(Long id);//<--- need Supplier ID
 }

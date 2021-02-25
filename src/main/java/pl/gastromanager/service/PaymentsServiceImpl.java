@@ -33,8 +33,8 @@ public class PaymentsServiceImpl implements PaymentsService {
     }
 
     @Override
-    public Optional<Payments> getPayment(long id) {
-        return paymentsRepository.findById(id);
+    public Payments getPayment(long id) {
+        return paymentsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Payment does not exists"));
     }
 
     @Override

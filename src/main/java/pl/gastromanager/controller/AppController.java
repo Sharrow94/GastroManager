@@ -23,6 +23,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/app")
@@ -257,6 +258,44 @@ public class AppController {
 
 
     //Method from OrdersController
+    @GetMapping("/user/{userId}/orders/all")
+    public String showAllMyOrders(Model model,@PathVariable Long userId, Authentication auth){
+        Users currentUser = userService.findByUserEmail(auth.getName());
+        Users user = userService.get(userId);
+        model.addAttribute("user", user);
+        model.addAttribute("currentUser", currentUser);
+
+        List<Payments> payments = paymentsService.findPaymentsByUserId(userId);
+        model.addAttribute("payments", payments);
+        return "payments/userOrderList";
+    }
+
+    @GetMapping("/user/{userId}/orders/details/{paymentId}")
+    public String showUsersOrderDetails(
+            @PathVariable Long userId,
+            @PathVariable Long paymentId,
+            Model model,
+            Authentication auth
+    ){
+        Payments payment = paymentsService.getPayment(paymentId);
+        Users user = userService.get(userId);
+        model.addAttribute("payment", payment);
+        model.addAttribute("user", user);
+        model.addAttribute("orderTypeMeal", OrderType.MEAL);
+        model.addAttribute("newPayment", new Payments());
+        return "payments/userOrderDetails";
+    }
+
+    @PostMapping("/user/{userId}/orders/all")
+    public String payForOrder(Payments payments, HttpServletRequest request){
+        Payments payment = paymentsService.getPayment(payments.getId());
+        payment.setPayed(true);
+        paymentsService.editPayment(payment);
+        String referer = request.getHeader("Referer");
+        return "redirect:"+referer;
+    }
+
+
 
 
 }

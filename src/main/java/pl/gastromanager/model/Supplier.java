@@ -19,4 +19,5 @@ public class Supplier {
     private String street;
     private String nr;
     private String postNumber;
+    private boolean ableToRemove=true;
 }

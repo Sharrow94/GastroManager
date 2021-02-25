@@ -11,10 +11,12 @@ import java.util.Optional;
 public class StorageOperationItemServiceImpl implements StorageOperationItemService {
 
     private final StorageOperationItemRepository storageOperationItemRepository;
+    private final SupplierServiceImpl supplierService;
 
 
-    public StorageOperationItemServiceImpl(StorageOperationItemRepository storageOperationItemRepository) {
+    public StorageOperationItemServiceImpl(StorageOperationItemRepository storageOperationItemRepository, SupplierServiceImpl supplierService) {
         this.storageOperationItemRepository = storageOperationItemRepository;
+        this.supplierService = supplierService;
     }
 
     @Override
@@ -25,16 +27,20 @@ public class StorageOperationItemServiceImpl implements StorageOperationItemServ
     @Override
     public void saveSOI(StorageOperationItem storageOperationItem) {
         storageOperationItemRepository.save(storageOperationItem);
+        supplierService.updateAbleToDelete(storageOperationItem.getSupplier().getId());
     }
 
     @Override
     public void addSOI(StorageOperationItem storageOperationItem) {
         storageOperationItemRepository.save(storageOperationItem);
+        supplierService.updateAbleToDelete(storageOperationItem.getSupplier().getId());
     }
 
     @Override
     public void deleteSOI(Long id) {
+        StorageOperationItem soi=storageOperationItemRepository.findById(id).get();
         storageOperationItemRepository.deleteById(id);
+        supplierService.updateAbleToDelete(soi.getSupplier().getId());
     }
 
     @Override

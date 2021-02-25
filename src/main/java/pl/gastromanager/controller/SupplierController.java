@@ -30,7 +30,7 @@ public class SupplierController {
 
     @RequestMapping("/{id}")
     public String showOneSupplier(@PathVariable("id") long id, Model model) {
-        Optional<Supplier> supplier = supplierService.getSupplier(id);
+        Supplier supplier = supplierService.getSupplier(id).get();
         model.addAttribute("supplier", supplier);
         return "supplier/supplierView";
     }

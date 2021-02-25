@@ -11,19 +11,19 @@ public class OrderMealsUtilsImpl implements OrderMealsUtils{
 
     @Override
     public float getPriceByMeals(OrderMeals orderMeals){
-        return orderMeals.getPlansMeals().stream()
+        return (float) Math.round(orderMeals.getPlansMeals().stream()
                 .map(PlansMeals::getMeal)
                 .map(Meal::getPrice)
                 .reduce(Float::sum)
-                .orElse(0f);
+                .orElse(0f)*100)/100;
     }
 
     @Override
     public float getPriceByPlan(OrderMeals orderMeals){
-        return orderMeals.getPlansMeals().stream()
+        return (float) Math.round(orderMeals.getPlansMeals().stream()
                 .findFirst()
                 .orElseThrow(()->new IllegalArgumentException("PlanMeals not found"))
                 .getPlan()
-                .getPrice();
+                .getPrice()*100)/100;
     }
 }

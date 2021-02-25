@@ -18,87 +18,117 @@
                 <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                 <div class="col-lg-7">
                     <div class="p-5">
-                        <form:form method="post" modelAttribute="order" action="/admin/orders/add">
+                        <form:form method="post" modelAttribute="order" action="/app/shoppingCart/saveOrder">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4"><spring:message code="add.addOrder"/>:</h1>
+                                <h1 class="h4 text-gray-900 mb-4"><spring:message code="app.yourCart"/></h1>
                             </div>
-<%--                            <div class="form-group row">--%>
-<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
-<%--                                    <td><spring:message code="add.costOrder"/>:</td>--%>
-<%--                                    <form:input path="quantity" --%>
-<%--                                                class="form-control form-control-user"/>--%>
+                            <c:forEach items="${sessionScope.shoppingCart.orderMeals}" var="shoppingItem">
+                                <c:if test="${!orderTypeMeal.equals(shoppingItem.getOrderType())}">
+                                    <c:set var="index"
+                                           value="${sessionScope.shoppingCart.getOrderMeals().indexOf(shoppingItem)}"/>
+                                    <div class="card card-collapsable">
+                                        <a class="card-header" href="#collapseCardMeal${index}" data-toggle="collapse"
+                                           role="button" aria-expanded="false" aria-controls="collapseCardMeal${index}">
+                                        <span class="text-gray-900">
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                            ${shoppingItem.name}
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                            x${shoppingItem.quantity}
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                            ${shoppingItem.price} zł
+                                                    </div>
+                                                </div>
+                                        </span>
+                                            <div class="card-collapsable-arrow">
+                                                <i class="fas fa-chevron-down" style="color: #333333;"></i>
+                                            </div>
+                                        </a>
+                                        <div class="collapse" id="collapseCardMeal${index}">
+                                            <div class="card-body">
+                                                <c:forEach items="${shoppingItem.plansMeals}" var="pm">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10 mb-3 mb-sm-0">
+                                                                ${pm.meal.name}
+                                                        </div>
+                                                        <div class="col-sm-2 mb-3 mb-sm-0">
+                                                                ${pm.meal.price} zł
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
 
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="form-group row">--%>
-<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
-<%--                                    <td><spring:message code="add.costOrder"/>:</td>--%>
-<%--                                    <form:input path="orderPrice" --%>
-<%--                                                class="form-control form-control-user"/>--%>
+                                            </div>
+                                        </div>
+                                    </div>
 
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="form-group row">--%>
-<%--                                <div class="col-sm-6 mb-3 mb-sm-0">--%>
-<%--                                    <td><spring:message code="add.dateOperation"/>:</td>--%>
-<%--                                    <form:input path="operationDate" type="datetime-local"--%>
-<%--                                                class="form-control form-control-user"/>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                                    <%--                                <table>--%>
+                                    <%--                                <tr>--%>
+                                    <%--                                    <th>${shoppingItem.name}</th>--%>
+                                    <%--                                </tr>--%>
+                                    <%--                                    <c:forEach items="${shoppingItem.plansMeals}" var="pm">--%>
+                                    <%--                                        <tr>--%>
+                                    <%--                                            <td>${pm.meal.name}</td>--%>
+                                    <%--                                        </tr>--%>
+                                    <%--                                    </c:forEach>--%>
+                                    <%--                                </table>--%>
+                                </c:if>
+                                <c:if test="${orderTypeMeal.equals(shoppingItem.getOrderType())}">
+                                    <div class="card card-header-actions">
+                                        <div class="card-header">
+                                            <span class="text-gray-900">
+                                                <div class="row">
+                                                    <div class="col-md-11">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-7">
+                                                                    ${shoppingItem.name}
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                    x${shoppingItem.quantity}
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                    ${shoppingItem.price} zł
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-2">Łącznie:</div>
+                                <div class="col-md-2">${sessionScope.shoppingCart.orderPrice} zł</div>
+                            </div>
+                            <br><br>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.fromDate"/>:</td>
+                                    <td>Od:</td>
                                     <form:input path="fromDate" type="date"
                                                 class="form-control form-control-user"/>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <td><spring:message code="add.toDate"/>:</td>
+                                    <td>Do:</td>
                                     <form:input path="toDate" type="date"
                                                 class="form-control form-control-user"/>
                                 </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                <spring:message code="app.add"/></button>
+                                Zamów
+                            </button>
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-<%--<form:form method="post" modelAttribute="order" action="/orders/add">--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <td>Ilość zamówień:</td>--%>
-<%--            <td><form:input path="quantity"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Cena zamówienia:</td>--%>
-<%--            <td><form:input path="orderPrice"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Data operacji:</td>--%>
-<%--            <td><form:input path="operationDate" type="datetime-local"/></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Data płatności od:</td>--%>
-<%--            <td><form:input path="fromDate" type="date"/><br></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Data płatności do:</td>--%>
-<%--            <td>--%>
-<%--                <form:input path="toDate" type="date"/>--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Plan id:</td>--%>
-<%--            <td><form:input path="plan.id"/></td>--%>
-<%--        </tr>--%>
-
-<%--    </table>--%>
-<%--    <input type="submit">--%>
-<%--</form:form>--%>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

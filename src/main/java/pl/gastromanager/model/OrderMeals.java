@@ -14,8 +14,6 @@ public class OrderMeals {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne
-    private Orders order;
     @ManyToMany
     @JoinTable(name = "plan_order")
     private List<PlansMeals> plansMeals;

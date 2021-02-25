@@ -7,4 +7,5 @@ import pl.gastromanager.service.SupplierService;
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier,Long> {
 
+
 }

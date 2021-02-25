@@ -18,7 +18,7 @@
             <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
             <div class="col-lg-7">
                 <div class="p-5">
-                    <form:form method="post" modelAttribute="sOi">
+                    <form:form method="post" modelAttribute="storageOperation">
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4"> <spring:message code="app.storageOperationItem"/></h1>
                         </div>
@@ -51,6 +51,10 @@
 
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             <spring:message code="app.add"/></button>
+                        <div style="margin-top: 10px">
+                            <a href="/admin/sOi/details/${sOi.id}" class="btn btn-primary btn-user btn-block">
+                                <spring:message code="app.cancel"/></a>
+                        </div>
                     </form:form>
                 </div>
             </div>

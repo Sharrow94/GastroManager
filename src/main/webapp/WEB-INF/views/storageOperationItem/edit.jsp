@@ -52,6 +52,10 @@
 
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             <spring:message code="app.edit"/></button>
+                        <div style="margin-top: 10px">
+                            <a href="/admin/sOi/list" class="btn btn-primary btn-user btn-block">
+                                <spring:message code="app.cancel"/></a>
+                        </div>
                     </form:form>
                 </div>
             </div>

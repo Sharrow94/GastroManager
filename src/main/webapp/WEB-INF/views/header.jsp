@@ -272,7 +272,7 @@
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                                <i class="fas fa-search fa-sm" style="color: black"></i>
                             </button>
                         </div>
                     </div>

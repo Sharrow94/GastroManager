@@ -44,7 +44,7 @@ public class PaymentsController {
 
     @RequestMapping("/{id}")
     public String showPayment(@PathVariable("id") long id, Model model) {
-        Optional<Payments> payment = paymentsService.getPayment(id);
+        Payments payment = paymentsService.getPayment(id);
         model.addAttribute("payment", payment);
         return "payments/getPayment";
     }
@@ -65,7 +65,7 @@ public class PaymentsController {
 
     @RequestMapping("/edit/{id}")
     public String editPaymentForm(@PathVariable("id") Long id, Model model) {
-        Payments payment = paymentsService.getPayment(id).get();
+        Payments payment = paymentsService.getPayment(id);
         model.addAttribute("payment", payment);
         return "payments/edit";
     }

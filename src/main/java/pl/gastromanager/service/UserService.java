@@ -14,7 +14,7 @@ public interface UserService {
     void add(Users users);
     void update(Users users);
     void delete(Long id);
-    Optional<Users> get(Long id);
+    Users get(Long id);
     void saveUserAfterOAuth2(String email, String name, AuthProvider provider);
     void updateUserAfterOAuth2(Users user, String name, AuthProvider provider);
 }

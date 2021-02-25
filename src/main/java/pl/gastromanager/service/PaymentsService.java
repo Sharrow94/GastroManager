@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface PaymentsService {
     List<Payments> findAllPayments();
-    Optional<Payments> getPayment(long id);
+    Payments getPayment(long id);
     void addPayments(Payments payments);
     void deletePayment(Long id);
     void editPayment(Payments payments);

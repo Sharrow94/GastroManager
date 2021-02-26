@@ -421,7 +421,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                             <sec:authorize access="isAuthenticated()">
-                                <span class="mr-2 d-none d-lg-inline text-gray-200">
+                                <span class="mr-2 d-none d-lg-inline text-gray-200" style="margin-top: 15px">
                                 <p>${currentUser.firstName} ${currentUser.lastName}</p>
 <%--                                <p> <sec:authentication property="authorities"/></p>--%>
                                 </span>

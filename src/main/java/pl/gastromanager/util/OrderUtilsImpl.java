@@ -7,10 +7,10 @@ import pl.gastromanager.model.Orders;
 public class OrderUtilsImpl implements OrderUtils {
     @Override
     public float countTotalPrice(Orders order) {
-        return order.getOrderMeals()
+        return (float) Math.round(order.getOrderMeals()
                 .stream()
                 .map(om-> (float) Math.round(om.getQuantity()*om.getPrice()*100)/100)
                 .reduce(Float::sum)
-                .orElse(0f);
+                .orElse(0f)*100)/100;
     }
 }

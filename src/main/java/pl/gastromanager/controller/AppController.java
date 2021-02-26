@@ -13,8 +13,20 @@ import pl.gastromanager.util.OrderUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/app")
@@ -29,9 +41,10 @@ public class AppController {
     private final OrderUtils orderUtils;
     private final OrderMealsUtils orderMealsUtils;
     private final PlansMealsService plansMealsService;
+    private final OrdersService ordersService;
 
 
-    public AppController(PaymentsService paymentsService, UserService userService, MealService mealService, DietService dietService, PlanService planService, WeekDaysService weekDaysService, MealNameService mealNameService, OrderUtils orderUtils, OrderMealsUtils orderMealsUtils, PlansMealsService plansMealsService) {
+    public AppController(PaymentsService paymentsService, UserService userService, MealService mealService, DietService dietService, PlanService planService, WeekDaysService weekDaysService, MealNameService mealNameService, OrderUtils orderUtils, OrderMealsUtils orderMealsUtils, PlansMealsService plansMealsService, OrdersService ordersService) {
         this.paymentsService = paymentsService;
         this.userService = userService;
         this.mealService = mealService;
@@ -42,24 +55,9 @@ public class AppController {
         this.orderUtils = orderUtils;
         this.orderMealsUtils = orderMealsUtils;
         this.plansMealsService = plansMealsService;
+        this.ordersService = ordersService;
     }
 
-    //Method from PaymentsController
-    @RequestMapping("/payments/all")
-    public String showAllPayments(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Users currentUser = userService.findByUserName(auth.getName());
-        Long id = currentUser.getId();
-        List<String> roles = paymentsService.findAllRolesByUserId(id);
-        if (roles.contains("ROLE_ADMIN")) {
-            List<Payments> paymentsAll = paymentsService.findAllPayments();
-            model.addAttribute("payments", paymentsAll);
-        } else {
-            List<Payments> payments = paymentsService.findPaymentsByUserId(id);
-            model.addAttribute("payments", payments);
-        }
-        return "payments/list";
-    }
 
     //Method from MealController
     @GetMapping("/meal/list")
@@ -99,7 +97,7 @@ public class AppController {
             @SessionAttribute("shoppingCart") Orders shoppingCart,
             @PathVariable int index,
             HttpServletRequest request
-    ){
+    ) {
         List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals();
         shoppingItems.remove(index);
         shoppingCart.setOrderMeals(shoppingItems);
@@ -107,12 +105,12 @@ public class AppController {
 
         String referer = request.getHeader("Referer");
 
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
 
     //---------------Order Meal-----------------
     @GetMapping("/orders/addCart/mealName")
-    public String addMealNameGet(Model model, @SessionAttribute("shoppingCart") Orders orders) {
+    public String addMealNameGet(Model model) {
         model.addAttribute("mealNames", mealNameService.findAll());
         model.addAttribute("mealName", new MealName());
         return "orders/addMealName";
@@ -140,12 +138,13 @@ public class AppController {
             HttpServletRequest request
     ) {
         List<OrderMeals> shoppingItems = shoppingCart.getOrderMeals() == null ? new ArrayList<>() : shoppingCart.getOrderMeals();
-        List<PlansMeals> plansMealsList = List.of(plansMeals);
+        PlansMeals firstByMealAndMealName = plansMealsService.findFirstByMealAndMealName(plansMeals.getMeal(), plansMeals.getMealName());
+        List<PlansMeals> plansMealsList = List.of(firstByMealAndMealName);
 
         OrderMeals orderMeals = new OrderMeals();
         orderMeals.setPlansMeals(plansMealsList);
         orderMeals.setQuantity(quantity);
-        orderMeals.setName(plansMeals.getMeal().getName());
+        orderMeals.setName(firstByMealAndMealName.getMeal().getName());
         orderMeals.setPrice(orderMealsUtils.getPriceByMeals(orderMeals));
         orderMeals.setOrderType(OrderType.MEAL);
         shoppingItems.add(orderMeals);
@@ -153,7 +152,7 @@ public class AppController {
         shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
 
         String referer = request.getHeader("Referer");
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
 
     //---------Order Day from Plan--------
@@ -181,7 +180,7 @@ public class AppController {
         shoppingCart.setOrderPrice(orderUtils.countTotalPrice(shoppingCart));
 
         String referer = request.getHeader("Referer");
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
 
     //--------Order Plan---------------
@@ -206,8 +205,97 @@ public class AppController {
         return "redirect:/app/plan/all";
     }
 
+    //shoppingCartView
+    @GetMapping("/shoppingCart/details")
+    public String shoppingCartView(Model model, @SessionAttribute("shoppingCart") Orders shoppingCart) {
+        model.addAttribute("order", new Orders());
+        model.addAttribute("orderTypeMeal", OrderType.MEAL);
+        return "orders/add";
+    }
+
+    @PostMapping("/shoppingCart/saveOrder")
+    public String saveOrder(Orders order, Model model, @SessionAttribute("shoppingCart") Orders shoppingCart, Authentication authentication) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        String fromDateS = order.getFromDate();
+        String toDateS = order.getToDate();
+
+        long days;
+        LocalDate fromDate = LocalDate.parse(fromDateS, df);
+        LocalDate toDate = LocalDate.parse(toDateS, df);
+        days = ChronoUnit.DAYS.between(fromDate, toDate);
+
+        LocalDateTime now = LocalDateTime.now();
+
+        shoppingCart.setFromDate(fromDateS);
+        shoppingCart.setToDate(toDateS);
+        shoppingCart.setOperationDate(dtf.format(now));
+
+        Users user = userService.findByUserEmail(authentication.getName());
+
+        Payments payments = new Payments();
+        LocalDateTime expiredTime = now.plusDays(days + 14);
+        String expiredTimeS = dtf.format(expiredTime);
+
+        payments.setFinalPayDate(expiredTimeS);
+        payments.setSummaryPrice((float) Math.round(shoppingCart.getOrderPrice() * days * 100) / 100);
+        payments.setUsers(user);
+        payments.setPayed(false);
+
+        Orders newOrder = new Orders();
+        newOrder.setOrderMeals(shoppingCart.getOrderMeals());
+        newOrder.setOrderPrice(shoppingCart.getOrderPrice());
+        newOrder.setFromDate(shoppingCart.getFromDate());
+        newOrder.setToDate(shoppingCart.getToDate());
+        newOrder.setOperationDate(shoppingCart.getOperationDate());
+
+        payments.setOrders(newOrder);
+
+        ordersService.addOrders(newOrder);
+        paymentsService.addPayments(payments);
+
+        shoppingCart.setOrderMeals(new ArrayList<>());
+        return "redirect:/home";
+    }
 
     //Method from OrdersController
+    @GetMapping("/user/{userId}/orders/all")
+    public String showAllMyOrders(Model model,@PathVariable Long userId, Authentication auth){
+        Users currentUser = userService.findByUserEmail(auth.getName());
+        Users user = userService.get(userId);
+        model.addAttribute("user", user);
+        model.addAttribute("currentUser", currentUser);
+
+        List<Payments> payments = paymentsService.findPaymentsByUserId(userId);
+        model.addAttribute("payments", payments);
+        return "payments/userOrderList";
+    }
+
+    @GetMapping("/user/{userId}/orders/details/{paymentId}")
+    public String showUsersOrderDetails(
+            @PathVariable Long userId,
+            @PathVariable Long paymentId,
+            Model model,
+            Authentication auth
+    ){
+        Payments payment = paymentsService.getPayment(paymentId);
+        Users user = userService.get(userId);
+        model.addAttribute("payment", payment);
+        model.addAttribute("user", user);
+        model.addAttribute("orderTypeMeal", OrderType.MEAL);
+        model.addAttribute("newPayment", new Payments());
+        return "payments/userOrderDetails";
+    }
+
+    @PostMapping("/user/{userId}/orders/all")
+    public String payForOrder(Payments payments, HttpServletRequest request){
+        Payments payment = paymentsService.getPayment(payments.getId());
+        payment.setPayed(true);
+        paymentsService.editPayment(payment);
+        String referer = request.getHeader("Referer");
+        return "redirect:"+referer;
+    }
 
     //--------------User-------------
     //Dla zalogowanego użytkownika

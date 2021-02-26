@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maciej
-  Date: 17.02.2021
-  Time: 11:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -25,10 +18,10 @@
                     <div class="p-5">
                         <form:form modelAttribute="storageOperation" action="/admin/storageOperation/add" method="post">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4"> <spring:message code="app.editStorageOperation"/></h1>
+                                <h1 class="h4 text-gray-900 mb-4"> <spring:message code="app.addStorageOperation"/></h1>
+                                <input type="hidden" name="storageOperationItem" value="${storageOperation.storageOperationItem.id}">
+                                <form:hidden path="id"/>
                             </div>
-                            <form:hidden path="storageOperationItem"></form:hidden>
-                            <form:hidden path="id"></form:hidden>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.selectIngrediends"/></td>
@@ -55,6 +48,11 @@
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 <spring:message code="app.edit"/></button>
+                            <div style="margin-top: 10px">
+                                <a href="/admin/sOi/details/${storageOperation.storageOperationItem.id}" class="btn btn-primary btn-user btn-block">
+                                    <spring:message code="app.cancel"/></a>
+                            </div>
+
                         </form:form>
                     </div>
                 </div>

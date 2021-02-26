@@ -14,4 +14,5 @@ public interface PlansMealsService {
     PlansMeals findFirstByMeal(Meal meal);
     List<PlansMeals> findAllByPlan(Plan plan);
     List<PlansMeals> findAllByPlanAndWeekDays(Plan plan, WeekDays weekDays);
+    PlansMeals findFirstByMealAndMealName(Meal meal, MealName mealName);
 }

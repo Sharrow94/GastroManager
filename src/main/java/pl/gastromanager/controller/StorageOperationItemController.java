@@ -70,6 +70,7 @@ public class StorageOperationItemController {
     @RequestMapping("/edit/{id}")
     public String editSoI(@PathVariable("id") Long id,Model model){
         StorageOperationItem sOi=storageOperationItemService.findById(id).get();
+        model.addAttribute("suppliers",supplierService.findAll());
         model.addAttribute("soi",sOi);
         return "storageOperationItem/edit";
     }

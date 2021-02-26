@@ -1,3 +1,8 @@
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="pl.gastromanager.service.UserService" %>
+<%@ page import="pl.gastromanager.model.Users" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,7 +18,6 @@
     <meta name="author" content="">
 
 
-
     <!-- Custom fonts for this template-->
     <link href="<c:url value="/vendor/fontawesome-free/css/all.min.css"/>" rel="stylesheet" type="text/css">
     <link
@@ -27,6 +31,13 @@
 
 <body id="page-top">
 
+    <%
+                String name = SecurityContextHolder.getContext().getAuthentication().getName();
+                WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
+                UserService userService = context.getBean(UserService.class);
+                Users currentUser = userService.findByUserEmail(name);
+                pageContext.setAttribute("currentUser", currentUser);
+    %>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -34,11 +45,11 @@
     <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/home"/> ">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+                <%--                <i class="fas fa-laugh-wink"></i>--%>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">GastoManager</div>
         </a>
 
         <!-- Divider -->
@@ -55,25 +66,25 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
+        <%--        <div class="sidebar-heading">--%>
+        <%--            Interface--%>
+        <%--        </div>--%>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments"
                aria-expanded="true" aria-controls="collapsePayments">
 
-                <i class="fas fa-dollar-sign fa-2x"></i>
+                <i class="fas fa-dollar-sign fa-fw"></i>
 
                 <span>Płatności</span>
             </a>
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/app/payments/all"/>">Lista</a>
+                    <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/add"/>">Dodaj</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/all"/>">Wszystkie
+                            płatności</a>
                     </sec:authorize>
 
 
@@ -89,7 +100,7 @@
             </a>
             <div id="collapseMeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+                    <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/meal/list"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/meal/add"/>">Dodaj</a>
@@ -107,7 +118,7 @@
             </a>
             <div id="collapsePlan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
+                    <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
                     <a class="collapse-item text-gray-100" href="<c:url value="/app/plan/all"/>">Lista</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/plan/add"/>">Dodaj</a>
@@ -126,33 +137,37 @@
             </a>
             <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/app/orders/user"/>">Twoje zamówienia</a>
+                    <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
+                    <a class="collapse-item text-gray-100"
+                       href="<c:url value="/app/user/${currentUser.id}/orders/all"/>">Twoje zamówienia</a>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/all"/>">Wszystkie Zamówienia</a>
-                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/add"/>">Dodaj</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/orders/all"/>">Wszystkie
+                            Zamówienia</a>
                     </sec:authorize>
 
                 </div>
             </div>
         </li>
         <sec:authorize access="hasRole('ADMIN')">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStorages"
-               aria-expanded="true" aria-controls="collapseStorages">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStorages"
+                   aria-expanded="true" aria-controls="collapseStorages">
 
-                <i class="fas fa-fw fa-cubes"></i>
+                    <i class="fas fa-fw fa-cubes"></i>
 
-                <span>Magazyn</span>
-            </a>
-            <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Dokumenty magazynowe</a>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stan Magazynowy</a>
+                    <span>Magazyn</span>
+                </a>
+                <div id="collapseStorages" class="collapse" aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-gray-900 py-2 collapse-inner rounded">
+                            <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/sOi/list"/>">Dokumenty
+                            magazynowe</a>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/ingredient/all"/>">Stan
+                            Magazynowy</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
         </sec:authorize>
         <sec:authorize access="hasRole('ADMIN')">
             <li class="nav-item">
@@ -164,7 +179,7 @@
                 <div id="collapseSupplier" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-gray-900 py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Operacje:</h6>
+                            <%--                        <h6 class="collapse-header">Operacje:</h6>--%>
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/supplier/all"/>">Lista</a>
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/supplier/add"/>">Dodaj</a>
                     </div>
@@ -174,70 +189,70 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <sec:authorize access="hasRole('ADMIN')">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
-               aria-expanded="true" aria-controls="collapseUsers">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Użytkownicy</span>
-            </a>
-            <div id="collapseUsers" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-gray-900 py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operacje:</h6>
-                    <a class="collapse-item text-gray-100" href="<c:url value="/admin/user/all"/>">Lista</a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                   aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Użytkownicy</span>
+                </a>
+                <div id="collapseUsers" class="collapse" aria-labelledby="headingUtilities"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-gray-900 py-2 collapse-inner rounded">
+                            <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
+                        <a class="collapse-item text-gray-100" href="<c:url value="/admin/user/all"/>">Lista</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
         </sec:authorize>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+        <%--        <!-- Divider -->--%>
+        <%--        <hr class="sidebar-divider">--%>
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Addons
-        </div>
+        <%--        <!-- Heading -->--%>
+        <%--        <div class="sidebar-heading">--%>
+        <%--            Addons--%>
+        <%--        </div>--%>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="#"
-               data-toggle="collapse"
-               data-target="#collapsePages"
-               aria-expanded="false"
-               aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder">
+        <%--        <!-- Nav Item - Pages Collapse Menu -->--%>
+        <%--        <li class="nav-item">--%>
+        <%--            <a class="nav-link" href="#"--%>
+        <%--               data-toggle="collapse"--%>
+        <%--               data-target="#collapsePages"--%>
+        <%--               aria-expanded="false"--%>
+        <%--               aria-controls="collapsePages">--%>
+        <%--                <i class="fas fa-fw fa-folder">--%>
 
-                </i>
-                <span>Pages</span>
-            </a>
-<%--            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"--%>
-<%--                 data-parent="#accordionSidebar" style>--%>
-<%--                <div class="bg-gray-900 py-2 collapse-inner rounded">--%>
-<%--                    <h6 class="collapse-header">Login Screens:</h6>--%>
-<%--                    <a class="collapse-item text-gray-100" href="login.html">Login</a>--%>
-<%--                    <a class="collapse-item text-gray-100" href="register.html">Register</a>--%>
-<%--                    <a class="collapse-item text-gray-100" href="forgot-password.html">Forgot Password</a>--%>
-<%--                    <div class="collapse-divider"></div>--%>
-<%--                    <h6 class="collapse-header">Other Pages:</h6>--%>
-<%--                    <a class="collapse-item text-gray-100" href="404.html">404 Page</a>--%>
-<%--                    <a class="collapse-item active" href="blank.html">Blank Page</a>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-        </li>
+        <%--                </i>--%>
+        <%--                <span>Pages</span>--%>
+        <%--            </a>--%>
+        <%--            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"--%>
+        <%--                 data-parent="#accordionSidebar" style>--%>
+        <%--                <div class="bg-gray-900 py-2 collapse-inner rounded">--%>
+        <%--                    <h6 class="collapse-header">Login Screens:</h6>--%>
+        <%--                    <a class="collapse-item text-gray-100" href="login.html">Login</a>--%>
+        <%--                    <a class="collapse-item text-gray-100" href="register.html">Register</a>--%>
+        <%--                    <a class="collapse-item text-gray-100" href="forgot-password.html">Forgot Password</a>--%>
+        <%--                    <div class="collapse-divider"></div>--%>
+        <%--                    <h6 class="collapse-header">Other Pages:</h6>--%>
+        <%--                    <a class="collapse-item text-gray-100" href="404.html">404 Page</a>--%>
+        <%--                    <a class="collapse-item active" href="blank.html">Blank Page</a>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--        </li>--%>
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
+        <%--        <!-- Nav Item - Charts -->--%>
+        <%--        <li class="nav-item">--%>
+        <%--            <a class="nav-link" href="charts.html">--%>
+        <%--                <i class="fas fa-fw fa-chart-area"></i>--%>
+        <%--                <span>Charts</span></a>--%>
+        <%--        </li>--%>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
+        <%--        <!-- Nav Item - Tables -->--%>
+        <%--        <li class="nav-item">--%>
+        <%--            <a class="nav-link" href="tables.html">--%>
+        <%--                <i class="fas fa-fw fa-table"></i>--%>
+        <%--                <span>Tables</span></a>--%>
+        <%--        </li>--%>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -272,7 +287,7 @@
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                                <i class="fas fa-search fa-sm" style="color: black"></i>
                             </button>
                         </div>
                     </div>
@@ -370,30 +385,33 @@
                         </a>
                         <!-- Dropdown - Messages -->
                         <c:if test="${sessionScope.shoppingCart.getOrderMeals().size() != 0}">
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Twój Koszyk
-                            </h6>
-                            <c:forEach items="${sessionScope.shoppingCart.getOrderMeals()}" var="cartItem">
-                            <div class="dropdown-item d-flex align-items-center">
-                                <div class="dropdown-list-image mr-3">
-                                    <a class="btn btn-danger btn-circle" href="<c:url value="/app/shoppingCartDropItem/${sessionScope.shoppingCart.getOrderMeals().indexOf(cartItem)}"/> ">
-                                        <i class="fas fa-trash ">
-                                        </i>
-                                    </a>
-                                        <%--                                    <div class="status-indicator bg-success"></div>--%>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">
-                                        ${cartItem.name} ${cartItem.price} zł
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Twój Koszyk
+                                </h6>
+                                <c:forEach items="${sessionScope.shoppingCart.getOrderMeals()}" var="cartItem">
+                                    <div class="dropdown-item d-flex align-items-center">
+                                        <div class="dropdown-list-image mr-3">
+                                            <a class="btn btn-danger btn-circle"
+                                               href="<c:url value="/app/shoppingCartDropItem/${sessionScope.shoppingCart.getOrderMeals().indexOf(cartItem)}"/> ">
+                                                <i class="fas fa-trash ">
+                                                </i>
+                                            </a>
+                                                <%--                                    <div class="status-indicator bg-success"></div>--%>
+                                        </div>
+                                        <div class="font-weight-bold">
+                                            <div class="text-truncate">
+                                                    ${cartItem.name} ${cartItem.price} zł
+                                            </div>
+                                            <div class="small text-gray-500">x${cartItem.quantity}</div>
+                                        </div>
                                     </div>
-                                    <div class="small text-gray-500">x${cartItem.quantity}</div>
-                                </div>
+                                </c:forEach>
+                                <a class="dropdown-item text-center small text-gray-500"
+                                   href="<c:url value="/app/shoppingCart/details"/> ">Zobacz swój Koszyk
+                                    (${sessionScope.shoppingCart.getOrderPrice()} zł)</a>
                             </div>
-                            </c:forEach>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Zobacz swój Koszyk (${sessionScope.shoppingCart.getOrderPrice()} zł)</a>
-                        </div>
                         </c:if>
                     </li>
 
@@ -403,10 +421,12 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<%--                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>--%>
+
                             <sec:authorize access="isAuthenticated()">
-                                <p>Zalogowany jako: <sec:authentication property="name"/></p>
+                                <span class="mr-2 d-none d-lg-inline text-gray-200">
+                                <p>${currentUser.firstName} ${currentUser.lastName}</p>
 <%--                                <p> <sec:authentication property="authorities"/></p>--%>
+                                </span>
                             </sec:authorize>
                             <img class="img-profile rounded-circle"
                                  src="<c:url value="/img/undraw_profile.svg"/>">

@@ -77,6 +77,10 @@
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 <spring:message code="app.supplireEdit"/></button>
+                            <div style="margin-top: 10px">
+                                <a href="/admin/supplier/all" class="btn btn-primary btn-user btn-block">
+                                    <spring:message code="app.cancel"/></a>
+                            </div>
                         </form:form>
                     </div>
                 </div>

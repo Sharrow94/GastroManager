@@ -1,10 +1,15 @@
 package pl.gastromanager.service;
 
 import org.springframework.stereotype.Service;
+import pl.gastromanager.model.OrderMeals;
+import pl.gastromanager.model.Orders;
 import pl.gastromanager.model.Payments;
+import pl.gastromanager.model.Users;
 import pl.gastromanager.repository.PaymentsRepository;
 import pl.gastromanager.repository.RoleRepository;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +17,14 @@ import java.util.Optional;
 public class PaymentsServiceImpl implements PaymentsService {
     private final PaymentsRepository paymentsRepository;
     private final RoleRepository roleRepository;
+    private final OrdersService ordersService;
+    private final OrderMealsService orderMealsService;
 
-    public PaymentsServiceImpl(PaymentsRepository paymentsRepository, RoleRepository roleRepository) {
+    public PaymentsServiceImpl(PaymentsRepository paymentsRepository, RoleRepository roleRepository, OrdersService ordersService, OrderMealsService orderMealsService) {
         this.paymentsRepository = paymentsRepository;
         this.roleRepository = roleRepository;
+        this.ordersService = ordersService;
+        this.orderMealsService = orderMealsService;
     }
 
     @Override
@@ -24,8 +33,8 @@ public class PaymentsServiceImpl implements PaymentsService {
     }
 
     @Override
-    public Optional<Payments> getPayment(long id) {
-        return paymentsRepository.findById(id);
+    public Payments getPayment(long id) {
+        return paymentsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Payment does not exists"));
     }
 
     @Override

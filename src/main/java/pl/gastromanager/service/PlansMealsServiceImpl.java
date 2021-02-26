@@ -49,4 +49,9 @@ public class PlansMealsServiceImpl implements PlansMealsService {
     public List<PlansMeals> findAllByPlanAndWeekDays(Plan plan, WeekDays weekDays) {
         return plansMealsRepository.findAllByPlanAndWeekDays(plan, weekDays);
     }
+
+    @Override
+    public PlansMeals findFirstByMealAndMealName(Meal meal, MealName mealName) {
+        return plansMealsRepository.findFirstByMealAndAndMealName(meal, mealName);
+    }
 }

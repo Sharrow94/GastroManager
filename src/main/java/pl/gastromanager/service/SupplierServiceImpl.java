@@ -40,6 +40,15 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public void editSupplier(Supplier supplier) {
         supplierRepository.save(supplier);
+        updateAbleToDelete(supplier.getId());
 
+    }
+
+    @Override
+    public void updateAbleToDelete(Long id) {
+        Supplier supplier=supplierRepository.findById(id).get();
+        Long sum=supplierRepository.getCountOfIdsWithSuppId(id);
+        supplier.setAbleToRemove(sum == 0);
+        supplierRepository.save(supplier);
     }
 }

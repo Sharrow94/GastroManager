@@ -22,7 +22,8 @@ public class OrderMealsServiceImpl implements OrderMealsService{
 
     @Override
     public List<OrderMeals> findAllByOrder(Orders order) {
-        return orderMealsRepository.findAllByOrder(order);
+//        return orderMealsRepository.findAllByOrder(order);
+        return null;
     }
 
     @Override

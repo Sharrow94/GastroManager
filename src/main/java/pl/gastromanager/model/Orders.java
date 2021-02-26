@@ -17,12 +17,11 @@ public class Orders {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private String operationDate;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<OrderMeals> orderMeals;
+    private float orderPrice;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String fromDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String toDate;
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<OrderMeals> orderMeals;
-    private int quantity;
-    private float orderPrice;
 }

@@ -186,8 +186,14 @@
 
                         <a href="<c:url value="/app/user/${user.id}/orders/all"/> "
                            class="btn btn-primary btn-user btn-block">
-                            Powrót
+                            Powrót <sec:authorize access="hasRole('ADMIN')">do zamówień ${user.email}</sec:authorize>
                         </a>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <a href="<c:url value="/admin/orders/all"/> "
+                               class="btn btn-primary btn-user btn-block">
+                                Powrót na liste wszystikich zamówień
+                            </a>
+                        </sec:authorize>
                     </div>
                 </div>
             </div>

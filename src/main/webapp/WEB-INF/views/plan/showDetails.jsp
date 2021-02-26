@@ -13,9 +13,27 @@
 </head>
 <%@ include file="../header.jsp" %>
 <body>
-<a class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm text-gray-900" style="margin-left: 30px; margin-bottom: 20px;" href="/home"><spring:message code="app.dashboard"/> </a>
-<h1 class="text-gray-900" style="margin-left: 30px;">${plan.name}</h1>
-<h3 style="margin-left: 30px"><spring:message code="app.diet"/>: ${plan.diet.name}</h3>
+<div class="row">
+    <div class="col-md-6">
+    <a class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm text-gray-900" style="margin-left: 30px; margin-bottom: 20px;" href="/home"><spring:message code="app.dashboard"/> </a>
+    <h1 class="text-gray-900" style="margin-left: 30px;">${plan.name}</h1>
+    <h3 style="margin-left: 30px"><spring:message code="app.diet"/>: ${plan.diet.name}</h3>
+    </div>
+    <div class="col-md-6">
+        <h2 class="text-gray-900">Zamów cały plan</h2>
+        <form:form action="/app/orders/addCart/plan" method="post" modelAttribute="plansMeals" name="formOrderThisPlan">
+            <input type="hidden" name="plan" value="${plan.id}">
+            <div style="max-width: 90px;">
+                <spring:message code="add.enterQuantity"/>: <input class="form-control form-control-user" type="number" name="quantity" min="0"><br>
+            </div>
+            <input type="submit" class="btn btn-primary"
+                   style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto" value="${addToCart}">
+        </form:form>
+
+        <h3><spring:message code="app.plan.settedPrice"/>: </h3>
+        <b>${plan.price}zł</b>
+    </div>
+</div>
 
 <c:forEach items="${weekDays}" var="weekDay">
     <form:form name="form${plan.id}-${weekDay.id}" modelAttribute="plansMeals" action="/app/orders/addCart/selectPlan/selectDay">
@@ -66,21 +84,6 @@
 
 <%--<h3>Łączna cena:</h3>--%>
 <%--<b>${plan.foodCostTotal}zł</b>--%>
-
-<div style="margin-left: 30px;  margin-bottom: 20px;">
-<h2 class="text-gray-900">Zamów cały plan</h2>
-<form:form action="/app/orders/addCart/plan" method="post" modelAttribute="plansMeals" name="formOrderThisPlan">
-    <input type="hidden" name="plan" value="${plan.id}">
-    <div style="max-width: 90px;">
-        <spring:message code="add.enterQuantity"/>: <input class="form-control form-control-user" type="number" name="quantity" min="0"><br>
-    </div>
-    <input type="submit" class="btn btn-primary"
-           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45; size: auto" value="${addToCart}">
-</form:form>
-
-<h3><spring:message code="app.plan.settedPrice"/>: </h3>
-<b>${plan.price}zł</b>
-</div>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

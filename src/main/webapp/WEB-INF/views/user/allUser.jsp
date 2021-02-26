@@ -12,18 +12,20 @@
             <sec:authorize access="isAuthenticated()">
 
 
-                        <h6 class="m-0 font-weight-bold text-primary"><spring:message code="app.loginAs" />
-                            <sec:authentication property="name"/></h6>
+                <h6 class="m-0 font-weight-bold text-primary"><spring:message code="app.loginAs"/>
+                    <sec:authentication property="name"/></h6>
 
-                        <h6 class="m-0 font-weight-bold text-primary" style="color:#3a3b45"><spring:message code="app.rolleAs" />
-                            <sec:authentication property="authorities"/></h6>
+                <h6 class="m-0 font-weight-bold text-primary" style="color:#3a3b45"><spring:message code="app.rolleAs"/>
+                    <sec:authentication property="authorities"/></h6>
             </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-                        <form action="<c:url value="/logout"/>" method="post">
-                            <input type="submit" class="btn btn-primary" style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45" value=<spring:message code="app.logout"/>>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form>
-                    </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <form action="<c:url value="/logout"/>" method="post">
+                    <input type="submit" class="btn btn-primary"
+                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45" value=<spring:message
+                            code="app.logout"/>>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+            </sec:authorize>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -57,74 +59,79 @@
                     </div>
 
 
-<div class="col-sm-12">
-    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
-           role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-        <thead>
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                               role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
 
-        <tr role="row">
-            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
-                colspan="1" aria-sort="ascending"
-                aria-label="Name: activate to sort column descending" style="width: 40px;">
-                <spring:message code="app.id"/></th>
-            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                aria-label="Position: activate to sort column ascending" style="width: 150px;">
-                <spring:message code="app.nickName"/></th>
-            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                aria-label="Office: activate to sort column ascending" style="width: 120px;">
-                <spring:message code="app.email"/></th>
-            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                aria-label="Age: activate to sort column ascending" style="width: 150px;">
-                <spring:message code="app.firstName"/></th>
-            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending"
-                style="width: 150px;"><spring:message code="app.lastName"/></th>
-            <sec:authorize access="hasAnyRole('ADMIN')">
-                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    aria-label="Salary: activate to sort column ascending" style="width: 150px; ">
-                    <spring:message code="app.action"/></th>
-            </sec:authorize>
-        </thead>
-        <tfoot>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                    colspan="1" aria-sort="ascending"
+                                    aria-label="Name: activate to sort column descending" style="width: 40px;">
+                                    <spring:message code="app.id"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Position: activate to sort column ascending" style="width: 150px;">
+                                    <spring:message code="app.nickName"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Office: activate to sort column ascending" style="width: 120px;">
+                                    <spring:message code="app.email"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Age: activate to sort column ascending" style="width: 150px;">
+                                    <spring:message code="app.firstName"/></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Start date: activate to sort column ascending"
+                                    style="width: 150px;"><spring:message code="app.lastName"/></th>
+                                <sec:authorize access="hasAnyRole('ADMIN')">
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending" style="width: 150px; ">
+                                    <spring:message code="app.action"/></th>
+                                </sec:authorize>
+                            </thead>
+                            <tfoot>
 
-        <tr>
-            <th rowspan="1" colspan="1"><spring:message code="app.id"/></th>
-            <th rowspan="1" colspan="1"><spring:message code="app.nickName"/></th>
-            <th rowspan="1" colspan="1"><spring:message code="app.email"/></th>
-            <th rowspan="1" colspan="1"><spring:message code="app.firstName"/></th>
-            <th rowspan="1" colspan="1"><spring:message code="app.lastName"/></th>
-            <sec:authorize access="hasRole('ADMIN')">
-                <th rowspan="1" colspan="1"><spring:message code="app.action"/></th>
-            </sec:authorize>
-        </tr>
+                            <tr>
+                                <th rowspan="1" colspan="1"><spring:message code="app.id"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.nickName"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.email"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.firstName"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.lastName"/></th>
+                                <sec:authorize access="hasRole('ADMIN')">
+                                    <th rowspan="1" colspan="1"><spring:message code="app.action"/></th>
+                                </sec:authorize>
+                            </tr>
 
-        </tfoot>
-        <tbody>
-        <c:forEach items="${users}" var="user">
-            <tr role="row" class="odd">
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.userName}"/></td>
-                <td><c:out value="${user.email}"/></td>
-                <td><c:out value="${user.firstName}"/></td>
-                <td><c:out value="${user.lastName}"/></td>
-                <sec:authorize access="hasRole('ADMIN')">
+                            </tfoot>
+                            <tbody>
+                            <c:forEach items="${users}" var="user">
+                                <tr role="row" class="odd">
+                                    <td><c:out value="${user.id}"/></td>
+                                    <td><c:out value="${user.userName}"/></td>
+                                    <td><c:out value="${user.email}"/></td>
+                                    <td><c:out value="${user.firstName}"/></td>
+                                    <td><c:out value="${user.lastName}"/></td>
+                                    <sec:authorize access="hasRole('ADMIN')">
 
 
-                    <td>
-                        <a href='<c:url value="/admin/user/edit/${user.id}"/>'
-                           class="btn btn-primary"
-                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                code="app.edit"/></a>
-                        <a href='<c:url value="/admin/user/delete/${user.id}"/>'
-                           class="btn btn-primary"
-                           style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
-                                code="app.delete"/></a>
-                    </td>
-                </sec:authorize>
-            </tr>
-        </c:forEach>
+                                        <td>
+                                            <a href='<c:url value="/admin/user/edit/${user.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.edit"/></a>
+                                            <a href='<c:url value="/admin/user/delete/${user.id}"/>'
+                                               class="btn btn-primary"
+                                               style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
+                                                    code="app.delete"/></a>
+                                        </td>
+                                    </sec:authorize>
+                                </tr>
+                            </c:forEach>
 
-        </tbody>
-    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <%@ include file="../footer.jsp" %>

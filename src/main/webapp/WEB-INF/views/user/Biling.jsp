@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-
+<%@ include file="../header.jsp" %>
 <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
     <div class="container-fluid">
         <div class="page-header-content">
@@ -23,7 +23,7 @@
         </div>
     </div>
 </header>
-<%@ include file="../header.jsp" %>
+
 <body>
 <div class="container mt-4">
     <!-- Account page navigation-->

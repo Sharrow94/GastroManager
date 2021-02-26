@@ -301,7 +301,7 @@ public class AppController {
     //Dla zalogowanego użytkownika
     @RequestMapping(value = "user/edit")
     public String editUser (Model model, Authentication auth){
-        Users currentUser = userService.findByEmail(auth.getName());
+        Users currentUser = userService.findByUserEmail(auth.getName());
         Long id = currentUser.getId();
         model.addAttribute("user", userService.get(id));
         return "user/editUser";

@@ -110,7 +110,7 @@
                                     <td><c:out value="${payment.finalPayDate}"/></td>
 
                                     <td>
-                                        <a href='<c:url value="/app/user/${user.id}/orders/details/${payment.id}"/>'
+                                        <a href='<c:url value="/app/user/${payment.users.id}/orders/details/${payment.id}"/>'
                                            class="btn btn-primary"
                                            style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45">Szczegóły</a>
                                         <c:if test="${currentUser.id==user.id and !payment.payed}">

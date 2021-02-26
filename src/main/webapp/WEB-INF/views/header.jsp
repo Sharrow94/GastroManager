@@ -71,6 +71,7 @@
         <%--        </div>--%>
 
         <!-- Nav Item - Pages Collapse Menu -->
+        <sec:authorize access="hasRole('ADMIN')">
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments"
                aria-expanded="true" aria-controls="collapsePayments">
@@ -82,15 +83,12 @@
             <div id="collapsePayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-gray-900 py-2 collapse-inner rounded">
                     <%--                    <h6 class="collapse-header">Operacje:</h6>--%>
-                    <sec:authorize access="hasRole('ADMIN')">
                         <a class="collapse-item text-gray-100" href="<c:url value="/admin/payments/all"/>">Wszystkie
                             płatności</a>
-                    </sec:authorize>
-
-
                 </div>
             </div>
         </li>
+        </sec:authorize>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeal"
                aria-expanded="true" aria-controls="collapseMeal">

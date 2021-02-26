@@ -5,11 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.gastromanager.model.*;
 import pl.gastromanager.service.*;
-import pl.gastromanager.util.OrderMealsUtils;
-import pl.gastromanager.util.OrderUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,16 +13,19 @@ import java.util.Optional;
 @RequestMapping("/admin/orders")
 public class OrdersController {
     private final OrdersService ordersService;
+    private final PaymentsService paymentsService;
 
-    public OrdersController(OrdersService ordersService) {
+    public OrdersController(OrdersService ordersService, PaymentsService paymentsService) {
         this.ordersService = ordersService;
+        this.paymentsService = paymentsService;
     }
 
     @RequestMapping("/all")
     public String showAllOrders(Model model) {
-        List<Orders> allOrders = ordersService.findAllOrders();
-        model.addAttribute("orders", allOrders);
-        return "orders/list";
+
+        List<Payments> payments = paymentsService.findAllPayments();
+        model.addAttribute("payments", payments);
+        return "payments/userOrderList";
     }
 
     @RequestMapping("/{id}")

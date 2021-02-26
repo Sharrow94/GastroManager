@@ -259,7 +259,7 @@ public class AppController {
 
     //Method from OrdersController
     @GetMapping("/user/{userId}/orders/all")
-    public String showAllMyOrders(Model model,@PathVariable Long userId, Authentication auth){
+    public String showAllMyOrders(Model model,@PathVariable Long userId, Authentication auth, HttpServletRequest request){
         Users currentUser = userService.findByUserEmail(auth.getName());
         Users user = userService.get(userId);
         model.addAttribute("user", user);

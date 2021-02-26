@@ -26,7 +26,7 @@
                                 <c:if test="${!orderTypeMeal.equals(shoppingItem.getOrderType())}">
                                     <c:set var="index"
                                            value="${sessionScope.shoppingCart.getOrderMeals().indexOf(shoppingItem)}"/>
-                                    <div class="card card-collapsable">
+                                    <div class="card card-collapsable shadow">
                                         <a class="card-header" href="#collapseCardMeal${index}" data-toggle="collapse"
                                            role="button" aria-expanded="false" aria-controls="collapseCardMeal${index}">
                                         <span class="text-gray-900">
@@ -75,7 +75,7 @@
                                     <%--                                </table>--%>
                                 </c:if>
                                 <c:if test="${orderTypeMeal.equals(shoppingItem.getOrderType())}">
-                                    <div class="card card-header-actions">
+                                    <div class="card card-header-actions shadow">
                                         <div class="card-header">
                                             <span class="text-gray-900">
                                                 <div class="row">
@@ -100,11 +100,18 @@
                                     </div>
                                 </c:if>
                             </c:forEach>
+                            <br><br>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                    <div class="card card-header-actions shadow border-warning">
+                                        <div class="card-header">
+                                            <span class="text-gray-900">
+                                                Dzienna cena: ${sessionScope.shoppingCart.orderPrice}zł
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-2">Łącznie:</div>
-                                <div class="col-md-2">${sessionScope.shoppingCart.orderPrice} zł</div>
                             </div>
                             <br><br>
                             <div class="form-group row">
@@ -129,6 +136,7 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

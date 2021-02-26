@@ -8,7 +8,7 @@
 <!-- Footer -->
 
 <!-- End of Footer -->
-
+</div>
 <!-- End of Content Wrapper -->
 <footer class="sticky-footer bg-gray-900">
     <div class="container my-auto">

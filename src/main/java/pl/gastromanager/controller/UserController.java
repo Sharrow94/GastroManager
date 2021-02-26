@@ -1,6 +1,8 @@
 package pl.gastromanager.controller;
 
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,18 +49,16 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/home";
     }
-
-
+//Dla Admina
     @RequestMapping(value = "/edit/{id}")
-    public String editUser (@PathVariable long id, Model model){
+    public String editUser (Model model, @PathVariable Long id){
         model.addAttribute("user", userService.get(id));
-        return "user/editUser";
+        return "user/editUserAll";
     }
-
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String saveEditUser (@Valid @ModelAttribute ("user") Users user, @PathVariable long id, BindingResult result){
+    public String saveEditUser (@Valid @ModelAttribute ("user") Users user,@PathVariable Long id, BindingResult result){
         if(result.hasErrors()){
-            return "user/editUser";
+            return "user/editUserAll";
         }
         userService.add(user);
         return "redirect:/admin/user/all";

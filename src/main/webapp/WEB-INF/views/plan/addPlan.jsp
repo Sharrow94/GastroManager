@@ -44,6 +44,10 @@
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 <spring:message code="app.add"/></button>
+                            <div style="margin-top: 10px">
+                                <a href="/app/plan/all" class="btn btn-primary btn-user btn-block">
+                                    <spring:message code="app.cancel"/></a>
+                            </div>
                         </form:form>
                     </div>
                 </div>

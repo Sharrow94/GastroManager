@@ -63,24 +63,6 @@ public class UserController {
         userService.add(user);
         return "redirect:/admin/user/all";
     }
-//Dla zalogowanego użytkownika
-    @RequestMapping(value = "/edit")
-    public String editUser (Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Users currentUser = userService.findByUserName(auth.getName());
-        Long id = currentUser.getId();
-        model.addAttribute("user", userService.get(id));
-        return "user/editUser";
-    }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String saveEditUser (@Valid @ModelAttribute ("user") Users user,  BindingResult result){
-        if(result.hasErrors()){
-            return "user/editUser";
-        }
-        userService.add(user);
-        return "redirect:/admin/user/all";
-    }
 
 
     @RequestMapping("/delete/{id}")

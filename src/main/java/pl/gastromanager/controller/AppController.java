@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.gastromanager.model.*;
 import pl.gastromanager.service.*;
@@ -11,6 +12,7 @@ import pl.gastromanager.util.OrderMealsUtils;
 import pl.gastromanager.util.OrderUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -205,8 +207,37 @@ public class AppController {
     }
 
 
-
     //Method from OrdersController
+
+    //--------------User-------------
+    //Dla zalogowanego użytkownika
+    @RequestMapping(value = "user/edit")
+    public String editUser (Model model, Authentication auth){
+        Users currentUser = userService.findByEmail(auth.getName());
+        Long id = currentUser.getId();
+        model.addAttribute("user", userService.get(id));
+        return "user/editUser";
+    }
+
+    @RequestMapping(value = "user/update", method = RequestMethod.POST)
+    public String saveEditUser (@Valid @ModelAttribute ("user") Users user, BindingResult result){
+        if(result.hasErrors()){
+            return "user/editUser";
+        }
+        userService.add(user);
+        return "redirect:/home";
+    }
+    @RequestMapping(value = "user/biling")
+    public String biling(){
+        return "user/Biling";
+
+    }
+    @RequestMapping(value = "user/security")
+    public String security(){
+        return "user/Security";
+
+    }
+
 
 
 

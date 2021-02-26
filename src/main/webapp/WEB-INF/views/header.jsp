@@ -412,11 +412,12 @@
                                  src="<c:url value="/img/undraw_profile.svg"/>">
                         </a>
                         <!-- Dropdown - User Information -->
+
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="<c:url value="/admin/user/edit"/>">
+                            <a class="dropdown-item" href="<c:url value="/app/user/edit"/>">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" ></i>
-                                Profile
+                                Account
                             </a>
 <%--                            <a class="dropdown-item" href="#">--%>
 <%--                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>--%>

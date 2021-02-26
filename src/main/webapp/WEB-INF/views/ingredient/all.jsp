@@ -41,6 +41,14 @@
                     </div>
 
                     <div class="col-sm-12">
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <div style="margin-bottom: 10px; margin-left: 35%">
+                                <a href='<c:url value="/admin/ingredient/add"/>'
+                                   class="btn btn-primary"
+                                   style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45;position: center;"><spring:message
+                                        code="add.addIngredient"/></a>
+                            </div>
+                        </sec:authorize>
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                             <thead>
@@ -55,13 +63,7 @@
                                     <spring:message code="app.name"/></th>
                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                     aria-label="Office: activate to sort column ascending" style="width: auto;">
-                                    <spring:message code="app.hasGluten"/></th>
-                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                    aria-label="Age: activate to sort column ascending" style="width: auto;">
-                                    <spring:message code="app.hasLactose"/></th>
-                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                    aria-label="Start date: activate to sort column ascending"
-                                    style="width: auto;"><spring:message code="app.hasMeat"/></th>
+                                    <spring:message code="app.currentQuantity"/></th>
                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                     aria-label="Salary: activate to sort column ascending" style="width: auto; ">
                                     <spring:message code="app.unitPrice"/></th>
@@ -81,9 +83,7 @@
                             <tr>
                                 <th rowspan="1" colspan="1"><spring:message code="app.id"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="app.name"/></th>
-                                <th rowspan="1" colspan="1"><spring:message code="app.hasGluten"/></th>
-                                <th rowspan="1" colspan="1"><spring:message code="app.hasLactose"/></th>
-                                <th rowspan="1" colspan="1"><spring:message code="app.hasMeat"/></th>
+                                <th rowspan="1" colspan="1"><spring:message code="app.currentQuantity"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="app.unitPrice"/></th>
                                 <th rowspan="1" colspan="1"><spring:message code="app.unit"/></th>
                                 <sec:authorize access="hasRole('ADMIN')">
@@ -97,22 +97,20 @@
                                 <tr role="row" class="odd">
                                     <td><c:out value="${ingredient.id}"/></td>
                                     <td><c:out value="${ingredient.name}"/></td>
-                                    <td><c:out value="${ingredient.hasGluten}"/></td>
-                                    <td><c:out value="${ingredient.hasLactose}"/></td>
-                                    <td><c:out value="${ingredient.hasMeat}"/></td>
+                                    <td><c:out value="${ingredient.currentQuantity}"/></td>
                                     <td><c:out value="${ingredient.unitPrice}"/></td>
                                     <td><c:out value="${ingredient.unit}"/></td>
                                     <sec:authorize access="hasRole('ADMIN')">
                                         <td>
-                                            <a href='<c:url value="/admin/payments/${ingredient.id}"/>'
+                                            <a href='<c:url value="/admin/ingredient/${ingredient.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.show"/></a>
-                                            <a href='<c:url value="/admin/payments/edit/${ingredient.id}"/>'
+                                            <a href='<c:url value="/admin/ingredient/edit/${ingredient.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.edit"/></a>
-                                            <a href='<c:url value="/admin/payments/delete/${ingredient.id}"/>'
+                                            <a href='<c:url value="/admin/ingredient/delete/${ingredient.id}"/>'
                                                class="btn btn-primary"
                                                style="background-color:#f6c23e; border-color:#f6c23e;color:#3a3b45"><spring:message
                                                     code="app.delete"/></a>

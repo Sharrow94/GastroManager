@@ -53,6 +53,13 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <td><spring:message code="add.unit"/>:</td>
+                                    <form:input path="unit" placeholder="${ingredient.unit}"
+                                                class="form-control form-control-user"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                     <td><spring:message code="add.hasGluten"/>:</td>
                                     <form:checkbox path="hasGluten" value="true"/>
                                 </div>
@@ -67,14 +74,18 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                <spring:message code="app.add"/></button>
+                                <spring:message code="app.edit"/></button>
+                            <div style="margin-top: 10px">
+                                <a href="/admin/ingredient/all" class="btn btn-primary btn-user btn-block">
+                                    <spring:message code="app.back"/></a>
+                            </div>
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

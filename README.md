@@ -1,5 +1,6 @@
 # GastroManager
 
+The aim of the project is to create a program to support the catering company and their customers.
 
 ## Technologies used in the project:
   - Spring Boot
